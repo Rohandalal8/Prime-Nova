@@ -8,16 +8,18 @@ const createOrder = async (req, res) => {
         const { products, totalPrice, address, paymentId } = req.body;
         if (!products || products.length === 0 || !totalPrice || !address) {
             return res.status(400).json({ message: 'No products in the order' });
-        } else {
-            const order = new Order({
-                user: req.user._id,
-                products,
-                totalPrice,
-                address,
-                paymentId
-            });
-            const createdOrder = await order.save();
         }
+
+        const order = new Order({
+            user: req.user._id,
+            products,
+            totalPrice,
+            address,
+            paymentId
+        });
+
+        const createdOrder = await order.save();
+
         // Send order confirmation email
         const message = `
         Dear ${req.user.name},
@@ -27,9 +29,16 @@ Total Price: $${totalPrice}
 Shipping Address: ${address.fullName}, ${address.street}, ${address.city}, ${address.postalCode}, ${address.country}
 We will notify you once your order is shipped. If you have any questions, feel free to contact our support team.
 Thank you for shopping with Prime Basket!`;
-        await sendEmail(req.user.email, 'Order Confirmation - Prime Basket', message);
+
+        try {
+            await sendEmail(req.user.email, 'Order Confirmation - Prime Basket', message);
+        } catch (emailError) {
+            console.error('Order confirmation email failed:', emailError);
+        }
+
         res.status(201).json(createdOrder);
     } catch (error) {
+        console.error('createOrder failed:', error);
         res.status(500).json({ message: 'Server error' });
     }
 };
