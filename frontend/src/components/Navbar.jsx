@@ -6,7 +6,7 @@ import "../styles/navbar.css";
 
 function Navbar() {
   const { user, logout } = React.useContext(AuthContext);
-  const cartItems = useSelector((state) => state?.cart?.items) || [];
+  const cartItems = useSelector((state) => state?.cart?.cartItems || state?.cart?.items || []);
   const navigate = useNavigate();
 
   const handleLogout = () => {
@@ -18,7 +18,7 @@ function Navbar() {
     <nav className="navbar">
       <div className="navbar-brand">
         <Link to="/">
-            <img src="/Prime%20logo.png" alt="Prime Basket Logo" className="navbar-logo" />
+            <img src="/PrimeLogo.png" alt="Prime Basket Logo" className="navbar-logo" />
             Prime Basket
         </Link>
       </div>

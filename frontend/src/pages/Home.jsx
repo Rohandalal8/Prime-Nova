@@ -9,9 +9,9 @@ const Home = () => {
         // Fetch products from the backend API
         const fetchProducts = async () => {
             try {
-                const response = await fetch('http://localhost:5000/api/products');
+                const response = await fetch('/api/products');
                 const data = await response.json();
-                setProducts(data.slice(0, 4)); // Show only the first 4 products
+                setProducts(data.slice(0, 10)); // Show only the first 10 products
             } catch (error) {
                 console.error('Error fetching products:', error);
             } finally {

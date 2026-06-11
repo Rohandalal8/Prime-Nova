@@ -7,7 +7,7 @@ function Footer() {
             backgroundColor: '#09090b6a',
             borderTop: '1px solid rgba(255, 255, 255, 0.05)', 
             padding: '15px', 
-            marginTop: 'auto' 
+            marginTop: 'auto',
         }}>
             <div style={{ 
                 maxWidth: '1400px', 
