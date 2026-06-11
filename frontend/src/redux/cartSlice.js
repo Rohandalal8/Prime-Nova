@@ -1,7 +1,31 @@
 import {createSlice} from '@reduxjs/toolkit';
 
+const getStoredUser = () => {
+    try {
+        return JSON.parse(localStorage.getItem('userInfo'));
+    } catch (error) {
+        return null;
+    }
+};
+
+const getCartOwnerId = (user = getStoredUser()) => user?._id || user?.id || user?.email || 'guest';
+const getCartStorageKey = (user) => `cartItems:${getCartOwnerId(user)}`;
+
+const readStoredCart = (user) => {
+    try {
+        return JSON.parse(localStorage.getItem(getCartStorageKey(user))) || [];
+    } catch (error) {
+        return [];
+    }
+};
+
+const persistCart = (cartItems) => {
+    localStorage.setItem(getCartStorageKey(), JSON.stringify(cartItems));
+    localStorage.removeItem('cartItems');
+};
+
 const initialState = {
-    cartItems: localStorage.getItem('cartItems') ? JSON.parse(localStorage.getItem('cartItems')) : [],
+    cartItems: readStoredCart(),
 };
 
 const getItemId = (item) => item?.productId || item?._id;
@@ -48,19 +72,23 @@ const cartSlice = createSlice({
             } else {
                 state.cartItems = [...state.cartItems, normalizedItem];
             }
-            localStorage.setItem('cartItems', JSON.stringify(state.cartItems));
+            persistCart(state.cartItems);
         },
         removeFromCart: (state, action) => {
             const itemId = action.payload;
             state.cartItems = state.cartItems.filter((x) => getItemId(x) !== itemId);
-            localStorage.setItem('cartItems', JSON.stringify(state.cartItems));
+            persistCart(state.cartItems);
         },
         clearCart: (state) => {
             state.cartItems = [];
+            localStorage.removeItem(getCartStorageKey());
             localStorage.removeItem('cartItems');
+        },
+        loadCartForUser: (state, action) => {
+            state.cartItems = readStoredCart(action.payload);
         }
     },
 });
 
-export const { addToCart, removeFromCart, clearCart } = cartSlice.actions;
+export const { addToCart, removeFromCart, clearCart, loadCartForUser } = cartSlice.actions;
 export default cartSlice.reducer;

@@ -221,7 +221,7 @@ const Checkout = () => {
         key: 'rzp_test_dummykey123', // Student dummy fallback
         amount: orderData.amount,
         currency: orderData.currency,
-        name: 'ShopNest',
+        name: 'Prime Basket',
         description: 'Test Transaction',
         order_id: orderData.id,
         handler: async function (response) {
@@ -268,7 +268,7 @@ const Checkout = () => {
       const rzp1 = new window.Razorpay(options);
       rzp1.open();
     } catch (error) {
-      console.error(error);
+      console.error('Payment initialization error:', error);
     }
   };
 
@@ -335,13 +335,7 @@ const Checkout = () => {
           <input type="text" placeholder="Street" required value={address.street} onChange={(e) => setAddress({...address, street: e.target.value})} />
           <input type="text" placeholder="City" required value={address.city} onChange={(e) => setAddress({...address, city: e.target.value})} />
           <input type="text" placeholder="Postal Code" required value={address.postalCode} onChange={(e) => setAddress({...address, postalCode: e.target.value})} />
-          <input
-            type="text"
-            placeholder="Country"
-            required
-            value={address.country}
-            onChange={(e) => setAddress({ ...address, country: e.target.value })}
-          />
+          <input type="text" placeholder="Country" required value={address.country} onChange={(e) => setAddress({ ...address, country: e.target.value })} />
           <div className="checkout-summary">
             <h4>Total to Pay: ₹{totalPrice.toFixed(2)}</h4>
             <button type="submit" className="btn">Pay Now</button>
