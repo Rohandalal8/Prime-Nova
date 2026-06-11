@@ -5,15 +5,25 @@ const sendEmail = require('../utils/sendEmail');
 // Create a new order
 const createOrder = async (req, res) => {
     try {
-        const { products, totalPrice, address, paymentId } = req.body;
-        if (!products || products.length === 0 || !totalPrice || !address) {
+        const { products, items, totalPrice, totalAmount, address, paymentId } = req.body;
+        const incomingProducts = products || items;
+        const orderTotalPrice = totalPrice || totalAmount;
+        const orderProducts = (incomingProducts || []).map((item) => ({
+            productId: item.productId || item._id,
+            quantity: item.quantity || item.qty || 1,
+            price: item.price,
+        }));
+
+        const hasValidProducts = orderProducts.length > 0 && orderProducts.every((item) => item.productId && item.quantity > 0 && typeof item.price === 'number');
+
+        if (!hasValidProducts || !orderTotalPrice || !address || !address.mobileNumber || !address.countryCode) {
             return res.status(400).json({ message: 'No products in the order' });
         }
 
         const order = new Order({
             user: req.user._id,
-            products,
-            totalPrice,
+            products: orderProducts,
+            totalPrice: orderTotalPrice,
             address,
             paymentId
         });
@@ -25,8 +35,9 @@ const createOrder = async (req, res) => {
         Dear ${req.user.name},
         Thank you for your order! Your order has been received and is being processed. Here are the details of your order:
 Order ID: ${createdOrder._id}
-Total Price: $${totalPrice}
+Total Price: $${orderTotalPrice}
 Shipping Address: ${address.fullName}, ${address.street}, ${address.city}, ${address.postalCode}, ${address.country}
+Mobile Number: ${address.countryCode} ${address.mobileNumber}
 We will notify you once your order is shipped. If you have any questions, feel free to contact our support team.
 Thank you for shopping with Prime Basket!`;
 
