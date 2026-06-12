@@ -7,11 +7,13 @@ const Register = () => {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [loading, setLoading] = useState(false);
     const { login } = useContext(AuthContext);
     const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setLoading(true);
         try {
             const response = await fetch('/api/auth/register', {   
                 method: 'POST',
@@ -20,7 +22,6 @@ const Register = () => {
             });
             const data = await response.json();
             if (response.ok) {
-                alert('Registration successful! please check your email for verification Code.');
                 login(data);
                 navigate('/');
             } else {
@@ -29,6 +30,8 @@ const Register = () => {
         } catch (error) {
             console.error('Error during registration:', error);
             alert('An error occurred. Please try again.');
+        } finally {
+            setLoading(false);
         }
     };
 
@@ -59,7 +62,9 @@ const Register = () => {
                     required
                 />
                       
-                <button type="submit">Register</button>
+                <button type="submit" disabled={loading}>
+                    {loading ? 'Registering...' : 'Register'}
+                </button>
                 <p>Already have an account? <Link to="/login">Login here</Link></p>
             </form>
         </div>

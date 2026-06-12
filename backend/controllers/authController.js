@@ -25,10 +25,18 @@ const registerUser = async (req, res) => {
         // Generate OTP
         if (user) {
             const otp = Math.floor(100000 + Math.random() * 900000).toString();
-            const message = `
-            Welcome to Prime Basket, ${name}!
-            Thank you for registering with us. We are excited to have you on board. To complete your registration, please use the following One-Time Password (OTP):
-            Your OTP for Prime Basket registration is: ${otp}`;
+            const message = `Welcome to Prime Basket, ${name}!
+
+Thank you for registering with Prime Basket. Use the One-Time Password (OTP) below to complete your registration:
+
+OTP: ${otp}
+
+This OTP is for your Prime Basket account verification. Please do not share it with anyone.
+
+If you did not create a Prime Basket account, you can safely ignore this email.
+
+Regards,
+Prime Basket Team`;
             
             await sendEmail(email, 'Welcome to Prime Basket - Your OTP', message); 
             res.status(201).json({
