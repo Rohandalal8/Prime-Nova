@@ -66,7 +66,9 @@ const getMyOrders = async (req, res) => {
 
 const getOrders = async (req, res) => {
     try {
-        const orders = await Order.find({}).populate('user', 'name email');
+        const orders = await Order.find({})
+            .populate('user', 'name email')
+            .populate('products.productId', 'name price');
         res.json(orders);
     } catch (error) {
         res.status(500).json({ message: 'Server error' });

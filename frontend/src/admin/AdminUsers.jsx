@@ -1,12 +1,15 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { AuthContext } from '../context/AuthContext';
+import { useNavigate} from 'react-router-dom';
 
 const AdminUsers = () => {
     const { user } = useContext(AuthContext);
     const [users, setUsers] = useState([]);
+    const navigate = useNavigate();
 
     useEffect(() => {
         if (!user || user.role !== 'admin') {
+            navigate('/');
             return;
         }
         const fetchUsers = async () => {
@@ -23,7 +26,7 @@ const AdminUsers = () => {
             }
         };
         fetchUsers();
-    }, [user]);
+    }, [user, navigate]);
 
     return (
         <div style={{ maxWidth: '1200px', margin: '30px auto', padding: '20px' }}>

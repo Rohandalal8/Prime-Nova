@@ -1,13 +1,15 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { AuthContext } from '../context/AuthContext';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate} from 'react-router-dom';
 
 const AdminProducts = () => {
     const { user } = useContext(AuthContext);
     const [products, setProducts] = useState([]);
+    const navigate = useNavigate();
 
     useEffect(() => {
         if (!user || user.role !== 'admin') {
+            navigate('/');
             return;
         }
         const fetchProducts = async () => {
@@ -24,10 +26,10 @@ const AdminProducts = () => {
             }
         };
         fetchProducts();
-    }, [user]);
+    }, [user, navigate]);
 
     const handleDelete = async (id) => {
-        if (!window.confirm('Are you sure you want to delete this product?')) {
+        if (window.confirm('Are you sure you want to delete this product?')) {
             const res = await fetch(`/api/products/${id}`, {
                 method: 'DELETE',
                 headers: { Authorization: `Bearer ${user.token}` }
@@ -74,7 +76,7 @@ const AdminProducts = () => {
                             <td style={{ padding: '12px 25px' }}>{p.category}</td>
                             <td style={{ padding: '12px 25px' }}>{p.stock}</td>
                             <td style={{ padding: '12px 25px' }}>
-                                <Link to={`/admin/products/${p._id}`} style={{ 
+                                <Link to={`/admin/edit-product/${p._id}`} style={{ 
                                     padding: '6px 12px',
                                     borderRadius: '8px',
                                     backgroundColor: '#3b82f6',

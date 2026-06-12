@@ -101,8 +101,8 @@ const Profile = () => {
               </div>
               <div>
                 <span style={{ 
-                  background: order.status === 'Delivered' ? 'rgba(16,185,129,0.1)' : order.status === 'Shipped' ? 'rgba(59,130,246,0.1)' : order.status === 'Pending' ? 'rgba(245,158,11,0.1)' : 'rgba(255,0,0,0.1)', 
-                  color: order.status === 'Delivered' ? '#10b981' : order.status === 'Shipped' ? '#3b82f6' : order.status === 'Pending' ? '#f59e0b' : '#ff0000',
+                  background: order.status === 'delivered' ? 'rgba(16,185,129,0.1)' : order.status === 'shipped' ? 'rgba(59,130,246,0.1)' : order.status === 'pending' ? 'rgba(245,158,11,0.1)' : 'rgba(255,0,0,0.1)',
+                  color: order.status === 'delivered' ? '#10b981' : order.status === 'shipped' ? '#3b82f6' : order.status === 'pending' ? '#f59e0b' : '#ff0000',
                   padding: '8px 16px', borderRadius: '20px', fontWeight: 'bold' 
                 }}>
                   {order.status}
