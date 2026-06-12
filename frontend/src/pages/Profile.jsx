@@ -96,13 +96,13 @@ const Profile = () => {
                     ))}
                   </div>
                 </div>
-                <p style={{ color: '#a1a1aa', fontSize: '0.9rem', marginBottom: '5px' }}>Placed On: <span style={{ color: '#fff' }}>{new Date(order.createdAt).toLocaleDateString()}</span></p>
+                <p style={{ color: '#a1a1aa', fontSize: '0.9rem', marginBottom: '5px' }}>Placed On: <span style={{ color: '#fff' }}>{new Date(order.createdAt).toLocaleDateString('en-GB')}</span></p>
                 <p style={{ color: '#a1a1aa', fontSize: '0.9rem' }}>Total: <strong style={{ color: '#10b981' }}>₹{formatOrderTotal(order)}</strong></p>
               </div>
               <div>
                 <span style={{ 
-                  background: order.status === 'Delivered' ? 'rgba(16,185,129,0.1)' : order.status === 'Shipped' ? 'rgba(59,130,246,0.1)' : 'rgba(245,158,11,0.1)', 
-                  color: order.status === 'Delivered' ? '#10b981' : order.status === 'Shipped' ? '#3b82f6' : '#f59e0b',
+                  background: order.status === 'Delivered' ? 'rgba(16,185,129,0.1)' : order.status === 'Shipped' ? 'rgba(59,130,246,0.1)' : order.status === 'Pending' ? 'rgba(245,158,11,0.1)' : 'rgba(255,0,0,0.1)', 
+                  color: order.status === 'Delivered' ? '#10b981' : order.status === 'Shipped' ? '#3b82f6' : order.status === 'Pending' ? '#f59e0b' : '#ff0000',
                   padding: '8px 16px', borderRadius: '20px', fontWeight: 'bold' 
                 }}>
                   {order.status}
