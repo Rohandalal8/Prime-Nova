@@ -97,6 +97,77 @@ const loginUser = async (req, res) => {
     }
 };
 
+// Forgot password
+const forgotPassword = async (req, res) => {
+    const { email } = req.body;
+    try {
+        const user = await User.findOne({ email });
+        if (!user) {
+            return res.status(404).json({ message: 'User not found' });
+        }
+        const otp = Math.floor(100000 + Math.random() * 900000).toString();
+        user.verificationCode = otp;
+        user.verificationExpires = undefined;
+        await user.save();
+
+        const message = `You have requested a password reset for your Prime Basket account.
+
+Use the One-Time Password (OTP) below to reset your password:
+
+OTP: ${otp}
+
+This OTP is for your Prime Basket account verification. Please do not share it with anyone.
+
+If you did not request a password reset, you can safely ignore this email.
+
+Regards,
+Prime Basket Team`;
+
+        await sendEmail(email, 'Password Reset Request', message);
+        res.status(200).json({ message: 'Please check your email for the OTP to reset your password.' });
+    } catch (error) {
+        res.status(500).json({ message: 'Server error' });
+    }
+};
+
+// Verify OTP for forgot password
+const forgotPasswordOtp = async (req, res) => {
+    const { otp } = req.body;
+    try {
+        const user = await User.findOne({ verificationCode: otp });
+        if (user) {
+            user.verificationCode = undefined;
+            user.verificationExpires = undefined;
+            await user.save();
+            res.status(201).json({
+                message: 'OTP verified. You can now reset your password.',
+             });
+        } else {
+            res.status(400).json({ message: 'Invalid OTP' });
+        }
+    } catch (error) {
+        res.status(500).json({ message: 'Server error' });
+    }
+};
+
+// Reset password
+const resetPassword = async (req, res) => {
+    const { email, newPassword } = req.body;
+    try {
+        const user = await User.findOne({ email });
+        if (!user) {
+            return res.status(404).json({ message: 'User not found' });
+        }
+        const salt = await bcrypt.genSalt(10);
+        user.password = await bcrypt.hash(newPassword, salt);
+        user.verificationExpires = undefined;
+        await user.save();
+        res.status(200).json({ message: 'Password reset successful' });
+    } catch (error) {
+        res.status(500).json({ message: 'Server error' });
+    }
+};
+
 // Get all users (for admin)
 const getUsers = async (req, res) => {
     try {
@@ -107,4 +178,4 @@ const getUsers = async (req, res) => {
     }
 };
 
-module.exports = { registerUser, loginUser, getUsers, registerOtp };
+module.exports = { registerUser, loginUser, getUsers, registerOtp, forgotPassword, forgotPasswordOtp, resetPassword };

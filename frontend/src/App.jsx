@@ -21,6 +21,9 @@ import AdminProducts from './admin/AdminProducts';
 import AdminOrders from './admin/AdminOrders';
 import AdminUsers from './admin/AdminUsers';
 import RegisterOtp from './pages/RegisterOtp';
+import ForgotPassword from './pages/ForgotPassword';
+import ForgotPasswordOtp from './pages/ForgotPasswordOtp';
+import ResetPassword from './pages/ResetPassword';
 
 function App() {
   return (
@@ -32,6 +35,9 @@ function App() {
         <Route path="/disclaimer" element={<Disclaimer />} />
         <Route path="/return" element={<ReturnPolicy />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
+        <Route path="/forgot-password-otp" element={<ForgotPasswordOtp />} />
+        <Route path="/reset-password" element={<ResetPassword />} />
         <Route path="/register" element={<Register />} />
         <Route path="/register-otp" element={<RegisterOtp />} />
         <Route path="/product/:id" element={<ProductDetail />} />
