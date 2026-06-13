@@ -203,22 +203,12 @@ const Checkout = () => {
       const orderRes = await fetch('/api/payment/order', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ amount: totalPrice })
+        body: JSON.stringify({ amount: totalPrice , currency: 'INR' })
       });
       const orderData = await orderRes.json();
 
-      if (!orderRes.ok) {
-        // Razorpay unconfigured exception handler
-        const fallback = window.confirm("Razorpay keys unconfigured on backend. Use Student Bypass Mode to place test order?");
-        if (fallback) {
-          return bypassPayment();
-        } else {
-          return alert("Payment failed to initialize");
-        }
-      }
-
       const options = {
-        key: 'rzp_test_dummykey123', // Student dummy fallback
+        key: process.env.REACT_APP_RAZORPAY_KEY_ID,
         amount: orderData.amount,
         currency: orderData.currency,
         name: 'Prime Basket',
@@ -264,31 +254,12 @@ const Checkout = () => {
           color: '#f97316'
         }
       };
+      console.log("Razorpay Key:", options.key);
       
       const rzp1 = new window.Razorpay(options);
       rzp1.open();
     } catch (error) {
       console.error('Payment initialization error:', error);
-    }
-  };
-
-  const bypassPayment = async () => {
-    const saveOrderRes = await fetch('/api/orders', {
-      method: 'POST',
-      headers: { 
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${user.token}`
-      },
-      body: JSON.stringify({
-        products: buildOrderProducts(),
-        totalPrice,
-        address,
-        paymentId: 'bypass_txn_' + Date.now()
-      })
-    });
-    if (saveOrderRes.ok) {
-      dispatch(clearCart());
-      navigate('/ordersuccess');
     }
   };
 
