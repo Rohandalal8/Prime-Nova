@@ -5,13 +5,13 @@ const sendEmail = require('../utils/sendEmail');
 // Create a new order
 const createOrder = async (req, res) => {
     try {
-        const { products, items, totalPrice, totalAmount, address, paymentId } = req.body;
-        const incomingProducts = products || items;
-        const orderTotalPrice = totalPrice || totalAmount;
+        const { products, totalPrice, address, paymentId } = req.body;
+        const incomingProducts = products;
+        const orderTotalPrice = totalPrice;
         const orderProducts = (incomingProducts || []).map((item) => ({
             productId: item.productId || item._id,
             quantity: item.quantity || item.qty || 1,
-            price: item.price,
+            price: item.price
         }));
 
         const hasValidProducts = orderProducts.length > 0 && orderProducts.every((item) => item.productId && item.quantity > 0 && typeof item.price === 'number');
@@ -32,8 +32,8 @@ const createOrder = async (req, res) => {
 
         // Send order confirmation email
         const message = `
-        Dear ${req.user.name},
-        Thank you for your order! Your order has been received and is being processed. Here are the details of your order:
+Dear ${req.user.name},
+Thank you for your order! Your order has been received and is being processed. Here are the details of your order:
 Order ID: ${createdOrder._id}
 Total Price: $${orderTotalPrice}
 Shipping Address: ${address.fullName}, ${address.street}, ${address.city}, ${address.postalCode}, ${address.country}

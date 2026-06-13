@@ -94,7 +94,9 @@ const AdminOrders = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {orders.map(order => (
+                        {orders
+                         .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+                         .map(order => (
                             <tr key={order._id} style={rowStyle}>
                                 <td style={tdStyle}>{order._id.substring(0, 8)}...</td>
                                 <td style={tdStyle}>{order.user?.name || order.user?.email || 'Unknown'}</td>
