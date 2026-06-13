@@ -24,6 +24,14 @@ const userSchema = new mongoose.Schema({
         type: Boolean,
         default: false
     },
+    verificationCode: {
+        type: String
+    },
+    verificationExpires: {
+        type: Date,
+        default: Date.now,
+        expires: 120 // Document will be deleted after 120 seconds if not verified
+    },
     createdAt: {
         type: Date,
         default: Date.now

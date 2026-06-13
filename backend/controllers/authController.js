@@ -20,11 +20,11 @@ const registerUser = async (req, res) => {
         // Hash the password        
         const salt = await bcrypt.genSalt(10);
         const hashedPassword = await bcrypt.hash(password, salt);
+        const otp = Math.floor(100000 + Math.random() * 900000).toString();
         // Create new user
-        const user = await User.create({ name, email, password: hashedPassword });
+        const user = await User.create({ name, email, password: hashedPassword, verificationCode: otp, });
         // Generate OTP
         if (user) {
-            const otp = Math.floor(100000 + Math.random() * 900000).toString();
             const message = `Welcome to Prime Basket, ${name}!
 
 Thank you for registering with Prime Basket. Use the One-Time Password (OTP) below to complete your registration:
@@ -39,17 +39,37 @@ Regards,
 Prime Basket Team`;
             
             await sendEmail(email, 'Welcome to Prime Basket - Your OTP', message); 
+            res.status(201).json({ message: 'Please check your email for the OTP to complete registration.' });
+        } else {
+            res.status(400).json({ message: 'Invalid user data' });
+        }
+        
+    } catch (error) {
+        res.status(500).json({ message: 'Server error' });
+    }
+};
+
+// Verify OTP for registration
+const registerOtp = async (req, res) => {
+    const { otp } = req.body;
+    try {
+        const user = await User.findOne({ verificationCode: otp });
+        if (user) {
+            user.verified = true;
+            user.verificationCode = undefined;
+            user.verificationExpires = undefined;
+            await user.save();
             res.status(201).json({
                 _id: user._id,
                 name: user.name,
                 email: user.email,
                 role: user.role,
+                verified: user.verified,
                 token: generateToken(user._id)
              });
         } else {
-            res.status(400).json({ message: 'Invalid user data' });
+            res.status(400).json({ message: 'Invalid OTP' });
         }
-        
     } catch (error) {
         res.status(500).json({ message: 'Server error' });
     }
@@ -66,6 +86,7 @@ const loginUser = async (req, res) => {
                 name: user.name,
                 email: user.email,
                 role: user.role,
+                verified: user.verified,
                 token: generateToken(user._id)
             });
         } else {
@@ -86,4 +107,4 @@ const getUsers = async (req, res) => {
     }
 };
 
-module.exports = { registerUser, loginUser, getUsers };
+module.exports = { registerUser, loginUser, getUsers, registerOtp };

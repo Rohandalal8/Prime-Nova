@@ -1,5 +1,5 @@
 import React, {useState, useContext} from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
 import '../styles/auth.css';
 
@@ -13,7 +13,7 @@ const RegisterOtp = () => {
         e.preventDefault();
         setLoading(true);
         try {
-            const response = await fetch('/api/auth/register', {   
+            const response = await fetch('/api/auth/register-otp', {   
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ otp }),
@@ -39,13 +39,12 @@ const RegisterOtp = () => {
                 <h2>Verify OTP</h2>
                 <p>Please enter the OTP sent to your email to complete registration.</p>
                 <input
-                    type="number"
+                    type="string"
                     placeholder="Enter OTP"
                     value={otp}
                     onChange={(e) => setOtp(e.target.value)}
                     required
-                />
-                      
+                />      
                 <button type="submit" disabled={loading}>
                     {loading ? 'Verifying...' : 'Verify OTP'}
                 </button>

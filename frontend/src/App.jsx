@@ -20,6 +20,7 @@ import EditProduct from './admin/EditProduct';
 import AdminProducts from './admin/AdminProducts';
 import AdminOrders from './admin/AdminOrders';
 import AdminUsers from './admin/AdminUsers';
+import RegisterOtp from './pages/RegisterOtp';
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
         <Route path="/return" element={<ReturnPolicy />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/register-otp" element={<RegisterOtp />} />
         <Route path="/product/:id" element={<ProductDetail />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/checkout" element={<Checkout />} />

@@ -294,7 +294,7 @@ const Checkout = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!user) {
+    if (!user || !user.verified) {
       alert("Please login first");
       navigate('/login');
       return;

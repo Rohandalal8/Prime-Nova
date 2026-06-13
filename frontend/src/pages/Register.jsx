@@ -1,6 +1,5 @@
-import React, {useState, useContext} from 'react';
+import React, {useState} from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { AuthContext } from '../context/AuthContext';
 import '../styles/auth.css';
 
 const Register = () => {
@@ -8,7 +7,6 @@ const Register = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [loading, setLoading] = useState(false);
-    const { login } = useContext(AuthContext);
     const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
@@ -22,8 +20,7 @@ const Register = () => {
             });
             const data = await response.json();
             if (response.ok) {
-                login(data);
-                navigate('/');
+                navigate('/register-otp');
             } else {
                 alert(data.message || 'Registration failed');
             }

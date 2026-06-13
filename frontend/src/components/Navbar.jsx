@@ -26,7 +26,7 @@ function Navbar() {
         <li><Link to="/">Home</Link></li>
         <li><Link to="/shop">Shop</Link></li>
         <li><Link to="/cart">Cart ({cartItems.length})</Link></li>
-        {user ? (
+        {user && user.verified ? (
             <>
                 <li><Link to="/profile">Hi, {user.name}</Link></li>
                 {user.role === "admin" && <li><Link to="/admin">Admin Dashboard</Link></li>}

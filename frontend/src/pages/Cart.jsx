@@ -27,7 +27,7 @@ const Cart = () => {
     <div className="cart-container">
       <h2>Shopping Cart</h2>
       {cartItems.length === 0 ? (
-        <p>Your cart is empty. <Link to="/shop">Go Shopping</Link></p>
+        <p>Your cart is empty. <Link to="/shop" style={{ color: '#007bff' }}>Go Shopping</Link></p>
       ) : (
         <div className="cart-layout">
           <div className="cart-items">
