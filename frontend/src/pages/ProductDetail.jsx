@@ -26,7 +26,7 @@ const ProductDetail = () => {
     }, [id]);
 
     const handleAddToCart = () => {
-        if (product) {
+        if (product && product.stock > 0) {
             dispatch(addToCart({
                 productId: product._id,
                 name: product.name,
@@ -65,10 +65,12 @@ const ProductDetail = () => {
                         </p>
                     </div>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
-                        <button onClick={handleAddToCart} className="btn" style={{ flexGrow:'1', padding:'18px', fontSize:'1.2rem'}}>Add to Cart</button>
+                        <button onClick={handleAddToCart} disabled={product.stock <= 0} className="btn" style={{ flexGrow:'1', padding:'18px', fontSize:'1.2rem', opacity: product.stock <= 0 ? 0.5 : 1, cursor: product.stock <= 0 ? 'not-allowed' : 'pointer' }}>
+                            {product.stock <= 0 ? 'Out of Stock' : 'Add to Cart'}
+                        </button>
                     </div>
                     <p style={{ marginTop: '20px', color: product.stock > 0 ? '#f97316' : '#ef4444', fontWeight: '600' }}>
-                        {product.stock > 0 && product.stock <= 5 ? `Only ${product.stock} available` : product.stock > 5 ? `` : 'Temporarily Out of Stock'}
+                        {product.stock > 0 && product.stock <= 5 ? `Only ${product.stock} available` : ''}
                     </p>
                 </div>
             </div>

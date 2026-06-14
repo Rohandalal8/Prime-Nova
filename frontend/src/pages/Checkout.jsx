@@ -38,6 +38,11 @@ const Checkout = () => {
       });
       const orderData = await orderRes.json();
 
+      if (!orderRes.ok) {
+        alert(orderData.message || 'Unable to create payment order');
+        return;
+      }
+
       const options = {
         key: process.env.REACT_APP_RAZORPAY_KEY_ID,
         amount: orderData.amount,

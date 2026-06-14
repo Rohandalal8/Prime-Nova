@@ -21,6 +21,22 @@ const createOrder = async (req, res) => {
             return res.status(400).json({ message: 'No products in the order' });
         }
 
+        for (const item of orderProducts) {
+            const product = await Product.findById(item.productId);
+
+            if (!product) {
+                return res.status(404).json({
+                message: 'Product not found'
+                });
+            }
+
+            if (product.stock < item.quantity) {
+                return res.status(400).json({
+                message: `${product.name} has only ${product.stock} items left in stock`
+                });
+            }
+        }
+
         const order = new Order({
             user: req.user._id,
             products: orderProducts,
@@ -32,19 +48,14 @@ const createOrder = async (req, res) => {
         const createdOrder = await order.save();
 
         for (const item of orderProducts) {
-            const product = await Product.findById(item.productId);
-
-            if (!product) {
-                continue;
-            }
-
-            product.stock -= item.quantity;
-
-            if (product.stock < 0) {
-                product.stock = 0;
-            }
-
-            await product.save();
+            await Product.findByIdAndUpdate(
+                item.productId,
+                {
+                    $inc: {
+                        stock: -item.quantity
+                    }
+                }
+            );
         }
 
         // Send order confirmation email
