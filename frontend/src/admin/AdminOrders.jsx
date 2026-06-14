@@ -73,7 +73,7 @@ const AdminOrders = () => {
             return 'No mobile';
         }
 
-        return `${address.countryCode || ''} ${address.mobileNumber}`.trim();
+        return `${address.mobileNumber}`.trim();
     };
 
     return (
