@@ -59,7 +59,7 @@ const Cart = () => {
           </div>
           <div className="cart-summary">
             <h3>Total: ${totalPrice.toFixed(2)}</h3>
-            <button onClick={() => navigate('/checkout')} className="btn btn-checkout">Proceed to Checkout</button>
+            <button onClick={() => navigate('/checkout')} className="btn btn-checkout">Checkout</button>
           </div>
         </div>
       )}

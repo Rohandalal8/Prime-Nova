@@ -1,9 +1,11 @@
 import React, {useEffect, useState} from 'react';
 import ProductCard from '../components/ProductCard';
+const { AuthContext } = require('../context/AuthContext');
 
 const Home = () => {
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(true);
+    const { user } = React.useContext(AuthContext);
 
     useEffect(() => {
         // Fetch products from the backend API
@@ -11,7 +13,7 @@ const Home = () => {
             try {
                 const response = await fetch('/api/products');
                 const data = await response.json();
-                setProducts(data.slice(0, 10)); // Show only the first 10 products
+                setProducts(data.slice(0, 8)); // Show only the first 8 products
             } catch (error) {
                 console.error('Error fetching products:', error);
             } finally {
@@ -24,10 +26,10 @@ const Home = () => {
     return (
         <div className="main-context">
             <div className="hero-banner">
-                <h1>Welcome to Prime Basket</h1>
+                <h1>Hi, {user?.name || 'Guest'}! Welcome to Prime Basket</h1>
                 <p>Your one-stop shop for all your needs. Discover our wide range of products and enjoy seamless shopping experience.</p>
             </div>
-            <h2>Featured Products</h2>
+            <h2>Recently Added</h2>
             {loading ? (
                 <p>Loading products...</p>
             ) : (

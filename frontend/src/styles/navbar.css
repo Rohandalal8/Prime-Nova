@@ -100,8 +100,26 @@
 
 @media (max-width: 768px) {
     .navbar {
-        flex-direction: column;
-        padding: 15px 20px;
-        gap: 15px;
+        /* flex-direction: column; */
+        padding: 15px;
+        gap: 10px;
+    }
+    .navbar-brand a {
+        font-size: 18px;
+        font-weight: 400;
+    }
+    .navbar-logo {
+        width: 18px;
+        height: 18px;
+    }
+    .logout-btn {
+        display: none;
+    }
+    .navbar-links {
+        gap: 13px;
+    }
+    .navbar-links a,
+    .navbar-links span {
+        font-size: 0.8rem;
     }
 }

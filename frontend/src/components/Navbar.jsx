@@ -28,7 +28,7 @@ function Navbar() {
         <li><Link to="/cart">Cart ({cartItems.length})</Link></li>
         {user && user.verified ? (
             <>
-                <li><Link to="/profile">Hi, {user.name}</Link></li>
+                <li><Link to="/profile">Profile</Link></li>
                 {user.role === "admin" && <li><Link to="/admin">Admin Dashboard</Link></li>}
                 <li><button onClick={handleLogout} className="logout-btn">Logout</button></li>
             </>

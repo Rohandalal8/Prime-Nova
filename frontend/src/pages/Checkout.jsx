@@ -106,7 +106,7 @@ const Checkout = () => {
 
 
   return (
-    <div className="checkout-container" style={{textAlign: 'center', padding: '30px'}}>
+    <div className="checkout-container" style={{textAlign: 'center', padding: '20px'}}>
       <h2>Checkout</h2>
       <div className="checkout-content">
         <form onSubmit={handleSubmit} className="shipping-form">

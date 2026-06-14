@@ -1,35 +1,36 @@
 .cart-container {
   max-width: 1200px;
-  margin: 0 auto;
+  margin: 10px auto;
 }
 
 .cart-layout {
   display: flex;
   gap: 40px;
-  margin-top: 30px;
+  margin-top: 20px;
 }
 
 .cart-items {
   flex: 2;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 10px;
+  background: radial-gradient(circle at top right, rgba(249, 115, 22, 0.05),transparent 60%), linear-gradient(135deg, #18181b 0%, #09090b 100%);
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 20px 20px 0px 20px;
 }
 
 .cart-item {
   display: flex;
   align-items: center;
-  background: #18181b;
-  padding: 20px;
-  border-radius: 12px;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.2);
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  padding-bottom: 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05); 
   transition: transform 0.3s ease;
 }
 
 .cart-item:hover {
-  transform: translateX(5px);
-  border-color: rgba(249, 115, 22, 0.2);
+  transform: translateX(1px);
 }
 
 .cart-item-image {
@@ -45,23 +46,23 @@
 }
 
 .cart-item-details h4 {
-  margin-bottom: 15px;
-  font-size: 1.2rem;
+  margin-bottom: 2px;
+  font-size: 1.1rem;
 }
 
 .qty-controls {
   display: flex;
   align-items: center;
   gap: 15px;
-  margin: 15px 0;
+  margin: 10px 0;
 }
 
 .qty-controls button {
   background: #27272a;
   color: #fff;
   border: 1px solid #3f3f46;
-  width: 32px;
-  height: 32px;
+  width: 26px;
+  height: 26px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -84,7 +85,7 @@
   background: rgba(239, 68, 68, 0.1);
   color: #ef4444;
   border: 1px solid rgba(239, 68, 68, 0.3);
-  padding: 8px 16px;
+  padding: 5px 10px;
   border-radius: 6px;
   cursor: pointer;
   font-family: inherit;
@@ -99,7 +100,7 @@
 
 .cart-summary {
   flex: 1;
-  background: #18181b;
+  background: radial-gradient(circle at top right, rgba(249, 115, 22, 0.03),transparent 60%), linear-gradient(135deg, #18181b 0%, #09090b 100%);
   padding: 30px;
   border-radius: 12px;
   box-shadow: 0 4px 20px rgba(0,0,0,0.2);
@@ -110,7 +111,7 @@
 }
 
 .cart-summary h3 {
-  font-size: 1.8rem;
+  font-size: 1.3rem;
   margin-bottom: 25px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   padding-bottom: 15px;
@@ -126,7 +127,7 @@
 /* Checkout Page Additions */
 .checkout-content {
   background: #18181b;
-  padding: 40px;
+  padding: 20px;
   border-radius: 12px;
   border: 1px solid rgba(255, 255, 255, 0.05);
   max-width: 600px;
@@ -154,16 +155,16 @@
 }
 
 .checkout-summary {
-  margin-top: 30px;
+  margin-top: 15px;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
   padding-top: 20px;
   text-align: right;
 }
 
 .checkout-summary h4 {
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   margin-bottom: 20px;
-  color: #f97316;
+  /* color: #f97316; */
 }
 
 @media (max-width: 768px) {

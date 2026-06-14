@@ -54,13 +54,13 @@ const ProductDetail = () => {
                 </div>
 
                 <div className="detail-info">
-                    <h2 style={{ fontSize: '2.8rem', marginBottom: '10px' }}>{product.name}</h2>
-                    <p className="detail-price" style={{ fontSize: '2.5rem', margin:'15px 0' }}>
+                    <h2 style={{ marginBottom: '0' }}>{product.name}</h2>
+                    <p className="detail-price" style={{ fontSize: '1.7rem', marginBottom:'20px' }}>
                         ${product.price.toFixed(2)}
                     </p>
-                    <div style={{ marginBottom: '25px' }}>
-                        <h4 style={{ color: '#fff', marginBottom: '10px' }}>Product Description</h4>
-                        <p style={{ color: '#a1a1aa', lineHeight: '1.8' }}>
+                    <div style={{ marginBottom: '20px' }}>
+                        <h4 style={{ color: '#fff', marginBottom: '5px' }}>Product Description</h4>
+                        <p style={{ color: '#a1a1aa', lineHeight: '1' }}>
                             {product.description}
                         </p>
                     </div>

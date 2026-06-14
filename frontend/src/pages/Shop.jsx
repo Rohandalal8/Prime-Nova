@@ -25,7 +25,7 @@ const Shop = () => {
   const filteredProducts = products.filter(p => p.name.toLowerCase().includes(search.toLowerCase()));
 
   return (
-    <div className="shop-container" style={{ padding: '20px' }}>
+    <div className="shop-container" style={{ padding: '10px 20px' }}>
       <h2>All Products</h2>
       <input 
         type="text" 

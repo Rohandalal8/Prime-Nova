@@ -56,19 +56,16 @@ const Profile = () => {
     return product.name || 'Product';
   };
 
-  const containerStyle = { maxWidth: '1400px', margin: '50px', padding: '30px', background: '#18181b2f', borderRadius: '12px', border: '1px solid rgba(255,255,255,0.05)', color: '#fafafa' };
-  const badgeStyle = { background: 'rgba(249,115,22,0.1)', color: '#f97316', padding: '6px 12px', borderRadius: '8px', fontSize: '0.9rem', fontWeight: 'bold', display: 'inline-block' };
-
   if (!user) return null;
 
   return (
-    <div style={containerStyle}>
+    <div className="containerStyle">
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', borderBottom: '1px solid rgba(255,255,255,0.1)', paddingBottom: '30px', marginBottom: '30px' }}>
         <div>
-          <h2 style={{ color: '#fff', fontSize: '2.2rem', marginBottom: '10px' }}>My Profile</h2>
-          <p style={{ color: '#a1a1aa', fontSize: '1.2rem', marginBottom: '5px' }}><strong>Name:</strong> {user.name}</p>
-          <p style={{ color: '#a1a1aa', fontSize: '1.2rem', marginBottom: '15px' }}><strong>Email:</strong> {user.email}</p>
-          <span style={badgeStyle}>Account Type: {user.role.toUpperCase()}</span>
+          <h2 style={{ marginBottom: '10px' }}>My Profile</h2>
+          <p style={{ color: '#a1a1aa', fontSize: '1rem', marginBottom: '5px' }}><strong>Name:</strong> {user.name}</p>
+          <p style={{ color: '#a1a1aa', fontSize: '1rem', marginBottom: '15px' }}><strong>Email:</strong> {user.email}</p>
+          <span className="badgeStyle">Account Type: {user.role.toUpperCase()}</span>
         </div>
         <button onClick={handleLogout} className="btn" style={{ background: '#ef4444', boxShadow: 'none' }}>Logout</button>
       </div>

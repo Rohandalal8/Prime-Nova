@@ -78,7 +78,7 @@ h1, h2, h3, h4 {
 }
 
 h2 {
-    font-size: 2.2rem;
+    font-size: 2rem;
     background: linear-gradient(to right, #ffffff, #a1a1aa);
     background-clip: text;
     -webkit-background-clip: text;
@@ -108,4 +108,33 @@ h2 {
 }
 ::-webkit-scrollbar-thumb:hover {
     background: #3f3f46;
+}
+
+/* profile page */
+.containerStyle { 
+    max-width: 1400px; 
+    margin: 50px;
+    padding: 30px; 
+    background: #18181b2f; 
+    border-radius: 12px;
+    border: 1px solid rgba(255,255,255,0.05); 
+    color: #fafafa;
+    box-shadow: 0 4px 30px rgba(24, 24, 27, 0.1); 
+}
+
+.badgeStyle { 
+    background: rgba(249,115,22,0.1); 
+    color: #f97316; 
+    padding: 6px 12px; 
+    border-radius: 8px; 
+    font-size: 0.9rem; 
+    font-weight: bold; 
+    display: inline-block 
+}
+
+@media (max-width: 768px) {
+    .containerStyle {
+        margin: 10px;
+        padding: 15px;
+    }
 }
