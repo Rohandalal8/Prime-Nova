@@ -1,4 +1,5 @@
 const Order = require('../models/orderModel');
+const Product = require('../models/productModel');
 
 const sendEmail = require('../utils/sendEmail');
 
@@ -30,6 +31,22 @@ const createOrder = async (req, res) => {
 
         const createdOrder = await order.save();
 
+        for (const item of orderProducts) {
+            const product = await Product.findById(item.productId);
+
+            if (!product) {
+                continue;
+            }
+
+            product.stock -= item.quantity;
+
+            if (product.stock < 0) {
+                product.stock = 0;
+            }
+
+            await product.save();
+        }
+
         // Send order confirmation email
         const message = `
 Dear ${req.user.name},
@@ -38,7 +55,7 @@ Order ID: ${createdOrder._id}
 Total Price: $${orderTotalPrice}
 Shipping Address: ${address.fullName}, ${address.street}, ${address.city}, ${address.postalCode}, ${address.country}
 Mobile Number: ${address.mobileNumber}
-We will notify you once your order is shipped. If you have any questions, feel free to contact our support team.
+You can track your order status in your profile. If you have any questions, feel free to contact our support team.
 Thank you for shopping with Prime Basket!`;
 
         try {

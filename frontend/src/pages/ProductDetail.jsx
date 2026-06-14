@@ -67,8 +67,8 @@ const ProductDetail = () => {
                     <div style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
                         <button onClick={handleAddToCart} className="btn" style={{ flexGrow:'1', padding:'18px', fontSize:'1.2rem'}}>Add to Cart</button>
                     </div>
-                    <p style={{ marginTop: '20px', color: product.stock > 0 ? '#10b981' : '#ef4444', fontWeight: '600' }}>
-                        {product.stock > 0 ? `In Stock (${product.stock} units available)` : 'Temporarily Out of Stock'}
+                    <p style={{ marginTop: '20px', color: product.stock > 0 ? '#f97316' : '#ef4444', fontWeight: '600' }}>
+                        {product.stock > 0 && product.stock <= 5 ? `Only ${product.stock} available` : product.stock > 5 ? `` : 'Temporarily Out of Stock'}
                     </p>
                 </div>
             </div>
