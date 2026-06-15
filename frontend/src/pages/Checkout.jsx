@@ -21,7 +21,15 @@ const Checkout = () => {
     country: ''
   });
 
-  const totalPrice = cartItems.reduce((acc, item) => acc + item.price * item.qty, 0);
+  const subtotal = cartItems.reduce(
+  (acc, item) => acc + item.price * item.qty,
+  0
+  );
+
+  const tax = subtotal * 0.08;
+  const shipping = 5;
+
+  const totalPrice = subtotal + tax + shipping;
 
   const buildOrderProducts = () => cartItems.map((item) => ({
     productId: item.productId || item._id,

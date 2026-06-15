@@ -84,11 +84,22 @@ const cartSlice = createSlice({
             localStorage.removeItem(getCartStorageKey());
             localStorage.removeItem('cartItems');
         },
+        updateCartStock: (state, action) => {
+            const { productId, stock } = action.payload;
+
+            state.cartItems = state.cartItems.map(item =>
+                getItemId(item) === productId
+                ? { ...item, stock }
+                : item
+            );
+
+            persistCart(state.cartItems);
+        },
         loadCartForUser: (state, action) => {
             state.cartItems = readStoredCart(action.payload);
         }
     },
 });
 
-export const { addToCart, removeFromCart, clearCart, loadCartForUser } = cartSlice.actions;
+export const { addToCart, removeFromCart, clearCart, loadCartForUser, updateCartStock } = cartSlice.actions;
 export default cartSlice.reducer;

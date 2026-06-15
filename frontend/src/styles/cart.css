@@ -48,6 +48,7 @@
 .cart-item-details h4 {
   margin-bottom: 2px;
   font-size: 1.1rem;
+  white-space: nowrap;
 }
 
 .qty-controls {
@@ -101,7 +102,7 @@
 .cart-summary {
   flex: 1;
   background: radial-gradient(circle at top right, rgba(249, 115, 22, 0.03),transparent 60%), linear-gradient(135deg, #18181b 0%, #09090b 100%);
-  padding: 30px;
+  padding: 20px;
   border-radius: 12px;
   box-shadow: 0 4px 20px rgba(0,0,0,0.2);
   border: 1px solid rgba(255, 255, 255, 0.05);
@@ -110,11 +111,26 @@
   top: 100px;
 }
 
-.cart-summary h3 {
-  font-size: 1.3rem;
-  margin-bottom: 25px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  padding-bottom: 15px;
+.cart-summary-item {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  font-size: 1rem;
+}
+
+.cart-summary-item span:first-child {
+  color: #a1a1aa;
+  margin-right: 30px;
+  white-space: nowrap;
+}
+
+.cart-summary-total {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 10px;
+  margin-bottom: 15px;
 }
 
 .btn-checkout {
@@ -171,4 +187,7 @@
   .cart-layout {
     flex-direction: column;
   }
+  .cart-summary-item span:first-child {
+  margin-right: 0px;
+}
 }

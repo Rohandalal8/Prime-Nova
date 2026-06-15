@@ -91,10 +91,27 @@ const deleteProduct = async (req, res) => {
     }
 };
 
+const getCartProducts = async (req, res) => {
+    try {
+        const { ids } = req.body;
+
+        const products = await Product.find({
+            _id: { $in: ids }
+        });
+
+        res.json(products);
+    } catch (error) {
+        res.status(500).json({
+            message: 'Server Error'
+        });
+    }
+};
+
 module.exports = {
     getProducts,
     getProductById,
     createProduct,
     updateProduct,
-    deleteProduct
+    deleteProduct,
+    getCartProducts
 };
