@@ -62,6 +62,7 @@ const AdminProducts = () => {
                         <th style={{ padding: '12px 25px', textAlign: 'left' }}>ID</th>
                         <th style={{ padding: '12px 25px', textAlign: 'left' }}>Name</th>
                         <th style={{ padding: '12px 25px', textAlign: 'left' }}>Price</th>
+                        <th style={{ padding: '12px 25px', textAlign: 'left' }}>Discount</th>
                         <th style={{ padding: '12px 25px', textAlign: 'left' }}>Category</th>
                         <th style={{ padding: '12px 25px', textAlign: 'left' }}>Stock</th>
                         <th style={{ padding: '12px 25px', textAlign: 'left' }}>Actions</th>
@@ -73,6 +74,7 @@ const AdminProducts = () => {
                             <td style={{ padding: '12px 25px' }}>{p._id}</td>
                             <td style={{ padding: '12px 25px' }}>{p.name}</td>
                             <td style={{ padding: '12px 25px' }}>${p.price.toFixed(2)}</td>
+                            <td style={{ padding: '12px 25px' }}>{p.discount}%</td>
                             <td style={{ padding: '12px 25px' }}>{p.category}</td>
                             <td style={{ padding: '12px 25px' }}>{p.stock}</td>
                             <td style={{ padding: '12px 25px' }}>

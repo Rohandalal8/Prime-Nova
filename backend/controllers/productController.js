@@ -27,7 +27,7 @@ const getProductById = async (req, res) => {
 
 const createProduct = async (req, res) => {
     try {
-    const { name, description, price, category, stock } = req.body;
+    const { name, description, price, discount, category, stock } = req.body;
     let imageUrl = '';
     if (req.file) {
         const result = await cloudinary.uploader.upload(req.file.path);
@@ -37,6 +37,7 @@ const createProduct = async (req, res) => {
         name,
         description,
         price,
+        discount,
         category,
         stock,
         imageUrl
@@ -50,12 +51,13 @@ const createProduct = async (req, res) => {
 
 const updateProduct = async (req, res) => {
     try {
-        const { name, description, price, category, stock } = req.body;
+        const { name, description, price, discount, category, stock } = req.body;
         const product = await Product.findById(req.params.id);
         if (product) {
             product.name = name || product.name;
             product.description = description || product.description;
             product.price = price || product.price;
+            product.discount = discount || product.discount;
             product.category = category || product.category;
             product.stock = stock || product.stock;
             if (req.file) {

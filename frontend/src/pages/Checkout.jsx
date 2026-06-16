@@ -22,10 +22,10 @@ const Checkout = () => {
     country: ''
   });
 
-  const subtotal = cartItems.reduce(
-  (acc, item) => acc + item.price * item.qty,
-  0
-  );
+  const subtotal = cartItems.reduce((acc, item) => {
+    const discountedPrice = item.price - (item.price * item.discount) / 100;
+    return acc + discountedPrice * item.qty;
+  }, 0);
 
   const tax = subtotal * 0.08;
   const shipping = 5;

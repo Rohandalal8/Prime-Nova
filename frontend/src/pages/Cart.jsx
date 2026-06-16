@@ -50,13 +50,14 @@ const Cart = () => {
         return;
         }
 
-        // Update stock in cart
+        // Update cart
         if (cartItem.qty > product.stock) {
           dispatch(
             addToCart({
               ...cartItem,
               qty: product.stock,
-              stock: product.stock
+              stock: product.stock,
+              discount: product.discount
             })
           );
           return;
@@ -65,7 +66,8 @@ const Cart = () => {
         dispatch(
           updateCartStock({
             productId: String(product._id),
-            stock: product.stock
+            stock: product.stock,
+            discount: product.discount
           })
         );
       });
@@ -73,7 +75,12 @@ const Cart = () => {
     syncCartStock();
   }, [cartItems, dispatch]);
 
-  const totalPrice = cartItems.reduce((acc, item) => acc + item.price * item.qty, 0);
+  const totalPrice = cartItems.reduce((acc, item) => acc + (item.price * item.qty), 0);
+  const totalDiscount = cartItems.reduce((acc, item) => acc + ((item.price * item.qty * item.discount) / 100), 0);
+  const totalDiscountedPrice = totalPrice - totalDiscount;
+  const tax = totalDiscountedPrice * 0.08;
+  const shipping = 5;
+  const finalTotal = totalDiscountedPrice + tax + shipping;
 
   return (
     <div className="cart-container">
@@ -88,7 +95,37 @@ const Cart = () => {
                 <img src={item.imageUrl} alt={item.name} className="cart-item-image" />
                 <div className="cart-item-details">
                   <h4>{item.name}</h4>
-                  <p>${item.price}</p>
+                  {item.discount > 0 ? (
+                        <>
+                            <p style={{
+                                textDecoration: 'line-through',
+                                color: '#999'
+                            }}>
+                                ${item.price.toFixed(2)}
+                            </p>
+
+                            <p style={{
+                                color: '#f97316',
+                                fontSize: '1.7rem',
+                                fontWeight: 'bold'
+                            }}>
+                                ${(item.price - (item.price * item.discount) / 100).toFixed(2)}
+                            </p>
+
+                            <span style={{
+                                background: '#ef4444',
+                                color: '#fff',
+                                padding: '4px 8px',
+                                borderRadius: '5px'
+                            }}>
+                                {item.discount}% OFF
+                            </span>
+                        </>
+                    ) : (
+                        <p>
+                            ${item.price.toFixed(2)}
+                        </p>
+                    )}
                   <div className="qty-controls">
                     <button 
                     onClick={() => handleUpdateQty(item, item.qty - 1)}
@@ -124,16 +161,20 @@ const Cart = () => {
               </div>
             ))}
             <div className="cart-summary-item">
-              <span>Taxes:</span>
-              <span>${(totalPrice * 0.08).toFixed(2)}</span>
+              <span>Discount:</span>
+              <span>-${(totalDiscount).toFixed(2)}</span>
+            </div>
+            <div className="cart-summary-item">
+              <span>Tax:</span>
+              <span>${(tax).toFixed(2)}</span>
             </div>
             <div className="cart-summary-item">
               <span>Shipping:</span>
-              <span>$5.00</span>
+              <span>${(shipping).toFixed(2)}</span>
             </div>
             <div className="cart-summary-total">
               <strong>Total:</strong>
-              <strong>${(totalPrice + totalPrice * 0.08 + 5).toFixed(2)}</strong>
+              <strong>${(finalTotal).toFixed(2)}</strong>
             </div>
             <button onClick={() => navigate('/checkout')} className="btn btn-checkout">Checkout</button>
           </div>

@@ -1,6 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { AuthContext } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 const AddProduct = () => {
     const { user } = useContext(AuthContext);
@@ -9,6 +10,7 @@ const AddProduct = () => {
         name: '',
         description: '',
         price: '',
+        discount: '',
         category: '',
         stock: '',
     });
@@ -31,6 +33,7 @@ const AddProduct = () => {
         data.append('name', formData.name);
         data.append('description', formData.description);
         data.append('price', formData.price);
+        data.append('discount', formData.discount);
         data.append('category', formData.category);
         data.append('stock', formData.stock);
         data.append('image', image);
@@ -40,18 +43,18 @@ const AddProduct = () => {
                 method: 'POST',
                 headers: { Authorization: `Bearer ${user.token}` },
                 body: data,
-            })
+            });
             const resposeData = await res.json();
 
             if (res.ok) {
-                alert('Product added successfully!');
+                toast.success('Product added successfully!');
                 navigate('/admin/products');
             } else {
-                alert(resposeData.message || 'Failed to add product.');
+                toast.error(resposeData.message || 'Failed to add product.');
             }
         } catch (error) {
             console.error(error);
-            alert('An error occurred while adding the product.');
+            toast.error('An error occurred while adding the product.');
         } finally {
             setLoading(false);
         }
@@ -76,6 +79,12 @@ const AddProduct = () => {
                     type="number"
                     placeholder="Price"
                     onChange={(e) => setFormData({ ...formData, price: e.target.value })}
+                    style={inputStyle}
+                />
+                <input
+                    type="number"
+                    placeholder="Discount (%)"
+                    onChange={(e) => setFormData({ ...formData, discount: e.target.value })}
                     style={inputStyle}
                 />
                 <input

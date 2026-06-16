@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { AuthContext } from '../context/AuthContext';
 import { useNavigate, useParams } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 const EditProduct = () => {
     const { user } = useContext(AuthContext);
@@ -10,6 +11,7 @@ const EditProduct = () => {
         name: '',
         description: '',
         price: '',
+        discount: '',
         category: '',
         stock: '',
     });
@@ -32,16 +34,17 @@ const EditProduct = () => {
                         name: data.name,
                         description: data.description,
                         price: data.price,
+                        discount: data.discount,
                         category: data.category,
                         stock: data.stock,
                     });
                 } else {
-                    alert(data.message || 'Product not found.');
+                    toast.error(data.message || 'Product not found.');
                     navigate('/admin/products');
                 }
             } catch (error) {
                 console.error(error);
-                alert('An error occurred while loading the product.');
+                toast.error('An error occurred while loading the product.');
             } finally {
                 setLoading(false);
             }
@@ -57,6 +60,7 @@ const EditProduct = () => {
         data.append('name', formData.name);
         data.append('description', formData.description);
         data.append('price', formData.price);
+        data.append('discount', formData.discount);
         data.append('category', formData.category);
         data.append('stock', formData.stock);
         if (image) {
@@ -72,14 +76,14 @@ const EditProduct = () => {
             const responseData = await res.json();
             
             if (res.ok) {
-                alert('Product updated successfully!');
+                toast.success('Product updated successfully!');
                 navigate('/admin/products');
             } else {
-                alert(responseData.message || 'Failed to update product.');
+                toast.error(responseData.message || 'Failed to update product.');
             }
         } catch (error) {
             console.error(error);
-            alert('An error occurred while updating the product.');
+            toast.error('An error occurred while updating the product.');
         } finally {
             setLoading(false);
         }
@@ -96,6 +100,7 @@ const EditProduct = () => {
                 <input name="name" type="text" placeholder="Product Name" value={formData.name} onChange={(e) => setFormData({ ...formData, name: e.target.value })} style={inputStyle} required />
                 <textarea name="description" placeholder="Product Description" value={formData.description} onChange={(e) => setFormData({ ...formData, description: e.target.value })} style={inputStyle} required />
                 <input name="price" type="number" placeholder="Price" value={formData.price} onChange={(e) => setFormData({ ...formData, price: e.target.value })} style={inputStyle} required />
+                <input name="discount" type="number" placeholder="Discount (%)" value={formData.discount} onChange={(e) => setFormData({ ...formData, discount: e.target.value })} style={inputStyle} />
                 <input name="category" type="text" placeholder="Category" value={formData.category} onChange={(e) => setFormData({ ...formData, category: e.target.value })} style={inputStyle} required />
                 <input name="stock" type="number" placeholder="Stock Quantity" value={formData.stock} onChange={(e) => setFormData({ ...formData, stock: e.target.value })} style={inputStyle} required />
                 <input type="file" accept="image/*" onChange={(e) => setImage(e.target.files[0])} style={{ ...inputStyle, padding: '5px' }} />

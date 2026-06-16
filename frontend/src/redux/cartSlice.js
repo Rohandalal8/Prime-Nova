@@ -85,11 +85,11 @@ const cartSlice = createSlice({
             localStorage.removeItem('cartItems');
         },
         updateCartStock: (state, action) => {
-            const { productId, stock } = action.payload;
+            const { productId, stock, discount } = action.payload;
 
             state.cartItems = state.cartItems.map(item =>
                 getItemId(item) === productId
-                ? { ...item, stock }
+                ? { ...item, stock, discount }
                 : item
             );
 

@@ -21,6 +21,8 @@ const createOrder = async (req, res) => {
             return res.status(400).json({ message: 'No products in the order' });
         }
 
+        let calculatedTotal = 0;
+
         for (const item of orderProducts) {
             const product = await Product.findById(item.productId);
 
@@ -35,12 +37,15 @@ const createOrder = async (req, res) => {
                 message: `${product.name} has only ${product.stock} items left in stock`
                 });
             }
+
+            const discountedPrice = product.price - (product.price * product.discount) / 100;
+            calculatedTotal += discountedPrice * item.quantity;
         }
 
         const order = new Order({
             user: req.user._id,
             products: orderProducts,
-            totalPrice: orderTotalPrice,
+            totalPrice: calculatedTotal,
             address,
             paymentId
         });
@@ -63,7 +68,7 @@ const createOrder = async (req, res) => {
 Dear ${req.user.name},
 Thank you for your order! Your order has been received and is being processed. Here are the details of your order:
 Order ID: ${createdOrder._id}
-Total Price: $${orderTotalPrice}
+Total Price: $${createdOrder.totalPrice}
 Shipping Address: ${address.fullName}, ${address.street}, ${address.city}, ${address.postalCode}, ${address.country}
 Mobile Number: ${address.mobileNumber}
 You can track your order status in your profile. If you have any questions, feel free to contact our support team.

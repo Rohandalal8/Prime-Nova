@@ -32,6 +32,7 @@ const ProductDetail = () => {
                 productId: product._id,
                 name: product.name,
                 price: product.price,
+                discount: product.discount,
                 imageUrl: product.imageUrl,
                 stock: product.stock,
                 qty: 1
@@ -43,6 +44,8 @@ const ProductDetail = () => {
     if (loading) return <div style={{ textAlign: 'center', margin: '100px', color: '#f97316' }}>Loading product details...</div>;
 
     if (!product) return <div style={{ textAlign: 'center', margin: '100px', color: '#ef4444' }}>Product not found.</div>;
+
+    const discountedPrice = product.price - ((product.price * product.discount) / 100);
 
     return (
         <div className="product-detail-wrapper" style={{ maxWidth: '1200px', margin: '0 auto', padding: '20px' }}>
@@ -57,9 +60,35 @@ const ProductDetail = () => {
 
                 <div className="detail-info">
                     <h2 style={{ marginBottom: '0' }}>{product.name}</h2>
-                    <p className="detail-price" style={{ fontSize: '1.7rem', marginBottom:'20px' }}>
-                        ${product.price.toFixed(2)}
-                    </p>
+                    {product.discount > 0 ? (
+                        <>
+                            <p style={{
+                                textDecoration: 'line-through',
+                                color: '#999'
+                            }}>
+                                ${product.price.toFixed(2)}
+                            </p>
+                            <p style={{
+                                color: '#f97316',
+                                fontSize: '1.7rem',
+                                fontWeight: 'bold'
+                            }}>
+                                ${discountedPrice.toFixed(2)}
+                            </p>
+                            <span style={{
+                                background: '#ef4444',
+                                color: '#fff',
+                                padding: '4px 8px',
+                                borderRadius: '5px'
+                            }}>
+                                {product.discount}% OFF
+                            </span>
+                        </>
+                    ) : (
+                        <p style={{ fontSize: '1.7rem', marginBottom:'20px' }}>
+                            ${product.price.toFixed(2)}
+                        </p>
+                    )}
                     <div style={{ marginBottom: '20px' }}>
                         <h4 style={{ color: '#fff', marginBottom: '5px' }}>Product Description</h4>
                         <p style={{ color: '#a1a1aa', lineHeight: '1' }}>
