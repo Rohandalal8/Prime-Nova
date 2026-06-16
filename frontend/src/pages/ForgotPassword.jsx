@@ -1,13 +1,15 @@
 import React, {useState} from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import '../styles/auth.css';
 
 const ForgotPassword = () => {
-    let [email, setEmail] = useState('');
-    const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
     const location = useLocation();
-    email = location.state?.email || '';
+    let [email, setEmail] = useState(
+        location.state?.email || ''
+    );
+    const [loading, setLoading] = useState(false);
 
     
     const handleSubmit = async (e) => {
@@ -23,11 +25,11 @@ const ForgotPassword = () => {
             if (response.ok) {
                 navigate('/forgot-password-otp', { state: { email } });
             } else {
-                alert(data.message || 'Failed to send OTP');
+                toast.error(data.message || 'Failed to send OTP');
             }
         } catch (error) {
             console.error('Error during forgot password:', error);
-            alert('An error occurred. Please try again.');
+            toast.error('An error occurred. Please try again.');
         } finally {
             setLoading(false);
         }

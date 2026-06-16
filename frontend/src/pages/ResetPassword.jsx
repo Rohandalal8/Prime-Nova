@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import '../styles/auth.css';
 
 const ResetPassword = () => {
@@ -20,13 +21,14 @@ const ResetPassword = () => {
             });
             const data = await response.json();
             if (response.ok) {
+                toast.success('Password reset successfully! Please login with your new password.');
                 navigate('/login', { state: { email } });
             } else {
-                alert(data.message || 'Failed to reset password');
+                toast.error(data.message || 'Failed to reset password');
             }
         } catch (error) {
             console.error('Error during reset password:', error);
-            alert('An error occurred. Please try again.');
+            toast.error('An error occurred. Please try again.');
         } finally {
             setLoading(false);
         }

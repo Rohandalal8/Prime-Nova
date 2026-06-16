@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import '../styles/auth.css';
 
 const ForgotPassword = () => {
@@ -22,11 +23,11 @@ const ForgotPassword = () => {
             if (response.ok) {
                 navigate('/reset-password', { state: { email } });
             } else {
-                alert(data.message || 'Failed to verify OTP');
+                toast.error(data.message || 'Failed to verify OTP');
             }
         } catch (error) {
             console.error('Error during OTP verification:', error);
-            alert('An error occurred. Please try again.');
+            toast.error('An error occurred. Please try again.');
         } finally {
             setLoading(false);
         }
@@ -36,7 +37,7 @@ const ForgotPassword = () => {
         <div className="auth-container">
             <form className="auth-form" onSubmit={handleSubmit}>
                 <h2>Verify OTP</h2>
-                <p>Please enter the OTP sent to your email to complete the password reset process.</p>
+                <p style={{ textAlign: 'left',marginTop: '-10px' }} >Please enter the OTP sent to your email to complete the password reset process.</p>
                 <input
                     type="string"
                     placeholder="Enter OTP"

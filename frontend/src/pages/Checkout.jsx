@@ -5,6 +5,7 @@ import { AuthContext } from '../context/AuthContext';
 import { clearCart } from '../redux/cartSlice';
 import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/style.css';
+import { toast } from 'react-toastify';
 import '../styles/phoneInput.css';
 
 const Checkout = () => {
@@ -47,7 +48,7 @@ const Checkout = () => {
       const orderData = await orderRes.json();
 
       if (!orderRes.ok) {
-        alert(orderData.message || 'Unable to create payment order');
+        toast.error(orderData.message || 'Unable to create payment order');
         return;
       }
 
@@ -81,12 +82,13 @@ const Checkout = () => {
 
             if (saveOrderRes.ok) {
               dispatch(clearCart());
+              toast.success('Order placed successfully!');
               navigate('/ordersuccess');
             } else {
-              alert('Order saving failed');
+              toast.error('Order saving failed');
             }
           } else {
-            alert('Payment verification failed');
+            toast.error('Payment verification failed');
           }
         },
         prefill: {
@@ -103,6 +105,7 @@ const Checkout = () => {
       const rzp1 = new window.Razorpay(options);
       rzp1.open();
     } catch (error) {
+      toast.error('Payment initialization error: ' + error.message);
       console.error('Payment initialization error:', error);
     }
   };
@@ -110,7 +113,7 @@ const Checkout = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!user || !user.verified) {
-      alert("Please login first");
+      toast.error("Please login first");
       navigate('/login');
       return;
     }

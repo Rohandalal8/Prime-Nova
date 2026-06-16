@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { addToCart } from '../redux/cartSlice';
+import { toast } from 'react-toastify';
 import '../styles/product.css';
 
 const ProductDetail = () => {
@@ -35,6 +36,7 @@ const ProductDetail = () => {
                 stock: product.stock,
                 qty: 1
             }));
+            toast.success(`${product.name} added to cart!`);
         }
     };
 

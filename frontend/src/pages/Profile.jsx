@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { AuthContext } from '../context/AuthContext';
 import { useNavigate, Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 const Profile = () => {
   const { user, logout } = useContext(AuthContext);
@@ -39,6 +40,7 @@ const Profile = () => {
   }, [user, navigate, logout]);
 
   const handleLogout = () => {
+    toast.info('Logged out successfully!');
     logout();
     navigate('/login');
   };

@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import ProductCard from '../components/ProductCard';
+import { Link } from 'react-router-dom';
 const { AuthContext } = require('../context/AuthContext');
 
 const Home = () => {
@@ -13,7 +14,7 @@ const Home = () => {
             try {
                 const response = await fetch('/api/products');
                 const data = await response.json();
-                setProducts(data.slice(0, 8)); // Show only the first 8 products
+                setProducts(data.slice(-4).reverse()); // Show only the last 4 products
             } catch (error) {
                 console.error('Error fetching products:', error);
             } finally {
@@ -39,6 +40,7 @@ const Home = () => {
                     ))}
                 </div>
             )}
+            <Link to="/shop" className="view-all-link">View All Products</Link>
         </div>
     );
 }

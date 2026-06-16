@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import { useNavigate, Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import '../styles/auth.css';
 
 const Register = () => {
@@ -20,13 +21,17 @@ const Register = () => {
             });
             const data = await response.json();
             if (response.ok) {
+                localStorage.setItem(
+                    'otpExpiry',
+                    (Date.now() + 120000).toString()
+                );
                 navigate('/register-otp');
             } else {
-                alert(data.message || 'Registration failed');
+                toast.error(data.message || 'Registration failed');
             }
         } catch (error) {
             console.error('Error during registration:', error);
-            alert('An error occurred. Please try again.');
+            toast.error('An error occurred. Please try again.');
         } finally {
             setLoading(false);
         }

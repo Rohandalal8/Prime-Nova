@@ -2,6 +2,7 @@ import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 import { useSelector } from "react-redux";
+import { toast } from "react-toastify";
 import "../styles/navbar.css"; 
 
 function Navbar() {
@@ -10,6 +11,7 @@ function Navbar() {
   const navigate = useNavigate();
 
   const handleLogout = () => {
+    toast.info('Logged out successfully!');
     logout();
     navigate("/login");
   };
