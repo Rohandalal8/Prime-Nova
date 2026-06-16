@@ -31,7 +31,7 @@ function App() {
   return (
     <Router>
       <Navbar />
-      <ToastContainer position="top-right" autoclose={1500} theme="dark" />
+      <ToastContainer position="top-right" autoclose={3000} theme="dark" />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />

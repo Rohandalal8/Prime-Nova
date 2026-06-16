@@ -32,6 +32,9 @@ const userSchema = new mongoose.Schema({
         default: Date.now,
         expires: 120 // Document will be deleted after 120 seconds if not verified
     },
+    resetPasswordExpires: {
+        type: Date
+    },
     createdAt: {
         type: Date,
         default: Date.now

@@ -23,6 +23,10 @@ const ForgotPassword = () => {
             });
             const data = await response.json();
             if (response.ok) {
+                localStorage.setItem(
+                    'otpExpiry',
+                    (Date.now() + 120000).toString()
+                );
                 navigate('/forgot-password-otp', { state: { email } });
             } else {
                 toast.error(data.message || 'Failed to send OTP');

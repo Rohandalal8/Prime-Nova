@@ -2,8 +2,28 @@ const express = require('express');
 const cors = require('cors');
 const dotenv = require('dotenv');
 const connectDB = require('./config/db');
+const User = require('./models/userModel');
 dotenv.config();
 connectDB();
+
+setInterval(async () => {
+    try {
+        await User.updateMany(
+            {
+                verificationCode: { $lt: new Date() }
+            },
+            {
+                $unset: {
+                    verificationCode: "",
+                    verificationExpires: "",
+                    resetPasswordExpires: ""
+                }
+            }
+        );
+    } catch (error) {
+        console.error('OTP cleanup error:', error);
+    }
+}, 5 * 60 * 1000);
 
 const app = express();
 app.use(cors(

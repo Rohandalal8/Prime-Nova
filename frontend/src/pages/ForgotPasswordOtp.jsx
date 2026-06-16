@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import '../styles/auth.css';
@@ -9,6 +9,40 @@ const ForgotPassword = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const email = location.state?.email || '';
+
+    useEffect(() => {
+        const expiry = Number(localStorage.getItem('otpExpiry'));
+    
+        if (!expiry) {
+            navigate('/login');
+            return;
+        }
+    
+        const updateTimer = () => {
+            const remaining = Math.max(
+                0,
+                Math.floor((expiry - Date.now()) / 1000)
+            );
+    
+            if (remaining <= 0) {
+                clearInterval(interval);
+    
+                localStorage.removeItem('otpExpiry');
+    
+                toast.error('OTP expired. Please request a new one.');
+    
+                setTimeout(() => {
+                    navigate('/login');
+                }, 2000);
+            }
+        };
+            
+        const interval = setInterval(updateTimer, 1000);
+    
+        updateTimer();
+    
+        return () => clearInterval(interval);
+    }, [navigate]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -21,6 +55,8 @@ const ForgotPassword = () => {
             });
             const data = await response.json();
             if (response.ok) {
+                localStorage.removeItem('otpExpiry');
+
                 navigate('/reset-password', { state: { email } });
             } else {
                 toast.error(data.message || 'Failed to verify OTP');

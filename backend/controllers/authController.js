@@ -107,6 +107,7 @@ const forgotPassword = async (req, res) => {
         }
         const otp = Math.floor(100000 + Math.random() * 900000).toString();
         user.verificationCode = otp;
+        user.resetPasswordExpires = Date.now() + 2 * 60 * 1000;
         user.verificationExpires = undefined;
         await user.save();
 
@@ -136,7 +137,15 @@ const forgotPasswordOtp = async (req, res) => {
     try {
         const user = await User.findOne({ verificationCode: otp });
         if (user) {
+            if (user.resetPasswordExpires < Date.now()) {
+                user.verificationCode = undefined;
+                user.resetPasswordExpires = undefined;
+                user.verificationExpires = undefined;
+                await user.save();
+                return res.status(400).json({ message: 'OTP has expired. Please request a new one.' });
+            }
             user.verificationCode = undefined;
+            user.resetPasswordExpires = undefined;
             user.verificationExpires = undefined;
             await user.save();
             res.status(201).json({
