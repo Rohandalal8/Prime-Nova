@@ -19,8 +19,8 @@ function Footer() {
                 gap: '20 px' 
             }}>
                 <div style={{ display: 'flex',alignItems: 'center', gap: '5px', marginBottom: '5px' }}>
-                    <h3 style={{marginBottom: '0', color: '#f97316' }}>Prime Basket</h3>
-                    <p style={{ color: '#a1a1aa', fontSize: '0.7rem', position: 'relative', bottom: '-3px' }}>Premium E-commerce platform.</p>
+                    <h3 style={{marginBottom: '0', color: '#f97316' }}>Prime Nova</h3>
+                    <p style={{ color: '#a1a1aa', fontSize: '0.7rem', position: 'relative', bottom: '-3px' }}>Private Limited.</p>
                 </div>
 
                 <div style={{ display: 'flex', gap: '20px', marginBottom: '5px' }}>
@@ -30,7 +30,7 @@ function Footer() {
                 </div>
                 
                 <div style={{  color: '#a1a1aa', fontSize: '0.9rem', marginBottom: '5px' }}>
-                    &copy; {new Date().getFullYear()} Prime Basket. All rights reserved.
+                    &copy; {new Date().getFullYear()} Prime Nova. All rights reserved.
                 </div>
             </div>
         </footer>

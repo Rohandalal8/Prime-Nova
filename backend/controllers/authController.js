@@ -25,20 +25,20 @@ const registerUser = async (req, res) => {
         const user = await User.create({ name, email, password: hashedPassword, verificationCode: otp, });
         // Generate OTP
         if (user) {
-            const message = `Welcome to Prime Basket, ${name}!
+            const message = `Welcome to Prime Nova, ${name}!
 
-Thank you for registering with Prime Basket. Use the One-Time Password (OTP) below to complete your registration:
+Thank you for registering with Prime Nova. Use the One-Time Password (OTP) below to complete your registration:
 
 OTP: ${otp}
 
-This OTP is for your Prime Basket account verification. Please do not share it with anyone.
+This OTP is for your Prime Nova account verification. Please do not share it with anyone.
 
-If you did not create a Prime Basket account, you can safely ignore this email.
+If you did not create a Prime Nova account, you can safely ignore this email.
 
 Regards,
-Prime Basket Team`;
+Prime Nova Team`;
             
-            await sendEmail(email, 'Welcome to Prime Basket - Your OTP', message); 
+            await sendEmail(email, 'Welcome to Prime Nova - Your OTP', message); 
             res.status(201).json({ message: 'Please check your email for the OTP to complete registration.' });
         } else {
             res.status(400).json({ message: 'Invalid user data' });
@@ -110,18 +110,18 @@ const forgotPassword = async (req, res) => {
         user.verificationExpires = undefined;
         await user.save();
 
-        const message = `You have requested a password reset for your Prime Basket account.
+        const message = `You have requested a password reset for your Prime Nova account.
 
 Use the One-Time Password (OTP) below to reset your password:
 
 OTP: ${otp}
 
-This OTP is for your Prime Basket account verification. Please do not share it with anyone.
+This OTP is for your Prime Nova account verification. Please do not share it with anyone.
 
 If you did not request a password reset, you can safely ignore this email.
 
 Regards,
-Prime Basket Team`;
+Prime Nova Team`;
 
         await sendEmail(email, 'Password Reset Request', message);
         res.status(200).json({ message: 'Please check your email for the OTP to reset your password.' });

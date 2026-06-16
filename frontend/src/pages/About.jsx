@@ -15,7 +15,7 @@ const About = () => {
     const socialBtnStyle = {
         display: 'inline-block',
         margin: '10px',
-        padding: '10px 20px',
+        padding: '10px 10px',
         borderRadius: '8px',
         backgroundColor: '#27272a',
         color: '#fff',
@@ -26,7 +26,7 @@ const About = () => {
 
     return (
         <div style={containerStyle}>
-            <img src="/PrimeLogo.png" alt="@Rohan" style={{ 
+            <img src="/PrimeLogo.png" alt="Prime Nova" style={{ 
                 width: '180px', 
                 height: '180px', 
                 borderRadius: '50%', 
@@ -39,21 +39,26 @@ const About = () => {
                 fontSize: '2.5rem',  
                 color: '#fff', 
                 marginBottom: '10px' 
-            }}>About Me</h2>
+            }}>About Us</h2>
             <h3 style={{ 
                 fontSize: '1.5rem',  
                 color: '#f97316', 
                 marginBottom: '15px' 
-            }}>Rohan</h3>
+            }}>Prime Nova</h3>
             <p style={{ 
-                fontSize: '1.2rem', 
+                fontSize: '1rem', 
                 color: '#a1a1aa', 
                 margin: '0 auto 30px auto',
                 lineHeight: '1.8',
-                maxWidth: '600px', 
+                maxWidth: '600px',
+                textAlign: 'left', 
             }}>
-                <strong>Join the community and grow together! </strong>
-                Welcome to my platform where we build, deploy, and scale highly engineered systems.
+                <strong>Get started with Prime Nova! </strong>
+                We are your destination for unique handcrafted products made with passion and creativity. We believe every handmade item tells a story, reflecting the skill, tradition, and dedication of talented artisans.
+                <br /> <br />
+                Our mission is to connect customers with authentic, high-quality handcrafted goods while supporting artisans and small businesses. From home décor and accessories to gifts and lifestyle products, every piece in our collection is carefully selected for its craftsmanship and uniqueness.
+                <br /> <br />
+                At Prime Nova, we celebrate creativity, sustainability, and the beauty of handmade work. Thank you for supporting artisans and choosing products made with care.
             </p>
             <div style={{ 
                 marginTop: '20px',

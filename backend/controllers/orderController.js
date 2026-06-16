@@ -67,10 +67,10 @@ Total Price: $${orderTotalPrice}
 Shipping Address: ${address.fullName}, ${address.street}, ${address.city}, ${address.postalCode}, ${address.country}
 Mobile Number: ${address.mobileNumber}
 You can track your order status in your profile. If you have any questions, feel free to contact our support team.
-Thank you for shopping with Prime Basket!`;
+Thank you for shopping with Prime Nova!`;
 
         try {
-            await sendEmail(req.user.email, 'Order Confirmation - Prime Basket', message);
+            await sendEmail(req.user.email, 'Order Confirmation - Prime Nova', message);
         } catch (emailError) {
             console.error('Order confirmation email failed:', emailError);
         }

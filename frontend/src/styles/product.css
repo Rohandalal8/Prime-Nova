@@ -29,10 +29,11 @@
 
 .hero-banner p {
   font-size: 1rem;
-  background: linear-gradient(to left, #fff, #f97316);
+  background: linear-gradient(to left, #fff, #a1a1aa);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  padding: 0 120px;
 }
 
 /* Grid and Cards */
@@ -56,7 +57,6 @@
 }
 
 .product-card:hover {
-  /* box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(249, 115, 22, 0.3); */
   transform: translateY(-8px);
 }
 
@@ -174,5 +174,12 @@
   }
   .product-info {
     padding: 10px;
+  }
+  .hero-banner h1 {
+    font-size: 1.5rem;
+  }
+  .hero-banner p {
+    font-size: 0.7rem;
+    padding: 0;
   }
 }

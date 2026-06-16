@@ -1,14 +1,14 @@
 {
-  "name": "prime-basket",
+  "name": "prime-nova",
   "version": "1.0.0",
   "description": "",
-  "homepage": "https://github.com/Rohandalal8/Prime-Basket#readme",
+  "homepage": "https://github.com/Rohandalal8/Prime-Nova#readme",
   "bugs": {
-    "url": "https://github.com/Rohandalal8/Prime-Basket/issues"
+    "url": "https://github.com/Rohandalal8/Prime-Nova/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Rohandalal8/Prime-Basket.git"
+    "url": "git+https://github.com/Rohandalal8/Prime-Nova.git"
   },
   "license": "ISC",
   "author": "Rohan",

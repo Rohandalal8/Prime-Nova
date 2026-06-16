@@ -18,8 +18,8 @@ function Navbar() {
     <nav className="navbar">
       <div className="navbar-brand">
         <Link to="/">
-            <img src="/PrimeLogo.png" alt="Prime Basket Logo" className="navbar-logo" />
-            Prime Basket
+            <img src="/PrimeLogo.png" alt="Prime Nova Logo" className="navbar-logo" />
+            Prime Nova
         </Link>
       </div>
       <ul className="navbar-links">

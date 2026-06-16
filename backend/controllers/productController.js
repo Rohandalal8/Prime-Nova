@@ -1,9 +1,7 @@
 const Product = require('../models/productModel');
 const cloudinary = require('../config/cloudinary');
 
-// @desc    Get all products
-// @route   GET /api/products
-// @access  Public
+// Get all products
 const getProducts = async (req, res) => {
     try {
         const products = await Product.find({});
@@ -13,9 +11,7 @@ const getProducts = async (req, res) => {
     }
 };
 
-// @desc    Get product by ID   
-// @route   GET /api/products/:id
-// @access  Public
+// Get product by ID
 const getProductById = async (req, res) => {
     try {
         const product = await Product.findById(req.params.id);

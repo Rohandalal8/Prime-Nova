@@ -56,7 +56,7 @@ const AdminDashboard = () => {
     return (
         <div style={{ maxWidth: '1200px', margin: '30px auto', padding: '20px' }}>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '15px', alignItems: 'center', marginBottom: '5px' }}>
-                <img src="/PrimeLogo.png" alt="Prime Logo" style={{ width: '40px', height: '40px', borderRadius: '8px', objectFit: 'cover', filter: 'drop-shadow(0 0px 10px rgba(249,115,22,0.3))' }} />
+                <img src="/PrimeLogo.png" alt="Prime Nova Logo" style={{ width: '40px', height: '40px', borderRadius: '8px', objectFit: 'cover', filter: 'drop-shadow(0 0px 10px rgba(249,115,22,0.3))' }} />
                 <h2 style={{ margin: 0 }}>Admin Dashboard</h2>
                 <p style={{ marginBottom: '30px', color: '#a1a1aa' }}>Overview of key metrics and insights</p>
 
