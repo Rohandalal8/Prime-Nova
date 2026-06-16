@@ -65,6 +65,7 @@ npm run install-all
 
 ### Backend (.env)
 
+```env
 PORT = add your port number
 MONGO_URI = add your MongoDB URI
 JWT_SECRET = add your JWT secret
@@ -77,6 +78,7 @@ RAZORPAY_KEY_ID = add your Razorpay key ID
 RAZORPAY_KEY_SECRET = add your Razorpay key secret
 FRONTEND_URL = add your frontend URL (e.g., http://localhost:3000)
 NODE_ENV = development
+```
 
 ### Frontend (.env)
 
@@ -110,6 +112,7 @@ npm run build
 
 ## Project Structure
 
+```text
 Prime-Nova/
 │
 ├── backend/
@@ -127,6 +130,7 @@ Prime-Nova/
 │
 ├── package.json
 └── README.md
+```
 
 ## Security Features
 
