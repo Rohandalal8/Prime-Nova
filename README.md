@@ -65,17 +65,22 @@ npm run install-all
 
 ### Backend (.env)
 
-PORT=5000
-MONGO_URI=your_mongodb_connection_string
-JWT_SECRET=your_jwt_secret
-EMAIL_USER=your_email
-EMAIL_PASS=your_app_password
-RAZORPAY_KEY_ID=your_key_id
-RAZORPAY_KEY_SECRET=your_key_secret
+PORT = add your port number
+MONGO_URI = add your MongoDB URI
+JWT_SECRET = add your JWT secret
+EMAIL_USER = add your email user
+EMAIL_PASS = add your email password
+CLOUDINARY_CLOUD_NAME = add your Cloudinary cloud name
+CLOUDINARY_API_KEY = add your Cloudinary API key
+CLOUDINARY_API_SECRET = add your Cloudinary API secret
+RAZORPAY_KEY_ID = add your Razorpay key ID
+RAZORPAY_KEY_SECRET = add your Razorpay key secret
+FRONTEND_URL = add your frontend URL (e.g., http://localhost:3000)
+NODE_ENV = development
 
 ### Frontend (.env)
 
-REACT_APP_RAZORPAY_KEY_ID=your_key_id
+REACT_APP_RAZORPAY_KEY_ID = Add your Razorpay key ID
 
 ## Run Project
 
