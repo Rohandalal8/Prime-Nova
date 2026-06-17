@@ -4,7 +4,21 @@ const crypto = require('crypto');
 
 const createdOrder = async (req, res) => {
     try {
-        const { products } = req.body;
+        const { products, address } = req.body;
+
+          if (
+            !address ||
+            !address.fullName?.trim() ||
+            !address.mobileNumber?.trim() ||
+            !address.street?.trim() ||
+            !address.city?.trim() ||
+            !address.postalCode?.trim() ||
+            !address.country?.trim()
+        ) {
+            return res.status(400).json({
+                message: 'Complete address is required'
+            });
+        }
 
         let totalAmount = 0;
 

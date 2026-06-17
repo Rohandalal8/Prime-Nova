@@ -6,9 +6,8 @@ const sendEmail = require('../utils/sendEmail');
 // Create a new order
 const createOrder = async (req, res) => {
     try {
-        const { products, totalPrice, address, paymentId } = req.body;
+        const { products, address, paymentId } = req.body;
         const incomingProducts = products;
-        const orderTotalPrice = totalPrice;
         const orderProducts = (incomingProducts || []).map((item) => ({
             productId: item.productId || item._id,
             quantity: item.quantity || item.qty || 1,
@@ -17,7 +16,7 @@ const createOrder = async (req, res) => {
 
         const hasValidProducts = orderProducts.length > 0 && orderProducts.every((item) => item.productId && item.quantity > 0 && typeof item.price === 'number');
 
-        if (!hasValidProducts || !orderTotalPrice || !address || !address.mobileNumber) {
+        if (!hasValidProducts || !address || !address.mobileNumber) {
             return res.status(400).json({ message: 'No products in the order' });
         }
 

@@ -66,7 +66,7 @@ const Checkout = () => {
       const orderRes = await fetch('/api/payment/order', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ products: buildOrderProducts() })
+        body: JSON.stringify({ products: buildOrderProducts(), address })
       });
 
       const orderData = await orderRes.json();
@@ -82,8 +82,7 @@ const Checkout = () => {
         amount: orderData.amount,
         currency: orderData.currency,
         name: 'Prime Nova',
-        image: window.location.origin + "/PrimeLogo.png",
-        description: 'Test Transaction',
+        description: 'Purchase',
         order_id: orderData.id,
 
         handler: async function (response) {
@@ -150,6 +149,9 @@ const Checkout = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    if (isPaying) return;
+
     if (!user || !user.verified) {
       toast.error("Please login first");
       navigate('/login');
@@ -206,7 +208,9 @@ const Checkout = () => {
               <span>${(totalPrice).toFixed(2)}</span>
             </div>
           </div>
-          <button type="submit" className="btn btn-checkout">Pay Now</button>
+          <button type="submit" disabled={isPaying} className="btn btn-checkout">
+            {isPaying ? 'Processing...' : 'Pay Now'}
+          </button>
         </form>
       </div>
     </div>
