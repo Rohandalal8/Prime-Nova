@@ -103,7 +103,7 @@
 
 .cart-summary {
   flex: 1;
-  background: radial-gradient(circle at top right, rgba(249, 115, 22, 0.03),transparent 60%), linear-gradient(135deg, #18181b 0%, #09090b 100%);
+  background: radial-gradient(circle at top right, rgba(249, 115, 22, 0.03),transparent 60%), linear-gradient(135deg, #09090a 0%, #09090b 100%);
   padding: 20px;
   border-radius: 12px;
   box-shadow: 0 4px 20px rgba(0,0,0,0.2);
@@ -132,7 +132,6 @@
   font-size: 1rem;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
   padding-top: 10px;
-  margin-bottom: 15px;
 }
 
 .btn-checkout {
@@ -140,6 +139,7 @@
   padding: 15px;
   font-size: 1.1rem;
   letter-spacing: 0.5px;
+  margin-top: 10px;
 }
 
 /* Checkout Page Additions */
@@ -170,18 +170,6 @@
 
 .shipping-form input:focus {
   border-color: #f97316;
-}
-
-.checkout-summary {
-  margin-top: 15px;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-  padding-top: 20px;
-  text-align: right;
-}
-
-.checkout-summary h4 {
-  font-size: 1rem;
-  margin-bottom: 20px;
 }
 
 @media (max-width: 768px) {

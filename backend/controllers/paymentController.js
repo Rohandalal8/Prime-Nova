@@ -1,12 +1,36 @@
 const instance = require('../config/razorpay');
+const Product = require('../models/productModel');
 const crypto = require('crypto');
 
 const createdOrder = async (req, res) => {
     try {
-        const { amount, currency } = req.body;
+        const { products } = req.body;
+
+        let totalAmount = 0;
+
+        for (const item of products) {
+            const product = await Product.findById(item.productId || item._id);
+
+            if (!product) {
+                return res.status(404).json({ message: 'Product not found' });
+            }
+
+            if (product.stock < item.quantity) {
+                return res.status(400).json({ message: `${product.name} has only ${product.stock} items left in stock` });
+            }
+
+            const discountedPrice = product.price - (product.price * product.discount) / 100;
+
+            totalAmount += discountedPrice * item.quantity;
+        }
+
+        const tax = totalAmount * 0.08;
+        const shipping = 5;
+        totalAmount += tax + shipping;
+
         const options = {
-            amount: Math.round(amount * 100), // Amount in paise
-            currency: currency || 'INR',
+            amount: Math.round(totalAmount * 100), // Amount in paise
+            currency: 'INR',
             receipt: crypto.randomBytes(10).toString('hex'),
         };
         const order = await instance.orders.create(options);

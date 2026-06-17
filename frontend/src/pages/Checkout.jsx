@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
 import { clearCart } from '../redux/cartSlice';
 import PhoneInput from 'react-phone-input-2';
@@ -13,6 +13,7 @@ const Checkout = () => {
   const cartItems = useSelector((state) => state.cart.cartItems);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const location = useLocation();
   const [address, setAddress] = useState({
     fullName: '',
     mobileNumber: '',
@@ -23,9 +24,21 @@ const Checkout = () => {
   });
   const [isPaying, setIsPaying] = useState(false);
 
-  const subtotal = cartItems.reduce((acc, item) => {
+  const buyNowItems = location.state?.buyNowItems;
+  const checkoutItems = buyNowItems || cartItems;
+
+  if (checkoutItems.length === 0) {
+    return <h2>No products in checkout</h2>
+  }
+
+  const subtotal = checkoutItems.reduce((acc, item) => {
     const discountedPrice = item.price - (item.price * item.discount) / 100;
     return acc + discountedPrice * item.qty;
+  }, 0);
+
+  const totalDiscount = checkoutItems.reduce((acc, item) => {
+    const discountAmount = (item.price * item.discount) / 100;
+    return acc + discountAmount * item.qty;
   }, 0);
 
   const tax = subtotal * 0.08;
@@ -33,7 +46,7 @@ const Checkout = () => {
 
   const totalPrice = subtotal + tax + shipping;
 
-  const buildOrderProducts = () => cartItems.map((item) => ({
+  const buildOrderProducts = () => checkoutItems.map((item) => ({
     productId: item.productId || item._id,
     quantity: item.quantity || item.qty || 1,
     price: item.price,
@@ -53,7 +66,7 @@ const Checkout = () => {
       const orderRes = await fetch('/api/payment/order', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ amount: totalPrice , currency: 'INR' })
+        body: JSON.stringify({ products: buildOrderProducts() })
       });
 
       const orderData = await orderRes.json();
@@ -96,7 +109,9 @@ const Checkout = () => {
             });
 
             if (saveOrderRes.ok) {
-              dispatch(clearCart());
+              if (!buyNowItems) {
+                dispatch(clearCart());
+              }
               navigate('/ordersuccess');
             } else {
               toast.error('Order saving failed');
@@ -167,10 +182,31 @@ const Checkout = () => {
           <input type="text" placeholder="City" required value={address.city} onChange={(e) => setAddress({...address, city: e.target.value})} />
           <input type="text" placeholder="Postal Code" required value={address.postalCode} onChange={(e) => setAddress({...address, postalCode: e.target.value})} />
           <input type="text" placeholder="Country" required value={address.country} onChange={(e) => setAddress({ ...address, country: e.target.value })} />
-          <div className="checkout-summary">
-            <h4>Total to Pay: ${totalPrice.toFixed(2)}</h4>
-            <button type="submit" className="btn"> Pay Now </button>
+          <div className="cart-summary">
+            {checkoutItems.map((item) => (
+              <div key={item.productId || item._id} className="cart-summary-item">
+                <span>{item.name} x {item.qty}</span>
+                <span>${(item.price * item.qty).toFixed(2)}</span>
+              </div>
+            ))}
+            <div className="cart-summary-item">
+              <span>Discount:</span>
+              <span>-${(totalDiscount).toFixed(2)}</span>
+            </div>
+            <div className="cart-summary-item">
+              <span>Tax:</span>
+              <span>${(tax).toFixed(2)}</span>
+            </div>
+            <div className="cart-summary-item">
+              <span>Shipping:</span>
+              <span>${(shipping).toFixed(2)}</span>
+            </div>
+            <div className="cart-summary-total">
+              <span>Total:</span>
+              <span>${(totalPrice).toFixed(2)}</span>
+            </div>
           </div>
+          <button type="submit" className="btn btn-checkout">Pay Now</button>
         </form>
       </div>
     </div>

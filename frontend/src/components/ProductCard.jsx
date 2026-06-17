@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { addToCart } from '../redux/cartSlice';
 import { toast } from 'react-toastify';
@@ -8,6 +8,7 @@ import '../styles/product.css';
 function ProductCard({ product }) {
     const dispatch = useDispatch();
     const cartItems = useSelector((state) => state?.cart?.cartItems || state?.cart?.items || []);
+    const navigate = useNavigate();
 
     const discountedPrice = product.price - ((product.price * product.discount) / 100);
 
@@ -33,6 +34,21 @@ function ProductCard({ product }) {
             }));
             toast.success(`${product.name} added to cart!`);
         }
+    };
+
+    const handleBuyNow = (e) => {
+        e.preventDefault(); // Prevent navigation when clicking "Buy Now"
+
+        navigate('/checkout', { 
+            state: { 
+                buyNowItems: [
+                    {
+                        ...product, 
+                        qty: 1 
+                    }
+                ] 
+            } 
+        });
     };
 
     return (
@@ -63,6 +79,10 @@ function ProductCard({ product }) {
                     <div style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
                         <button onClick={handleAddToCart} disabled={product.stock <= 0} className="btn" style={{ flexGrow:'1', padding:'7px', fontSize:'1rem', opacity: product.stock <= 0 ? 0.5 : 1, cursor: product.stock <= 0 ? 'not-allowed' : 'pointer' }}>
                             {product.stock <= 0 ? 'Out of Stock' : 'Add to Cart'}
+                        </button>
+
+                        <button onClick={handleBuyNow} disabled={product.stock <= 0} className="btn" style={{ flexGrow:'1', padding:'7px', fontSize:'1rem', opacity: product.stock <= 0 ? 0.5 : 1, cursor: product.stock <= 0 ? 'not-allowed' : 'pointer' }}>
+                            {product.stock <= 0 ? 'Out of Stock' : 'Buy Now'}
                         </button>
                     </div>
                 </div>

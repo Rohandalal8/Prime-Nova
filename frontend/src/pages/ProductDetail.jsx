@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { addToCart } from '../redux/cartSlice';
 import { toast } from 'react-toastify';
@@ -11,6 +11,7 @@ const ProductDetail = () => {
     const [loading, setLoading] = useState(true);
     const dispatch = useDispatch();
     const cartItems = useSelector((state) => state?.cart?.cartItems || state?.cart?.items || []);
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchProduct = async () => {
@@ -48,6 +49,21 @@ const ProductDetail = () => {
             }));
             toast.success(`${product.name} added to cart!`);
         }
+    };
+
+    const handleBuyNow = (e) => {
+        e.preventDefault(); // Prevent navigation when clicking "Buy Now"
+
+        navigate('/checkout', { 
+            state: { 
+                buyNowItems: [
+                    {
+                        ...product, 
+                        qty: 1 
+                    }
+                ] 
+            } 
+        });
     };
 
     if (loading) return <div style={{ textAlign: 'center', margin: '100px', color: '#f97316' }}>Loading product details...</div>;
@@ -97,6 +113,10 @@ const ProductDetail = () => {
                     <div style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
                         <button onClick={handleAddToCart} disabled={product.stock <= 0} className="btn" style={{ flexGrow:'1', padding:'18px', fontSize:'1.2rem', opacity: product.stock <= 0 ? 0.5 : 1, cursor: product.stock <= 0 ? 'not-allowed' : 'pointer' }}>
                             {product.stock <= 0 ? 'Out of Stock' : 'Add to Cart'}
+                        </button>
+
+                        <button onClick={handleBuyNow} disabled={product.stock <= 0} className="btn" style={{ flexGrow:'1', padding:'18px', fontSize:'1.2rem', opacity: product.stock <= 0 ? 0.5 : 1, cursor: product.stock <= 0 ? 'not-allowed' : 'pointer' }}>
+                            {product.stock <= 0 ? 'Out of Stock' : 'Buy Now'}
                         </button>
                     </div>
                     <p style={{ marginTop: '20px', color: product.stock > 0 ? '#f97316' : '#ef4444', fontWeight: '600' }}>
