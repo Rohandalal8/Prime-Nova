@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { addToCart } from '../redux/cartSlice';
 import { toast } from 'react-toastify';
 import '../styles/product.css';
@@ -10,6 +10,7 @@ const ProductDetail = () => {
     const [product, setProduct] = useState(null);
     const [loading, setLoading] = useState(true);
     const dispatch = useDispatch();
+    const cartItems = useSelector((state) => state?.cart?.cartItems || state?.cart?.items || []);
 
     useEffect(() => {
         const fetchProduct = async () => {
@@ -27,6 +28,14 @@ const ProductDetail = () => {
     }, [id]);
 
     const handleAddToCart = () => {
+        
+        const alreadyInCart = cartItems.find(item => (item.productId || item._id) === product._id);
+
+        if (alreadyInCart) {
+            toast.info(`${product.name} is already in your cart!`);
+            return;
+        }
+
         if (product && product.stock > 0) {
             dispatch(addToCart({
                 productId: product._id,
