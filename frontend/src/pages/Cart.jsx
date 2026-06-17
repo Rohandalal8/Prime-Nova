@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { removeFromCart, addToCart, updateCartStock } from '../redux/cartSlice';
+import '../styles/product.css';
 import '../styles/cart.css';
 
 const Cart = () => {
@@ -96,33 +97,21 @@ const Cart = () => {
                 <div className="cart-item-details">
                   <h4>{item.name}</h4>
                   {item.discount > 0 ? (
-                        <>
-                            <p style={{
-                                textDecoration: 'line-through',
-                                color: '#999'
-                            }}>
-                                ${item.price.toFixed(2)}
-                            </p>
-
-                            <p style={{
-                                color: '#f97316',
-                                fontSize: '1.7rem',
-                                fontWeight: 'bold'
-                            }}>
+                        <div style={{ display: 'flex', alignItems: 'baseline', gap: '3px' }}>
+                            <p className="product-price" style={{ marginBottom: '0' }}>
                                 ${(item.price - (item.price * item.discount) / 100).toFixed(2)}
                             </p>
 
-                            <span style={{
-                                background: '#ef4444',
-                                color: '#fff',
-                                padding: '4px 8px',
-                                borderRadius: '5px'
-                            }}>
+                            <p className="product-discounted-price">
+                                ${item.price.toFixed(2)}
+                            </p>
+                        
+                            <span className="product-discount">
                                 {item.discount}% OFF
                             </span>
-                        </>
+                        </div>
                     ) : (
-                        <p>
+                        <p className="product-price" style={{ marginBottom: '0' }}>
                             ${item.price.toFixed(2)}
                         </p>
                     )}
@@ -173,8 +162,8 @@ const Cart = () => {
               <span>${(shipping).toFixed(2)}</span>
             </div>
             <div className="cart-summary-total">
-              <strong>Total:</strong>
-              <strong>${(finalTotal).toFixed(2)}</strong>
+              <span>Total:</span>
+              <span>${(finalTotal).toFixed(2)}</span>
             </div>
             <button onClick={() => navigate('/checkout')} className="btn btn-checkout">Checkout</button>
           </div>

@@ -38,7 +38,9 @@ const Shop = () => {
         <div>Loading...</div>
       ) : (
         <div className="product-grid">
-          {filteredProducts.map((product) => (
+          {filteredProducts
+          .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+          .map((product) => (
             <ProductCard key={product._id} product={product} />
           ))}
         </div>

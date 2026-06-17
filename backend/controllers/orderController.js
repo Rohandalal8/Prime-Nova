@@ -39,13 +39,14 @@ const createOrder = async (req, res) => {
             }
 
             const discountedPrice = product.price - (product.price * product.discount) / 100;
-            calculatedTotal += discountedPrice * item.quantity;
+            const tax = discountedPrice * 0.08;
+            calculatedTotal += (discountedPrice * item.quantity) + tax;
         }
 
         const order = new Order({
             user: req.user._id,
             products: orderProducts,
-            totalPrice: calculatedTotal,
+            totalPrice: calculatedTotal + 5, // Adding flat shipping cost of $5
             address,
             paymentId
         });

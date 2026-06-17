@@ -134,15 +134,15 @@ const containerStyle = {
     maxWidth: '1400px',
     margin: '30px auto',
     padding: '20px',
-    background: '#18181b',
-    borderRadius: '12px',
-    border: '1px solid rgba(255,255,255,0.05)',
-    color: '#fafafa'
 };
 
 const tableStyle = {
     width: '100%',
     borderCollapse: 'collapse',
+    background: '#18181b',
+    borderRadius: '12px',
+    border: '1px solid rgba(255,255,255,0.05)',
+    color: '#fafafa'
 };
 
 const rowStyle = {
@@ -164,8 +164,7 @@ const tdStyle = {
 
 const listStyle = {
     display: 'grid',
-    gap: '6px',
-    minWidth: '180px',
+    gap: '6px'
 };
 
 export default AdminOrders;

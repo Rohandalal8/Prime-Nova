@@ -54,6 +54,7 @@
   display: flex;
   flex-direction: column;
   position: relative;
+  height: 100%;
 }
 
 .product-card:hover {
@@ -77,26 +78,38 @@
   flex-grow: 1;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start;
   background: radial-gradient(circle at top right, rgba(249, 115, 22, 0.1),transparent 60%), linear-gradient(135deg, #18181b 0%, #09090b 100%);
   position: relative;
   z-index: 2;
 }
 
 .product-info h3 {
-  font-size: 1.1rem;
-  margin-bottom: 0px;
+  font-size: 1.2rem;
+  font-weight: 400;
+  margin-bottom: 5px;
   color: #fff;
-  white-space: nowrap;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
   overflow: hidden;
-  text-overflow: ellipsis;
 }
 
 .product-price {
-  font-size: 22px;
-  font-weight: 700;
-  color: #f97316;
+  font-size: 1.2rem;
   margin-bottom: 10px;
+}
+
+.product-discounted-price {
+  font-size: 1rem;
+  color: #999;
+  text-decoration: line-through;
+}
+
+.product-discount {
+  font-size: 1rem;
+  color: #06bb18;
+  white-space: nowrap;
 }
 
 /* Search Bar */
@@ -124,7 +137,7 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 20px;
-  padding: 40px;
+  padding: 20px;
   border-radius: 16px;
   border: 1px solid #27272a;
   backdrop-filter: blur(300px);
@@ -173,7 +186,20 @@
     height: 120px;
   }
   .product-info {
-    padding: 10px;
+    padding: 5px;
+  }
+  .product-info h3 {
+    font-size: 1rem;
+  }
+  .product-price {
+    font-size: 0.8rem;
+  }
+  .product-discounted-price {
+    font-size: 0.7rem;
+  }
+  .product-discount {
+    font-size: 0.7rem;
+    display: none;
   }
   .hero-banner h1 {
     font-size: 1.5rem;

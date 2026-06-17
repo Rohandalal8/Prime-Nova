@@ -88,8 +88,8 @@ const Profile = () => {
             <div key={order._id} style={{ background: '#09090b', padding: '20px', borderRadius: '12px', border: '1px solid #27272a', display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', alignItems: 'center', gap: '20px' }}>
               <div>
                 <div style={{ color: '#a1a1aa', fontSize: '0.9rem', marginBottom: '8px' }}>
-                  <strong style={{ color: '#fff' }}>Products:</strong>
-                  <div style={{ display: 'grid', gap: '4px', marginTop: '6px' }}>
+                  <span style={{ color: '#fff' }}>Products:</span>
+                  <div style={{ display: 'grid', gap: '2px', marginTop: '3px' }}>
                     {(order.products || []).map((product) => (
                       <span key={product._id || product.productId?._id || product.productId} style={{ color: '#fff' }}>
                         {getProductName(product)} x {product.quantity}
@@ -98,7 +98,7 @@ const Profile = () => {
                   </div>
                 </div>
                 <p style={{ color: '#a1a1aa', fontSize: '0.9rem', marginBottom: '5px' }}>Placed On: <span style={{ color: '#fff' }}>{new Date(order.createdAt).toLocaleDateString('en-GB')}</span></p>
-                <p style={{ color: '#a1a1aa', fontSize: '0.9rem' }}>Total: <strong style={{ color: '#10b981' }}>${formatOrderTotal(order)}</strong></p>
+                <p style={{ color: '#a1a1aa', fontSize: '0.9rem' }}>Total: <strong style={{ color: '#fff' }}>${formatOrderTotal(order)}</strong></p>
               </div>
               <div>
                 <span style={{ 

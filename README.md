@@ -140,12 +140,13 @@ Prime-Nova/
 * OTP-Based Email Verification
 * Secure Payment Verification
 * Stock Validation Before Order Placement
+* Discount System
 
 ## Future Improvements
 
 * Product Reviews and Ratings
 * Wishlist Functionality
-* Coupon and Discount System
+* Coupon System
 * Multi-Currency Support
 * Multi-Language Support
 * Real-Time Order Tracking

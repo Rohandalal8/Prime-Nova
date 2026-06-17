@@ -82,7 +82,6 @@ const Checkout = () => {
 
             if (saveOrderRes.ok) {
               dispatch(clearCart());
-              toast.success('Order placed successfully!');
               navigate('/ordersuccess');
             } else {
               toast.error('Order saving failed');

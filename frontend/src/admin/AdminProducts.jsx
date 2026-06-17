@@ -77,8 +77,8 @@ const AdminProducts = () => {
                             <td style={{ padding: '12px 25px' }}>{p.discount}%</td>
                             <td style={{ padding: '12px 25px' }}>{p.category}</td>
                             <td style={{ padding: '12px 25px' }}>{p.stock}</td>
-                            <td style={{ padding: '12px 25px' }}>
-                                <Link to={`/admin/edit-product/${p._id}`} style={{ 
+                            <td style={{ padding: '12px 25px', minWidth: '180px' }}>
+                                <button style={{ 
                                     padding: '6px 12px',
                                     borderRadius: '8px',
                                     backgroundColor: '#3b82f6',
@@ -87,8 +87,8 @@ const AdminProducts = () => {
                                     cursor: 'pointer',
                                     transition: 'all 0.3s ease' 
                                     }}>
-                                    Edit
-                                </Link>
+                                    <Link to={`/admin/edit-product/${p._id}`}> Edit </Link>
+                                </button>
                                 <button onClick={() => handleDelete(p._id)} style={{
                                     marginLeft: '15px',
                                     padding: '6px 12px',

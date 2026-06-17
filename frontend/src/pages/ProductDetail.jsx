@@ -48,7 +48,7 @@ const ProductDetail = () => {
     const discountedPrice = product.price - ((product.price * product.discount) / 100);
 
     return (
-        <div className="product-detail-wrapper" style={{ maxWidth: '1200px', margin: '0 auto', padding: '20px' }}>
+        <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '20px' }}>
             <div style={{ color: '#a1a1aa', marginBottom: '20px', fontSize: '0.95rem' }}>
                 <Link to="/" style={{ color: '#f97316' }}>Home</Link> / <Link to="/shop" style={{ color: '#f97316' }}>Shop</Link> / {product.category} / <span style={{ color: '#fff' }}>{product.name}</span>
             </div>
@@ -59,35 +59,25 @@ const ProductDetail = () => {
                 </div>
 
                 <div className="detail-info">
-                    <h2 style={{ marginBottom: '0' }}>{product.name}</h2>
+                    <h2 style={{ marginBottom: '10px' }}>{product.name}</h2>
                     {product.discount > 0 ? (
-                        <>
-                            <p style={{
-                                textDecoration: 'line-through',
-                                color: '#999'
-                            }}>
-                                ${product.price.toFixed(2)}
-                            </p>
-                            <p style={{
-                                color: '#f97316',
-                                fontSize: '1.7rem',
-                                fontWeight: 'bold'
-                            }}>
+                        <div style={{ display: 'flex', alignItems: 'baseline', gap: '3px' }}>
+                            <span className="product-price">
                                 ${discountedPrice.toFixed(2)}
-                            </p>
-                            <span style={{
-                                background: '#ef4444',
-                                color: '#fff',
-                                padding: '4px 8px',
-                                borderRadius: '5px'
-                            }}>
+                            </span>
+
+                            <span className="product-discounted-price">
+                                ${product.price.toFixed(2)}
+                            </span>
+                        
+                            <span className="product-discount" style={{ display: 'inline-block' }}>
                                 {product.discount}% OFF
                             </span>
-                        </>
+                        </div>
                     ) : (
-                        <p style={{ fontSize: '1.7rem', marginBottom:'20px' }}>
+                        <span className="product-price">
                             ${product.price.toFixed(2)}
-                        </p>
+                        </span>
                     )}
                     <div style={{ marginBottom: '20px' }}>
                         <h4 style={{ color: '#fff', marginBottom: '5px' }}>Product Description</h4>

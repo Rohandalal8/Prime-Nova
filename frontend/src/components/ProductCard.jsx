@@ -13,31 +13,19 @@ function ProductCard({ product }) {
                 <div className="product-info">
                     <h3 className="product-name">{product.name}</h3>
                     {product.discount > 0 ? (
-                        <>
-                            <p style={{
-                                textDecoration: 'line-through',
-                                color: '#999'
-                            }}>
-                                ${product.price.toFixed(2)}
-                            </p>
-
-                            <p style={{
-                                color: '#f97316',
-                                fontSize: '1.7rem',
-                                fontWeight: 'bold'
-                            }}>
+                        <div style={{ display: 'flex', alignItems: 'baseline', gap: '3px' }}>
+                            <p className="product-price">
                                 ${discountedPrice.toFixed(2)}
                             </p>
 
-                            <span style={{
-                                background: '#ef4444',
-                                color: '#fff',
-                                padding: '4px 8px',
-                                borderRadius: '5px'
-                            }}>
+                            <p className="product-discounted-price">
+                                ${product.price.toFixed(2)}
+                            </p>
+                        
+                            <span className="product-discount">
                                 {product.discount}% OFF
                             </span>
-                        </>
+                        </div>
                     ) : (
                         <p className="product-price">
                             ${product.price.toFixed(2)}

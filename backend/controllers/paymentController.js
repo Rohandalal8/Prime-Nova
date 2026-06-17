@@ -5,7 +5,7 @@ const createdOrder = async (req, res) => {
     try {
         const { amount, currency } = req.body;
         const options = {
-            amount: amount * 100, // Amount in paise
+            amount: Math.round(amount * 100), // Amount in paise
             currency: currency || 'INR',
             receipt: crypto.randomBytes(10).toString('hex'),
         };
