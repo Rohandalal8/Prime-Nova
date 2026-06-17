@@ -57,7 +57,8 @@ const createOrder = async (req, res) => {
                 item.productId,
                 {
                     $inc: {
-                        stock: -item.quantity
+                        stock: -item.quantity,
+                        totalSold: item.quantity
                     }
                 }
             );

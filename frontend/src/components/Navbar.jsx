@@ -31,7 +31,7 @@ function Navbar() {
         {user && user.verified ? (
             <>
                 <li><Link to="/profile">Profile</Link></li>
-                {user.role === "admin" && <li><Link to="/admin">Admin Dashboard</Link></li>}
+                {user.role === "admin" && <li className="admin-link"><Link to="/admin">Admin Dashboard</Link></li>}
                 <li><button onClick={handleLogout} className="logout-btn">Logout</button></li>
             </>
             ) : (

@@ -79,7 +79,7 @@ const AdminOrders = () => {
     return (
         <div style={containerStyle}>
             <h2 style={{ marginBottom: '20px' }}>Orders Management</h2>
-            <div style={{ overflowX: 'auto' }}>
+            <div style={{ overflowX: 'auto', WebkitOverflowScrolling: 'touch' }}>
                 <table style={tableStyle}>
                     <thead>
                         <tr style={rowStyle}>
@@ -132,15 +132,15 @@ const AdminOrders = () => {
 
 const containerStyle = {
     maxWidth: '1400px',
-    margin: '30px auto',
-    padding: '20px',
+    margin: '20px auto',
+    padding: '0 20px',
 };
 
 const tableStyle = {
     width: '100%',
     borderCollapse: 'collapse',
     background: '#18181b',
-    borderRadius: '12px',
+    borderRadius: '4px',
     border: '1px solid rgba(255,255,255,0.05)',
     color: '#fafafa'
 };

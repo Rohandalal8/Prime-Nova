@@ -62,12 +62,18 @@ const Profile = () => {
 
   return (
     <div className="containerStyle">
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', borderBottom: '1px solid rgba(255,255,255,0.1)', paddingBottom: '30px', marginBottom: '30px' }}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', borderBottom: '1px solid rgba(255,255,255,0.1)', paddingBottom: '20px', marginBottom: '20px' }}>
         <div>
           <h2 style={{ marginBottom: '10px' }}>My Profile</h2>
           <p style={{ color: '#a1a1aa', fontSize: '1rem', marginBottom: '5px' }}>Name: {user.name}</p>
           <p style={{ color: '#a1a1aa', fontSize: '1rem', marginBottom: '15px', whiteSpace: 'nowrap' }}>Email: {user.email}</p>
           <span className="badgeStyle">Account Type: {user.role.toUpperCase()}</span>
+          <br />
+          { user.role === "admin" && (
+          <Link to="/admin">
+            <button className="btn" style={{ background: '#f97316', boxShadow: 'none', marginTop: '10px' }}>Admin Dashboard</button>
+          </Link>
+        )}
         </div>
         <button onClick={handleLogout} className="btn" style={{ background: '#ef4444', boxShadow: 'none' }}>Logout</button>
       </div>

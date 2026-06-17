@@ -94,7 +94,7 @@ const EditProduct = () => {
     }
 
     return (
-        <div style={{ maxWidth: '600px', margin: '30px auto', padding: '20px', borderRadius: '12px', backgroundColor: '#18181b', border: '1px solid rgba(255,255,255,0.05)' }}>
+        <div style={{ maxWidth: '600px', margin: '20px auto', padding: '20px', borderRadius: '4px', backgroundColor: '#18181b', border: '1px solid rgba(255,255,255,0.05)' }}>
             <h2 style={{ marginBottom: '20px' }}>Edit Product</h2>
             <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
                 <input name="name" type="text" placeholder="Product Name" value={formData.name} onChange={(e) => setFormData({ ...formData, name: e.target.value })} style={inputStyle} required />
@@ -114,7 +114,7 @@ const EditProduct = () => {
 
 const inputStyle = {
     padding: '10px',
-    borderRadius: '8px',
+    borderRadius: '4px',
     border: '1px solid rgba(255,255,255,0.1)',
     backgroundColor: '#27272a',
     color: '#fff',
@@ -122,7 +122,7 @@ const inputStyle = {
 
 const buttonStyle = {
     padding: '10px 20px',
-    borderRadius: '8px',
+    borderRadius: '4px',
     backgroundColor: '#f97316',
     color: '#fff',
     border: 'none',

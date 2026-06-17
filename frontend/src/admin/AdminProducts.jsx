@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { AuthContext } from '../context/AuthContext';
-import { Link, useNavigate} from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const AdminProducts = () => {
     const { user } = useContext(AuthContext);
@@ -41,13 +41,13 @@ const AdminProducts = () => {
     };
 
     return (
-        <div style={{ maxWidth: '1200px', margin: '30px auto', padding: '20px' }}>
-            <h2 style={{ marginBottom: '20px' }}>Products Management</h2>
-            <Link to="/admin/add-product" style={{ 
-                display: 'inline-block', 
+        <div style={{ maxWidth: '1400px', margin: '20px auto', padding: '0 20px' }}>
+            <h2 style={{ marginBottom: '15px' }}>Products Management</h2>
+            <Link to="/admin/add-product" style={{
+                display: 'inline-block',
                 marginBottom: '20px',
                 padding: '10px 20px',
-                borderRadius: '8px',
+                borderRadius: '4px',
                 backgroundColor: '#27272a',
                 color: '#fff',
                 textDecoration: 'none',
@@ -56,56 +56,62 @@ const AdminProducts = () => {
             }}>
                 + Add New Product
             </Link>
-            <table style={{ width: '100%', borderCollapse: 'collapse', background: '#18181b', borderRadius: '12px', border: '1px solid rgba(255,255,255,0.05)' }}>
-                <thead>
-                    <tr style={{ borderBottom: '1px solid rgba(255,255,255,0.1)' }}>
-                        <th style={{ padding: '12px 25px', textAlign: 'left' }}>ID</th>
-                        <th style={{ padding: '12px 25px', textAlign: 'left' }}>Name</th>
-                        <th style={{ padding: '12px 25px', textAlign: 'left' }}>Price</th>
-                        <th style={{ padding: '12px 25px', textAlign: 'left' }}>Discount</th>
-                        <th style={{ padding: '12px 25px', textAlign: 'left' }}>Category</th>
-                        <th style={{ padding: '12px 25px', textAlign: 'left' }}>Stock</th>
-                        <th style={{ padding: '12px 25px', textAlign: 'left' }}>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {products.map((p) => (
-                        <tr key={p._id} style={{ borderBottom: '1px solid rgba(255,255,255,0.05)' }}>
-                            <td style={{ padding: '12px 25px' }}>{p._id}</td>
-                            <td style={{ padding: '12px 25px' }}>{p.name}</td>
-                            <td style={{ padding: '12px 25px' }}>${p.price.toFixed(2)}</td>
-                            <td style={{ padding: '12px 25px' }}>{p.discount}%</td>
-                            <td style={{ padding: '12px 25px' }}>{p.category}</td>
-                            <td style={{ padding: '12px 25px' }}>{p.stock}</td>
-                            <td style={{ padding: '12px 25px', minWidth: '180px' }}>
-                                <button style={{ 
-                                    padding: '6px 12px',
-                                    borderRadius: '8px',
-                                    backgroundColor: '#3b82f6',
-                                    color: '#fff',
-                                    border: 'none',
-                                    cursor: 'pointer',
-                                    transition: 'all 0.3s ease' 
-                                    }}>
-                                    <Link to={`/admin/edit-product/${p._id}`}> Edit </Link>
-                                </button>
-                                <button onClick={() => handleDelete(p._id)} style={{
-                                    marginLeft: '15px',
-                                    padding: '6px 12px',
-                                    borderRadius: '8px',
-                                    backgroundColor: '#ef4444',
-                                    color: '#fff',
-                                    border: 'none',
-                                    cursor: 'pointer',
-                                    transition: 'all 0.3s ease'
-                                }}>
-                                    Delete
-                                </button>
-                            </td>
+            <div style={{ overflowX: 'auto', WebkitOverflowScrolling: 'touch' }}>
+                <table style={{ width: '100%', borderCollapse: 'collapse', background: '#18181b', borderRadius: '4px', border: '1px solid rgba(255,255,255,0.05)' }}>
+                    <thead>
+                        <tr style={{ borderBottom: '1px solid rgba(255,255,255,0.1)' }}>
+                            <th style={{ padding: '12px 25px', textAlign: 'left' }}>ID</th>
+                            <th style={{ padding: '12px 25px', textAlign: 'left' }}>Name</th>
+                            <th style={{ padding: '12px 25px', textAlign: 'left' }}>Price</th>
+                            <th style={{ padding: '12px 25px', textAlign: 'left' }}>Discount</th>
+                            <th style={{ padding: '12px 25px', textAlign: 'left' }}>Category</th>
+                            <th style={{ padding: '12px 25px', textAlign: 'left' }}>Stock</th>
+                            <th style={{ padding: '12px 25px', textAlign: 'left' }}>Total Sold</th>
+                            <th style={{ padding: '12px 25px', textAlign: 'left' }}>Actions</th>
                         </tr>
-                    ))}
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        {[...products]
+                        .sort((a, b) => b.totalSold - a.totalSold) // Sort by totalSold in descending order
+                        .map((p) => (
+                            <tr key={p._id} style={{ borderBottom: '1px solid rgba(255,255,255,0.05)' }}>
+                                <td style={{ padding: '12px 25px' }}>{p._id}</td>
+                                <td style={{ padding: '12px 25px' }}>{p.name}</td>
+                                <td style={{ padding: '12px 25px' }}>${p.price.toFixed(2)}</td>
+                                <td style={{ padding: '12px 25px' }}>{p.discount}%</td>
+                                <td style={{ padding: '12px 25px' }}>{p.category}</td>
+                                <td style={{ padding: '12px 25px' }}>{p.stock}</td>
+                                <td style={{ padding: '12px 25px' }}>{p.totalSold}</td>
+                                <td style={{ padding: '12px 25px', minWidth: '180px' }}>
+                                    <button style={{
+                                        padding: '6px 12px',
+                                        borderRadius: '4px',
+                                        backgroundColor: '#3b82f6',
+                                        color: '#fff',
+                                        border: 'none',
+                                        cursor: 'pointer',
+                                        transition: 'all 0.3s ease'
+                                    }}>
+                                        <Link to={`/admin/edit-product/${p._id}`}> Edit </Link>
+                                    </button>
+                                    <button onClick={() => handleDelete(p._id)} style={{
+                                        marginLeft: '15px',
+                                        padding: '6px 12px',
+                                        borderRadius: '4px',
+                                        backgroundColor: '#ef4444',
+                                        color: '#fff',
+                                        border: 'none',
+                                        cursor: 'pointer',
+                                        transition: 'all 0.3s ease'
+                                    }}>
+                                        Delete
+                                    </button>
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
         </div>
     );
 };

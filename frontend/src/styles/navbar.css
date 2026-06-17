@@ -113,6 +113,9 @@
     .logout-btn {
         display: none;
     }
+    .admin-link {
+        display: none;
+    }
     .navbar-links {
         gap: 13px;
     }

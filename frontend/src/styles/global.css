@@ -28,7 +28,7 @@ body {
 
 .main-context {
     min-height: 85vh;
-    padding: 40px 20px;
+    padding: 20px;
     max-width: 1600px;
     margin: 0;
     animation: fadeIn 0.6s ease-in-out;
@@ -120,8 +120,9 @@ h2 {
 
 /* profile page */
 .containerStyle { 
+    width: 100%;
     max-width: 1400px; 
-    margin: 50px;
+    margin: 20px auto;
     padding: 20px; 
     background: #18181b2f; 
     border-radius: 4px;
@@ -143,6 +144,7 @@ h2 {
     .containerStyle {
         margin: 10px;
         padding: 15px;
+        width: auto;
     }
     h2 {
         font-size: 1.2rem;

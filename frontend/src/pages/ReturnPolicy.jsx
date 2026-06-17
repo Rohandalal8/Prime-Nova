@@ -1,6 +1,7 @@
 import React from 'react';
 
 const textualStyle = { 
+    width: '95%',
     maxWidth: '900px',
     margin: '20px auto',
     padding: '20px',

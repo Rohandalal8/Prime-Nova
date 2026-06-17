@@ -36,9 +36,9 @@ const AdminDashboard = () => {
 
     const cardStyle = {
         background: '#18181b',
-        borderRadius: '12px',
+        borderRadius: '4px',
         border: '1px solid rgba(255,255,255,0.05)',
-        padding: '25px',
+        padding: '10px',
         textAlign: 'center',
         boxShadow: '0 4px 20px rgba(0,0,0,0.3)',
         display: 'flex',
@@ -48,20 +48,19 @@ const AdminDashboard = () => {
     };
 
     const numberStyle = {
-        fontSize: '2.5rem',
+        fontSize: '1.5rem',
         fontWeight: '700',
         color: '#f97316',
     }
 
     return (
-        <div style={{ maxWidth: '1200px', margin: '30px auto', padding: '20px' }}>
+        <div style={{ maxWidth: '1200px', margin: '20px auto', padding: '0 20px' }}>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '15px', alignItems: 'center', marginBottom: '5px' }}>
-                <img src="/PrimeLogo.png" alt="Prime Nova Logo" style={{ width: '40px', height: '40px', borderRadius: '8px', objectFit: 'cover', filter: 'drop-shadow(0 0px 10px rgba(249,115,22,0.3))' }} />
                 <h2 style={{ margin: 0 }}>Admin Dashboard</h2>
                 <p style={{ marginBottom: '30px', color: '#a1a1aa' }}>Overview of key metrics and insights</p>
 
                 {stats ? (
-                    <div style={{ display: 'flex', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '20px' }}>
+                    <div style={{ display: 'flex', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '10px', flexWrap: 'wrap', justifyContent: 'center' }}>
                         <div style={{ ...cardStyle }}>
                             <h4 style={{ color: '#a1a1aa', fontSize: '1rem' }}>Total Users</h4>
                             <div style={numberStyle}>{stats.totalUsers}</div>
@@ -85,9 +84,9 @@ const AdminDashboard = () => {
                     </div>
                 )}
 
-                <div style={{ marginTop: '40px', padding: '30px', background: '#18181b', border: '1px solid rgba(255,255,255,0.05)', borderRadius: '12px' }}>
-                    <h3 style={{ color: '#f97316', marginBottom: '25px' }}>Adminitrative Controls</h3>
-                    <div style={{ display: 'flex', gap: '20px', flexWrap: 'wrap' }}>
+                <div style={{ marginTop: '20px', padding: '15px', background: '#18181b', border: '1px solid rgba(255,255,255,0.05)', borderRadius: '4px' }}>
+                    <h3 style={{ color: '#f97316', marginBottom: '20px' }}>Adminitrative Controls</h3>
+                    <div style={{ display: 'flex', gap: '15px', flexWrap: 'wrap' }}>
                         <button onClick={() => navigate('/admin/users')} className="btn" style={{ background: '#2f2f38', boxShadow: 'none' }}>Users Directory</button>
                         <button onClick={() => navigate('/admin/products')} className="btn" style={{ background: '#2f2f38', boxShadow: 'none' }}>Manage Products</button>
                         <button onClick={() => navigate('/admin/orders')} className="btn" style={{ background: '#2f2f38', boxShadow: 'none' }}>Manage Orders</button>

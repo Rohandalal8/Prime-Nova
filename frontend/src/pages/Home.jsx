@@ -4,7 +4,8 @@ import { Link } from 'react-router-dom';
 const { AuthContext } = require('../context/AuthContext');
 
 const Home = () => {
-    const [products, setProducts] = useState([]);
+    const [latestProducts, setLatestProducts] = useState([]);
+    const [popularProducts, setPopularProducts] = useState([]);
     const [loading, setLoading] = useState(true);
     const { user } = React.useContext(AuthContext);
 
@@ -14,7 +15,18 @@ const Home = () => {
             try {
                 const response = await fetch('/api/products');
                 const data = await response.json();
-                setProducts(data.slice(-5).reverse()); // Show only the last 5 products
+
+                const isMobile = window.innerWidth <= 768;
+                const limit = isMobile ? 4 : 5;
+
+                // latest products
+                setLatestProducts(data.slice(-limit).reverse()); // Show only the last 4 products on mobile, 5 on desktop
+
+                // popular products
+                const sortedProducts = [...data].sort((a, b) => (b.totalSold || 0) - (a.totalSold || 0));
+
+                setPopularProducts(sortedProducts.slice(0, limit)); // Show only the top 4 products on mobile, 5 on desktop
+
             } catch (error) {
                 console.error('Error fetching products:', error);
             } finally {
@@ -30,12 +42,22 @@ const Home = () => {
                 <h1>Hi, {user?.name || 'Guest'}! Welcome to Prime Nova</h1>
                 <p>Prime Nova is a marketplace dedicated to handcrafted products created by skilled artisans. We bring together quality, creativity, and authenticity, offering unique handmade items that add a personal touch to everyday life while supporting talented makers and small businesses.</p>
             </div>
-            <h2>Featured Products</h2>
+            <h2>Popular Products</h2>
             {loading ? (
                 <p>Loading products...</p>
             ) : (
-                <div className="product-grid">
-                    {products.map(product => (
+                <div className="product-grid" >
+                    {popularProducts.map(product => (
+                        <ProductCard key={product._id} product={product} />
+                    ))}
+                </div>
+            )}
+            <h2 style={{ marginTop: '20px', paddingTop: '10px', borderTop: '1px solid #27272a'}}>Latest Products</h2>
+            {loading ? (
+                <p>Loading products...</p>
+            ) : (
+                <div className="product-grid" >
+                    {latestProducts.map(product => (
                         <ProductCard key={product._id} product={product} />
                     ))}
                 </div>

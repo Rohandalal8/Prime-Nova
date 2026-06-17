@@ -73,7 +73,7 @@ const ProductDetail = () => {
     const discountedPrice = product.price - ((product.price * product.discount) / 100);
 
     return (
-        <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '20px' }}>
+        <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '10px' }}>
             <div style={{ color: '#a1a1aa', marginBottom: '20px', fontSize: '0.95rem' }}>
                 <Link to="/" style={{ color: '#f97316' }}>Home</Link> / <Link to="/shop" style={{ color: '#f97316' }}>Shop</Link> / {product.category} / <span style={{ color: '#fff' }}>{product.name}</span>
             </div>
