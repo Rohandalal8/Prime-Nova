@@ -50,7 +50,7 @@ const Login = () => {
                     onChange={(e) => setPassword(e.target.value)}
                     required
                 />
-                <p style={{ textAlign: 'left', marginTop: '-20px', padding: '5px' }}>
+                <p style={{ textAlign: 'left', marginTop: '-15px', padding: '5px' }}>
                     <Link to="/forgot-password" state={{ email }}>Forgot Password?</Link>
                 </p>
                 <button type="submit">Login</button>

@@ -14,7 +14,7 @@ const Home = () => {
             try {
                 const response = await fetch('/api/products');
                 const data = await response.json();
-                setProducts(data.slice(-4).reverse()); // Show only the last 4 products
+                setProducts(data.slice(-5).reverse()); // Show only the last 5 products
             } catch (error) {
                 console.error('Error fetching products:', error);
             } finally {
@@ -30,7 +30,7 @@ const Home = () => {
                 <h1>Hi, {user?.name || 'Guest'}! Welcome to Prime Nova</h1>
                 <p>Prime Nova is a marketplace dedicated to handcrafted products created by skilled artisans. We bring together quality, creativity, and authenticity, offering unique handmade items that add a personal touch to everyday life while supporting talented makers and small businesses.</p>
             </div>
-            <h2>Recently Added</h2>
+            <h2>Featured Products</h2>
             {loading ? (
                 <p>Loading products...</p>
             ) : (

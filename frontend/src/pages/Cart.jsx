@@ -131,13 +131,13 @@ const Cart = () => {
                     >
                       +
                     </button>
+                    <button onClick={() => handleRemove(getItemId(item))} className="btn-remove">Remove</button>
                   </div>
                   {Number.isFinite(item.stock) && (
                     <p style={{ marginTop: '-15px', padding: '10px 0', color: item.stock > 0 ? '#f97316' : '#ef4444', fontSize: '0.6rem'}}>
                         {item.stock > 0 && item.stock <= 5 ? `Only ${item.stock} available` : item.stock > 5 ? `` : 'Temporarily Out of Stock'}
                     </p>
                   )}
-                  <button onClick={() => handleRemove(getItemId(item))} className="btn-remove">Remove</button>
                 </div>
               </div>
             ))}

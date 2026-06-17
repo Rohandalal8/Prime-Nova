@@ -2,14 +2,12 @@ import React from 'react';
 
 const textualStyle = { 
     maxWidth: '900px',
-    margin: '0 auto',
-    padding: '40px',
-    borderRadius: '16px',
+    margin: '20px auto',
+    padding: '20px',
+    borderRadius: '4px',
     border: '1px solid rgba(255, 255, 255, 0.05)',
     lineHeight: '1.8',
-    color: '#a1a1aa',
-    marginTop: '30px',
-    marginBottom: '30px'
+    color: '#a1a1aa'
 };
 
 const ReturnPolicy = () => {

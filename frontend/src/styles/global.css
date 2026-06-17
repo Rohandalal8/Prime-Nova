@@ -49,10 +49,12 @@ ul {
     margin-top: 20px;
     font-size: 16px;
     color: #f97316;
-    border-radius: 8px;
     transition: all 0.3s ease;
     align-items: center;
     justify-content: center;
+}
+.view-all-link:hover {
+    color: #ea580c;
 }
 
 /* Premium buttons */
@@ -60,9 +62,9 @@ ul {
     background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
     color: #fff;
     border: none;
-    padding: 12px 24px;
-    border-radius: 8px;
-    font-weight: 600;
+    padding: 10px 20px;
+    border-radius: 4px;
+    font-weight: 400;
     font-size: 15px;
     cursor: pointer;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -72,20 +74,15 @@ ul {
 }
 
 .btn:hover {
-    transform: translateY(-2px);
     box-shadow: 0 6px 20px rgba(234, 88, 12, 0.5);
     filter: brightness(1.1);
 }
 
-.btn:active {
-    transform: translateY(1px);
-}
-
 /* Base Headings */
 h1, h2, h3, h4 {
-    font-weight: 500;
+    font-weight: 400;
     letter-spacing: -0.5px;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
 }
 
 h2 {
@@ -125,9 +122,9 @@ h2 {
 .containerStyle { 
     max-width: 1400px; 
     margin: 50px;
-    padding: 30px; 
+    padding: 20px; 
     background: #18181b2f; 
-    border-radius: 12px;
+    border-radius: 4px;
     border: 1px solid rgba(255,255,255,0.05); 
     color: #fafafa;
     box-shadow: 0 4px 30px rgba(24, 24, 27, 0.1); 
@@ -137,9 +134,8 @@ h2 {
     background: rgba(249,115,22,0.1); 
     color: #f97316; 
     padding: 6px 12px; 
-    border-radius: 8px; 
+    border-radius: 4px; 
     font-size: 0.9rem; 
-    font-weight: bold; 
     display: inline-block 
 }
 

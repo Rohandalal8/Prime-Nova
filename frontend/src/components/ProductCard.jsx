@@ -76,12 +76,12 @@ function ProductCard({ product }) {
                             ${product.price.toFixed(2)}
                         </p>
                     )}
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
-                        <button onClick={handleAddToCart} disabled={product.stock <= 0} className="btn" style={{ flexGrow:'1', padding:'7px', fontSize:'1rem', opacity: product.stock <= 0 ? 0.5 : 1, cursor: product.stock <= 0 ? 'not-allowed' : 'pointer' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '10px', flexDirection: 'column', width: '100%' }}>
+                        <button onClick={handleAddToCart} disabled={product.stock <= 0} className="btn" style={{ flexGrow:'1', padding:'6px', fontSize:'1rem', width: '100%', background: 'none', color: '#f97316', border: '1px solid #f97316', opacity: product.stock <= 0 ? 0.5 : 1, cursor: product.stock <= 0 ? 'not-allowed' : 'pointer' }}>
                             {product.stock <= 0 ? 'Out of Stock' : 'Add to Cart'}
                         </button>
 
-                        <button onClick={handleBuyNow} disabled={product.stock <= 0} className="btn" style={{ flexGrow:'1', padding:'7px', fontSize:'1rem', opacity: product.stock <= 0 ? 0.5 : 1, cursor: product.stock <= 0 ? 'not-allowed' : 'pointer' }}>
+                        <button onClick={handleBuyNow} disabled={product.stock <= 0} className="btn" style={{ flexGrow:'1', padding:'6px', fontSize:'1rem', width: '100%', opacity: product.stock <= 0 ? 0.5 : 1, cursor: product.stock <= 0 ? 'not-allowed' : 'pointer' }}>
                             {product.stock <= 0 ? 'Out of Stock' : 'Buy Now'}
                         </button>
                     </div>

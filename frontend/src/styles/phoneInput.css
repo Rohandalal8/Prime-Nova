@@ -8,7 +8,7 @@
     background: #09090b !important;
     color: #fff !important;
     border: 1px solid #27272a !important;
-    border-radius: 8px !important;
+    border-radius: 4px !important;
     font-size: 16px !important;
     padding-left: 55px !important;
     box-sizing: border-box;
@@ -22,7 +22,7 @@
 
 .react-tel-input .selected-flag {
     background: #09090b !important;
-    border-radius: 8px 0 0 8px !important;
+    border-radius: 4px 0 0 4px !important;
 }
 
 .react-tel-input .search {

@@ -8,11 +8,11 @@
 
 .auth-form {
   background: #18181b;
-  padding: 40px;
-  border-radius: 16px;
+  padding: 20px;
+  border-radius: 4px;
   box-shadow: 0 10px 40px rgba(0,0,0,0.5);
   width: 100%;
-  max-width: 420px;
+  max-width: 380px;
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -39,16 +39,15 @@
 
 .auth-form h2 {
   text-align: center;
-  font-size: 2rem;
+  font-size: 1.5rem;
   color: #fff;
-  margin-bottom: 10px;
 }
 
 .auth-form input {
   padding: 15px;
   background: #09090b;
   border: 1px solid #27272a;
-  border-radius: 8px;
+  border-radius: 4px;
   font-size: 15px;
   color: #fff;
   outline: none;
@@ -62,13 +61,12 @@
 
 .auth-form p {
   text-align: center;
-  margin-top: 15px;
   color: #a1a1aa;
 }
 
 .auth-form a {
   color: #f97316;
-  font-weight: 600;
+  font-weight: 400;
 }
 
 .auth-form a:hover {
@@ -81,9 +79,9 @@
   background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
   color: #fff;
   border: none;
-  border-radius: 8px;
+  border-radius: 4px;
   font-size: 15px;
-  font-weight: 600;
+  font-weight: 400;
   font-family: inherit;
   cursor: pointer;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
