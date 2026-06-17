@@ -21,6 +21,7 @@ const Checkout = () => {
     postalCode: '',
     country: ''
   });
+  const [isPaying, setIsPaying] = useState(false);
 
   const subtotal = cartItems.reduce((acc, item) => {
     const discountedPrice = item.price - (item.price * item.discount) / 100;
@@ -38,6 +39,15 @@ const Checkout = () => {
     price: item.price,
   }));
 
+  if (isPaying) {
+    return (
+      <div style={{ textAlign: 'center', padding: '50px' }}>
+        <h2>Processing Payment...</h2>
+        <p>Please do not close or refresh the page</p>
+      </div>
+    );
+  }
+
   const handlePayment = async () => {
     try {
       const orderRes = await fetch('/api/payment/order', {
@@ -45,10 +55,12 @@ const Checkout = () => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ amount: totalPrice , currency: 'INR' })
       });
+
       const orderData = await orderRes.json();
 
       if (!orderRes.ok) {
         toast.error(orderData.message || 'Unable to create payment order');
+        setIsPaying(false);
         return;
       }
 
@@ -57,14 +69,17 @@ const Checkout = () => {
         amount: orderData.amount,
         currency: orderData.currency,
         name: 'Prime Nova',
+        image: window.location.origin + "/PrimeLogo.png",
         description: 'Test Transaction',
         order_id: orderData.id,
+
         handler: async function (response) {
           const verifyRes = await fetch('/api/payment/verify', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(response)
           });
+
           if (verifyRes.ok) {
             const saveOrderRes = await fetch('/api/orders', {
               method: 'POST',
@@ -85,11 +100,21 @@ const Checkout = () => {
               navigate('/ordersuccess');
             } else {
               toast.error('Order saving failed');
+              setIsPaying(false);
             }
           } else {
             toast.error('Payment verification failed');
+            setIsPaying(false);
           }
         },
+
+        modal: {
+          ondismiss: function() {
+            toast.info('Payment cancelled');
+            setIsPaying(false);
+          }
+        },
+
         prefill: {
           name: address.fullName,
           email: user?.email,
@@ -99,7 +124,6 @@ const Checkout = () => {
           color: '#f97316'
         }
       };
-      console.log("Razorpay Key:", options.key);
       
       const rzp1 = new window.Razorpay(options);
       rzp1.open();
@@ -116,6 +140,7 @@ const Checkout = () => {
       navigate('/login');
       return;
     }
+    setIsPaying(true);
     handlePayment();
   };
 
@@ -144,7 +169,7 @@ const Checkout = () => {
           <input type="text" placeholder="Country" required value={address.country} onChange={(e) => setAddress({ ...address, country: e.target.value })} />
           <div className="checkout-summary">
             <h4>Total to Pay: ${totalPrice.toFixed(2)}</h4>
-            <button type="submit" className="btn">Pay Now</button>
+            <button type="submit" className="btn"> Pay Now </button>
           </div>
         </form>
       </div>
