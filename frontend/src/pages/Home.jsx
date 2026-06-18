@@ -6,6 +6,7 @@ const { AuthContext } = require('../context/AuthContext');
 const Home = () => {
     const [latestProducts, setLatestProducts] = useState([]);
     const [popularProducts, setPopularProducts] = useState([]);
+    const [dealProducts, setDealProducts] = useState([]);
     const [loading, setLoading] = useState(true);
     const { user } = React.useContext(AuthContext);
 
@@ -27,6 +28,10 @@ const Home = () => {
 
                 setPopularProducts(sortedProducts.slice(0, limit)); // Show only the top 4 products on mobile, 5 on desktop
 
+                // deal products
+                const dealProducts = data.filter(p => p.discount > 0);
+                setDealProducts(dealProducts.slice(0, limit)); // Show only the top 4 deal products on mobile, 5 on desktop
+
             } catch (error) {
                 console.error('Error fetching products:', error);
             } finally {
@@ -42,7 +47,7 @@ const Home = () => {
                 <h1>Hi, {user?.name || 'Guest'}! Welcome to Prime Nova</h1>
                 <p>Prime Nova is a marketplace dedicated to handcrafted products created by skilled artisans. We bring together quality, creativity, and authenticity, offering unique handmade items that add a personal touch to everyday life while supporting talented makers and small businesses.</p>
             </div>
-            <h2>Popular Products</h2>
+            <h2>Most Selling Products</h2>
             {loading ? (
                 <p>Loading products...</p>
             ) : (
@@ -58,6 +63,16 @@ const Home = () => {
             ) : (
                 <div className="product-grid" >
                     {latestProducts.map(product => (
+                        <ProductCard key={product._id} product={product} />
+                    ))}
+                </div>
+            )}
+            <h2 style={{ marginTop: '20px', paddingTop: '10px', borderTop: '1px solid #27272a'}}>Crazy Deals</h2>
+            {loading ? (
+                <p>Loading products...</p>
+            ) : (
+                <div className="product-grid" >
+                    {dealProducts.map(product => (
                         <ProductCard key={product._id} product={product} />
                     ))}
                 </div>

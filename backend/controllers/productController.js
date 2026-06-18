@@ -28,10 +28,12 @@ const getProductById = async (req, res) => {
 const createProduct = async (req, res) => {
     try {
     const { name, description, price, discount, category, stock } = req.body;
-    let imageUrl = '';
-    if (req.file) {
-        const result = await cloudinary.uploader.upload(req.file.path);
-        imageUrl = result.secure_url;
+    let imageUrl = [];
+    if (req.files && req.files.length > 0) {
+        for (const file of req.files) {
+            const result = await cloudinary.uploader.upload(file.path);
+            imageUrl.push(result.secure_url);
+        }
     }
     const product = new Product({
         name,
@@ -60,9 +62,13 @@ const updateProduct = async (req, res) => {
             product.discount = discount || product.discount;
             product.category = category || product.category;
             product.stock = stock || product.stock;
-            if (req.file) {
-                const result = await cloudinary.uploader.upload(req.file.path);
-                product.imageUrl = result.secure_url;
+            if (req.files && req.files.length > 0) {
+                const imageUrls = [];
+                for (const file of req.files) {
+                    const result = await cloudinary.uploader.upload(file.path);
+                    imageUrls.push(result.secure_url);
+                }
+                product.imageUrl = imageUrls;
             }
             const updatedProduct = await product.save();
             res.json(updatedProduct);

@@ -37,8 +37,8 @@ const Shop = () => {
 });
 
   return (
-    <div className="shop-container" style={{ padding: '10px' }}>
-      {/* <h2>All Products</h2> */}
+    <div className="shop-container" style={{ padding: '15px' }}>
+      <h2>All Products</h2>
       <select
         value={selectedCategory}
         onChange={(e) => setSelectedCategory(e.target.value)}

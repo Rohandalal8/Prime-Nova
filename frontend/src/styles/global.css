@@ -28,7 +28,7 @@ body {
 
 .main-context {
     min-height: 85vh;
-    padding: 20px;
+    padding: 15px;
     max-width: 1600px;
     margin: 0;
     animation: fadeIn 0.6s ease-in-out;
@@ -123,7 +123,7 @@ h2 {
     width: 100%;
     max-width: 1400px; 
     margin: 20px auto;
-    padding: 20px; 
+    padding: 15px; 
     background: #18181b2f; 
     border-radius: 4px;
     border: 1px solid rgba(255,255,255,0.05); 

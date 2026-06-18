@@ -14,7 +14,7 @@ const AddProduct = () => {
         category: '',
         stock: '',
     });
-    const [image, setImage] = useState(null);
+    const [images, setImages] = useState(null);
     const [loading, setLoading] = useState(false);
 
     if (!user || user.role !== 'admin') {
@@ -24,7 +24,7 @@ const AddProduct = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        if (!image) {
+        if (!images || images.length === 0) {
             alert('Please upload an image for the product.');
             return;
         }
@@ -36,7 +36,9 @@ const AddProduct = () => {
         data.append('discount', formData.discount);
         data.append('category', formData.category);
         data.append('stock', formData.stock);
-        data.append('image', image);
+        images.forEach((image, index) => {
+            data.append('images', image);
+        });
 
         try {
             const res = await fetch('/api/products', {
@@ -102,9 +104,11 @@ const AddProduct = () => {
                 <input
                     type="file"
                     accept="image/*"
-                    onChange={(e) => setImage(e.target.files[0])}
+                    multiple
+                    onChange={(e) => setImages(Array.from(e.target.files))}
                     style={{ ...inputStyle, padding: '5px' }}
                 />
+                <span style={{ fontSize: '0.8rem', color: '#a1a1aa' }}>You can upload multiple images for the product. (Max 8)</span>
                 <button type="submit" disabled={loading} style={{
                     padding: '10px 20px',
                     borderRadius: '4px',

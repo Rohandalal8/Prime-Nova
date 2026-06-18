@@ -28,7 +28,7 @@ function ProductCard({ product }) {
                 name: product.name,
                 price: product.price,
                 discount: product.discount,
-                imageUrl: product.imageUrl,
+                imageUrl: product.imageUrl?.[0],
                 stock: product.stock,
                 qty: 1
             }));
@@ -54,7 +54,7 @@ function ProductCard({ product }) {
     return (
         <Link to={`/product/${product._id}`} className="product-card">
             <div className="product-card">
-                <img src={product.imageUrl} alt={product.name} className="product-image" />
+                <img src={product.imageUrl?.[0]} alt={product.name} className="product-image" />
                 <div className="product-info">
                     <h3 className="product-name">{product.name}</h3>
                     {product.discount > 0 ? (

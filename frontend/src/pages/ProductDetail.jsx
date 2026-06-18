@@ -9,6 +9,7 @@ const ProductDetail = () => {
     const { id } = useParams();
     const [product, setProduct] = useState(null);
     const [loading, setLoading] = useState(true);
+    const [selectedImage, setSelectedImage] = useState(null);
     const dispatch = useDispatch();
     const cartItems = useSelector((state) => state?.cart?.cartItems || state?.cart?.items || []);
     const navigate = useNavigate();
@@ -19,6 +20,7 @@ const ProductDetail = () => {
                 const response = await fetch(`/api/products/${id}`);
                 const data = await response.json();
                 setProduct(data);
+                setSelectedImage(data.imageUrl?.[0]);
             } catch (error) {
                 console.error('Error fetching product:', error);
             }finally {
@@ -43,7 +45,7 @@ const ProductDetail = () => {
                 name: product.name,
                 price: product.price,
                 discount: product.discount,
-                imageUrl: product.imageUrl,
+                imageUrl: product.imageUrl?.[0],
                 stock: product.stock,
                 qty: 1
             }));
@@ -73,14 +75,27 @@ const ProductDetail = () => {
     const discountedPrice = product.price - ((product.price * product.discount) / 100);
 
     return (
-        <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '10px' }}>
+        <div style={{ maxWidth: '1400px', width: '100%', margin: '0 auto', padding: '10px' }}>
             <div style={{ color: '#a1a1aa', marginBottom: '20px', fontSize: '0.95rem' }}>
                 <Link to="/" style={{ color: '#f97316' }}>Home</Link> / <Link to="/shop" style={{ color: '#f97316' }}>Shop</Link> / {product.category} / <span style={{ color: '#fff' }}>{product.name}</span>
             </div>
 
             <div className="product-detail">
+                <div>
                 <div className="detail-image-container">
-                    <img src={product.imageUrl} alt={product.name} className="detail-image" />
+                    <img src={selectedImage} alt={product.name} className="detail-image" />
+                </div>
+                <div className="detail-thumbnails">
+                    {product.imageUrl?.map((img, index) => (
+                        <img 
+                            key={index} 
+                            src={img} 
+                            alt={`${product.name} ${index + 1}`} 
+                            className="detail-thumbnail"
+                            onClick={() => setSelectedImage(img)} 
+                        />
+                    ))}
+                </div>
                 </div>
 
                 <div className="detail-info">
