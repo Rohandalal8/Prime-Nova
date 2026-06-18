@@ -29,7 +29,7 @@ const Home = () => {
                 setPopularProducts(sortedProducts.slice(0, limit)); // Show only the top 4 products on mobile, 5 on desktop
 
                 // deal products
-                const dealProducts = data.filter(p => p.discount > 0);
+                const dealProducts = data.filter(p => p.discount > 0).sort((a, b) => b.discount - a.discount);
                 setDealProducts(dealProducts.slice(0, limit)); // Show only the top 4 deal products on mobile, 5 on desktop
 
             } catch (error) {

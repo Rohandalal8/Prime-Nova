@@ -46,7 +46,7 @@ const AdminUsers = () => {
                         {users.map((u) => (
                             <tr key={u._id} style={{ borderBottom: '1px solid rgba(255,255,255,0.05)' }}>
                                 <td style={{ padding: '12px 25px' }}>{u._id}</td>
-                                <td style={{ padding: '12px 25px' }}>{u.name}</td>
+                                <td style={{ padding: '12px 25px', whiteSpace: 'nowrap' }}>{u.name}</td>
                                 <td style={{ padding: '12px 25px' }}>{u.email}</td>
                                 <td style={{ padding: '12px 25px' }}>
                                     <span style={{

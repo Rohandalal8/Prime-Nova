@@ -76,10 +76,10 @@ const AdminProducts = () => {
                         .map((p) => (
                             <tr key={p._id} style={{ borderBottom: '1px solid rgba(255,255,255,0.05)' }}>
                                 <td style={{ padding: '12px 25px' }}>{p._id}</td>
-                                <td style={{ padding: '12px 25px' }}>{p.name}</td>
+                                <td style={{ padding: '12px 25px', minWidth: '200px' }}>{p.name}</td>
                                 <td style={{ padding: '12px 25px' }}>${p.price.toFixed(2)}</td>
                                 <td style={{ padding: '12px 25px' }}>{p.discount}%</td>
-                                <td style={{ padding: '12px 25px' }}>{p.category}</td>
+                                <td style={{ padding: '12px 25px', minWidth: '180px' }}>{p.category}</td>
                                 <td style={{ padding: '12px 25px' }}>{p.stock}</td>
                                 <td style={{ padding: '12px 25px' }}>{p.totalSold}</td>
                                 <td style={{ padding: '12px 25px', minWidth: '180px' }}>

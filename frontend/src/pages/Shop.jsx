@@ -7,6 +7,7 @@ const Shop = () => {
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('');
+  const [sortBy, setSortBy] = useState('selling'); // Default sorting by most selling
 
   const categories = [...new Set(products.map(product => product.category))];
 
@@ -26,49 +27,76 @@ const Shop = () => {
   }, []);
 
   const filteredProducts = products.filter(product => {
-  const matchesSearch =
-    product.name.toLowerCase().includes(search.toLowerCase());
+    const matchesSearch =
+      product.name.toLowerCase().includes(search.toLowerCase());
 
-  const matchesCategory =
-    selectedCategory === '' ||
-    product.category === selectedCategory;
+    const matchesCategory =
+      selectedCategory === '' ||
+      product.category === selectedCategory;
 
-  return matchesSearch && matchesCategory;
-});
+    return matchesSearch && matchesCategory;
+  });
+
+  const sortedProducts = [...filteredProducts].sort((a, b) => {
+    switch (sortBy) {
+      case 'recent':
+        return new Date(b.createdAt) - new Date(a.createdAt);
+
+      case 'discount':
+        return (b.discount || 0) - (a.discount || 0);
+
+      case 'selling':
+        return (b.totalSold || 0) - (a.totalSold || 0);
+
+      default:
+        return 0;
+    }
+  });
 
   return (
     <div className="shop-container" style={{ padding: '15px' }}>
       <h2>All Products</h2>
-      <select
-        value={selectedCategory}
-        onChange={(e) => setSelectedCategory(e.target.value)}
-        className="search-bar"
-      >
-        <option value="">All Categories</option>
+      <div className="search-sort-container">
+        <div style={{ display: 'flex', gap: '10px' }}>
+          <select
+            value={selectedCategory}
+            onChange={(e) => setSelectedCategory(e.target.value)}
+            className="search-bar"
+          >
+            <option value="">All Categories</option>
 
-        {categories.map(category => (
-          <option key={category} value={category}>
-            {category}
-          </option>
-        ))}
-      </select>
-      {/* <br /> */}
-      <input
-        type="text"
-        placeholder="Search products..."
-        value={search}
-        onChange={(e) => setSearch(e.target.value)}
-        className="search-bar"
-      />
+            {categories.map(category => (
+              <option key={category} value={category}>
+                {category}
+              </option>
+            ))}
+          </select>
+
+          <select
+            value={sortBy}
+            onChange={(e) => setSortBy(e.target.value)}
+            className="search-bar"
+          >
+            <option value="recent">Recently Added</option>
+            <option value="discount">Most Discount</option>
+            <option value="selling">Most Selling</option>
+          </select>
+        </div>
+        <input
+          type="text"
+          placeholder="Search products..."
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          className="search-bar"
+        />
+      </div>
       {loading ? (
         <div>Loading...</div>
       ) : (
         <div className="product-grid">
-          {filteredProducts
-            .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
-            .map((product) => (
-              <ProductCard key={product._id} product={product} />
-            ))}
+          {sortedProducts.map(product => (
+            <ProductCard key={product._id} product={product} />
+          ))}
         </div>
       )}
     </div>

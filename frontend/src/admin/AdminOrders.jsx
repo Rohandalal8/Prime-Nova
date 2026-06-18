@@ -100,7 +100,7 @@ const AdminOrders = () => {
                             <tr key={order._id} style={rowStyle}>
                                 <td style={tdStyle}>{order._id.substring(0, 8)}...</td>
                                 <td style={tdStyle}>{order.user?.name || order.user?.email || 'Unknown'}</td>
-                                <td style={tdStyle}>
+                                <td style={{ ...tdStyle, minWidth: '200px' }}>
                                     <div style={listStyle}>
                                         {(order.products || []).map((item) => (
                                             <span key={item._id || item.productId?._id || item.productId}>
@@ -109,7 +109,7 @@ const AdminOrders = () => {
                                         ))}
                                     </div>
                                 </td>
-                                <td style={tdStyle}>{formatMobileNumber(order.address)}</td>
+                                <td style={{ ...tdStyle, whiteSpace: 'nowrap' }}>{formatMobileNumber(order.address)}</td>
                                 <td style={{ ...tdStyle, minWidth: '260px', lineHeight: '1.5' }}>{formatAddress(order.address)}</td>
                                 <td style={tdStyle}>${order.totalPrice.toFixed(2)}</td>
                                 <td style={tdStyle}>{new Date(order.createdAt).toLocaleDateString('en-GB')}</td>
