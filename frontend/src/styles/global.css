@@ -27,6 +27,7 @@ body {
 }
 
 .main-context {
+    width: 100%;
     min-height: 85vh;
     padding: 15px;
     max-width: 1600px;
@@ -55,6 +56,15 @@ ul {
 }
 .view-all-link:hover {
     color: #ea580c;
+}
+
+.scrollbar {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.scrollbar::-webkit-scrollbar {
+    display: none;
 }
 
 /* Premium buttons */

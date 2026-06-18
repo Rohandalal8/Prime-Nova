@@ -34,7 +34,7 @@ const EditProduct = () => {
                         name: data.name,
                         description: data.description,
                         price: data.price,
-                        discount: data.discount,
+                        discount: data.discount || 0,
                         category: data.category,
                         stock: data.stock,
                     });
@@ -60,7 +60,7 @@ const EditProduct = () => {
         data.append('name', formData.name);
         data.append('description', formData.description);
         data.append('price', formData.price);
-        data.append('discount', formData.discount);
+        data.append('discount', formData.discount || 0);
         data.append('category', formData.category);
         data.append('stock', formData.stock);
         if (images) {
@@ -106,7 +106,7 @@ const EditProduct = () => {
                 <input name="category" type="text" placeholder="Category" value={formData.category} onChange={(e) => setFormData({ ...formData, category: e.target.value })} style={inputStyle} required />
                 <input name="stock" type="number" placeholder="Stock Quantity" value={formData.stock} onChange={(e) => setFormData({ ...formData, stock: e.target.value })} style={inputStyle} required />
                 <input type="file" accept="image/*" multiple onChange={(e) => setImages(Array.from(e.target.files))} style={{ ...inputStyle, padding: '5px' }} />
-                <span style={{ fontSize: '0.8rem', color: '#a1a1aa' }}>You can upload multiple images for the product. (Max 8)</span>
+                <span style={{ fontSize: '0.8rem', color: '#a1a1aa' }}>You can upload multiple images for the product. (Max 12)</span>
                 <button type="submit"  style={buttonStyle}>
                     {loading ? 'Updating...' : 'Update Product'}
                 </button>

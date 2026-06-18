@@ -29,9 +29,9 @@ const AdminUsers = () => {
     }, [user, navigate]);
 
     return (
-        <div style={{ maxWidth: '1200px', margin: '20px auto', padding: '0 20px'}}>
+        <div style={{width: '100%', maxWidth: '1200px', margin: '20px auto', padding: '0 20px'}}>
             <h2 style={{ marginBottom: '20px' }}>Users Directory</h2>
-            <div style={{ overflowX: 'auto', WebkitOverflowScrolling: 'touch' }}>
+            <div className="scrollbar">
                 <table style={{ width: '100%', borderCollapse: 'collapse', background: '#18181b', borderRadius: '4px', border: '1px solid rgba(255,255,255,0.05)' }}>
                     <thead>
                         <tr style={{ borderBottom: '1px solid rgba(255,255,255,0.1)' }}>

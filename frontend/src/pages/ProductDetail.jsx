@@ -23,7 +23,7 @@ const ProductDetail = () => {
                 setSelectedImage(data.imageUrl?.[0]);
             } catch (error) {
                 console.error('Error fetching product:', error);
-            }finally {
+            } finally {
                 setLoading(false);
             }
         };
@@ -31,7 +31,7 @@ const ProductDetail = () => {
     }, [id]);
 
     const handleAddToCart = () => {
-        
+
         const alreadyInCart = cartItems.find(item => (item.productId || item._id) === product._id);
 
         if (alreadyInCart) {
@@ -56,15 +56,15 @@ const ProductDetail = () => {
     const handleBuyNow = (e) => {
         e.preventDefault(); // Prevent navigation when clicking "Buy Now"
 
-        navigate('/checkout', { 
-            state: { 
+        navigate('/checkout', {
+            state: {
                 buyNowItems: [
                     {
-                        ...product, 
-                        qty: 1 
+                        ...product,
+                        qty: 1
                     }
-                ] 
-            } 
+                ]
+            }
         });
     };
 
@@ -75,27 +75,27 @@ const ProductDetail = () => {
     const discountedPrice = product.price - ((product.price * product.discount) / 100);
 
     return (
-        <div style={{ maxWidth: '1400px', width: '100%', margin: '0 auto', padding: '10px' }}>
+        <div style={{ maxWidth: '1200px', width: '100%', margin: '0 auto', padding: '15px' }}>
             <div style={{ color: '#a1a1aa', marginBottom: '20px', fontSize: '0.95rem' }}>
                 <Link to="/" style={{ color: '#f97316' }}>Home</Link> / <Link to="/shop" style={{ color: '#f97316' }}>Shop</Link> / {product.category} / <span style={{ color: '#fff' }}>{product.name}</span>
             </div>
 
             <div className="product-detail">
-                <div>
-                <div className="detail-image-container">
-                    <img src={selectedImage} alt={product.name} className="detail-image" />
-                </div>
-                <div className="detail-thumbnails">
-                    {product.imageUrl?.map((img, index) => (
-                        <img 
-                            key={index} 
-                            src={img} 
-                            alt={`${product.name} ${index + 1}`} 
-                            className="detail-thumbnail"
-                            onClick={() => setSelectedImage(img)} 
-                        />
-                    ))}
-                </div>
+                <div className="detail-images">
+                    <div>
+                        <img src={selectedImage} alt={product.name} className="detail-image" />
+                    </div>
+                    <div className="detail-thumbnails">
+                        {product.imageUrl?.map((img, index) => (
+                            <img
+                                key={index}
+                                src={img}
+                                alt={`${product.name} ${index + 1}`}
+                                className="detail-thumbnail"
+                                onClick={() => setSelectedImage(img)}
+                            />
+                        ))}
+                    </div>
                 </div>
 
                 <div className="detail-info">
@@ -109,7 +109,7 @@ const ProductDetail = () => {
                             <span className="product-discounted-price">
                                 ${product.price.toFixed(2)}
                             </span>
-                        
+
                             <span className="product-discount" style={{ display: 'inline-block' }}>
                                 {product.discount}% OFF
                             </span>
@@ -126,11 +126,11 @@ const ProductDetail = () => {
                         </p>
                     </div>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                        <button onClick={handleAddToCart} disabled={product.stock <= 0} className="btn" style={{ flexGrow:'1', padding:'10px', fontSize:'1rem', width: '100%', background: 'none', color: '#f97316', border: '1px solid #f97316', opacity: product.stock <= 0 ? 0.5 : 1, cursor: product.stock <= 0 ? 'not-allowed' : 'pointer' }}>
+                        <button onClick={handleAddToCart} disabled={product.stock <= 0} className="btn" style={{ flexGrow: '1', padding: '10px', fontSize: '1rem', width: '100%', background: 'none', color: '#f97316', border: '1px solid #f97316', opacity: product.stock <= 0 ? 0.5 : 1, cursor: product.stock <= 0 ? 'not-allowed' : 'pointer' }}>
                             {product.stock <= 0 ? 'Out of Stock' : 'Add to Cart'}
                         </button>
 
-                        <button onClick={handleBuyNow} disabled={product.stock <= 0} className="btn" style={{ flexGrow:'1', padding:'10px', fontSize:'1rem', width: '100%', opacity: product.stock <= 0 ? 0.5 : 1, cursor: product.stock <= 0 ? 'not-allowed' : 'pointer' }}>
+                        <button onClick={handleBuyNow} disabled={product.stock <= 0} className="btn" style={{ flexGrow: '1', padding: '10px', fontSize: '1rem', width: '100%', opacity: product.stock <= 0 ? 0.5 : 1, cursor: product.stock <= 0 ? 'not-allowed' : 'pointer' }}>
                             {product.stock <= 0 ? 'Out of Stock' : 'Buy Now'}
                         </button>
                     </div>

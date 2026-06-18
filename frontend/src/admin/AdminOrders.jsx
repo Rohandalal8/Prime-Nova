@@ -79,7 +79,7 @@ const AdminOrders = () => {
     return (
         <div style={containerStyle}>
             <h2 style={{ marginBottom: '20px' }}>Orders Management</h2>
-            <div style={{ overflowX: 'auto', WebkitOverflowScrolling: 'touch' }}>
+            <div className="scrollbar">
                 <table style={tableStyle}>
                     <thead>
                         <tr style={rowStyle}>
@@ -131,6 +131,7 @@ const AdminOrders = () => {
 };
 
 const containerStyle = {
+    width: '100%',
     maxWidth: '1400px',
     margin: '20px auto',
     padding: '0 20px',

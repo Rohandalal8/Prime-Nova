@@ -41,7 +41,7 @@ const AdminProducts = () => {
     };
 
     return (
-        <div style={{ maxWidth: '1400px', margin: '20px auto', padding: '0 20px' }}>
+        <div style={{ width: '100%', maxWidth: '1400px', margin: '20px auto', padding: '0 20px' }}>
             <h2 style={{ marginBottom: '15px' }}>Products Management</h2>
             <Link to="/admin/add-product" style={{
                 display: 'inline-block',
@@ -56,7 +56,7 @@ const AdminProducts = () => {
             }}>
                 + Add New Product
             </Link>
-            <div style={{ overflowX: 'auto', WebkitOverflowScrolling: 'touch' }}>
+            <div className="scrollbar">
                 <table style={{ width: '100%', borderCollapse: 'collapse', background: '#18181b', borderRadius: '4px', border: '1px solid rgba(255,255,255,0.05)' }}>
                     <thead>
                         <tr style={{ borderBottom: '1px solid rgba(255,255,255,0.1)' }}>

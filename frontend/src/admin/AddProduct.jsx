@@ -108,7 +108,7 @@ const AddProduct = () => {
                     onChange={(e) => setImages(Array.from(e.target.files))}
                     style={{ ...inputStyle, padding: '5px' }}
                 />
-                <span style={{ fontSize: '0.8rem', color: '#a1a1aa' }}>You can upload multiple images for the product. (Max 8)</span>
+                <span style={{ fontSize: '0.8rem', color: '#a1a1aa' }}>You can upload multiple images for the product. (Max 12)</span>
                 <button type="submit" disabled={loading} style={{
                     padding: '10px 20px',
                     borderRadius: '4px',

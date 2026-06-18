@@ -1,5 +1,19 @@
 const Product = require('../models/productModel');
 const cloudinary = require('../config/cloudinary');
+const streamifier = require('streamifier');
+
+const uploadToCloudinary = (fileBuffer) => {
+    return new Promise((resolve, reject) => {
+        const stream = cloudinary.uploader.upload_stream(
+            (error, result) => {
+                if (error) return reject(error);
+                resolve(result);
+            }
+        );
+
+        streamifier.createReadStream(fileBuffer).pipe(stream);
+    });
+};
 
 // Get all products
 const getProducts = async (req, res) => {
@@ -31,7 +45,7 @@ const createProduct = async (req, res) => {
     let imageUrl = [];
     if (req.files && req.files.length > 0) {
         for (const file of req.files) {
-            const result = await cloudinary.uploader.upload(file.path);
+            const result = await uploadToCloudinary(file.buffer);
             imageUrl.push(result.secure_url);
         }
     }
@@ -63,12 +77,12 @@ const updateProduct = async (req, res) => {
             product.category = category || product.category;
             product.stock = stock || product.stock;
             if (req.files && req.files.length > 0) {
-                const imageUrls = [];
+                const imageUrl = [];
                 for (const file of req.files) {
-                    const result = await cloudinary.uploader.upload(file.path);
-                    imageUrls.push(result.secure_url);
+                    const result = await uploadToCloudinary(file.buffer);
+                    imageUrl.push(result.secure_url);
                 }
-                product.imageUrl = imageUrls;
+                product.imageUrl = imageUrl;
             }
             const updatedProduct = await product.save();
             res.json(updatedProduct);
@@ -76,6 +90,7 @@ const updateProduct = async (req, res) => {
             res.status(404).json({ message: 'Product not found' });
         }
     } catch (error) {
+        console.error(error);
         res.status(500).json({ message: 'Server error' });
     }
 };
