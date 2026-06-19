@@ -77,9 +77,9 @@ const Shop = () => {
             onChange={(e) => setSortBy(e.target.value)}
             className="search-bar"
           >
-            <option value="recent">Recently Added</option>
-            <option value="discount">Most Discount</option>
-            <option value="selling">Most Selling</option>
+            <option value="selling">Best Sellers</option>
+            <option value="discount">Top Deals</option>
+            <option value="recent">New Arrivals</option>
           </select>
         </div>
         <input

@@ -47,7 +47,7 @@ const Home = () => {
                 <h1>Hi, {user?.name || 'Guest'}! Welcome to Prime Nova</h1>
                 <p>Prime Nova is a marketplace dedicated to handcrafted products created by skilled artisans. We bring together quality, creativity, and authenticity, offering unique handmade items that add a personal touch to everyday life while supporting talented makers and small businesses.</p>
             </div>
-            <h2>Most Selling Products</h2>
+            <h2>Trending Now</h2>
             {loading ? (
                 <p>Loading products...</p>
             ) : (
@@ -57,7 +57,7 @@ const Home = () => {
                     ))}
                 </div>
             )}
-            <h2 style={{ marginTop: '20px', paddingTop: '10px', borderTop: '1px solid #27272a'}}>Latest Products</h2>
+            <h2 style={{ marginTop: '20px', paddingTop: '10px', borderTop: '1px solid #27272a'}}>Fresh Picks</h2>
             {loading ? (
                 <p>Loading products...</p>
             ) : (
@@ -67,7 +67,7 @@ const Home = () => {
                     ))}
                 </div>
             )}
-            <h2 style={{ marginTop: '20px', paddingTop: '10px', borderTop: '1px solid #27272a'}}>Crazy Deals</h2>
+            <h2 style={{ marginTop: '20px', paddingTop: '10px', borderTop: '1px solid #27272a'}}>Hot Deals</h2>
             {loading ? (
                 <p>Loading products...</p>
             ) : (

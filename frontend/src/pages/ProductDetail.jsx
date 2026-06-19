@@ -247,15 +247,21 @@ const ProductDetail = () => {
 
                         <h2 onClick={() => setAddReview(false)} style={{ position: 'absolute', right: 20, cursor: 'pointer' }}>X</h2>
 
-                        <input
-                            type="number"
-                            placeholder="Rating (1-5)"
-                            value={rating}
-                            onChange={(e) => setRating(e.target.value)}
-                            required
-                            min="1"
-                            max="5"
-                        />
+                        <div>
+                            {[1, 2, 3, 4, 5].map((star) => (
+                                <span
+                                    key={star}
+                                    onClick={() => setRating(star)}
+                                    style={{
+                                        cursor: 'pointer',
+                                        fontSize: '2rem',
+                                        color: '#fbbf24'
+                                    }}
+                                >
+                                    {star <= rating ? '★' : '☆'}
+                                </span>
+                            ))}
+                        </div>
 
                         <textarea
                             placeholder="Comment"
@@ -264,7 +270,7 @@ const ProductDetail = () => {
                             required
                         />
 
-                        <button type="submit">Submit Review</button>
+                        <button type="submit" disabled={!rating || !comment} style={{ opacity: (!rating || !comment) ? 0.5 : 1, cursor: (!rating || !comment) ? 'not-allowed' : 'pointer' }}>Submit Review</button>
                     </form>
                 </div>
             )}
