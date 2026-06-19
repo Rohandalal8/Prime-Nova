@@ -1,4 +1,5 @@
 const Product = require('../models/productModel');
+const Review = require('../models/reviewModel');
 const cloudinary = require('../config/cloudinary');
 const streamifier = require('streamifier');
 
@@ -29,11 +30,14 @@ const getProducts = async (req, res) => {
 const getProductById = async (req, res) => {
     try {
         const product = await Product.findById(req.params.id);
-        if (product) {
-            res.json(product);
-        } else {
-            res.status(404).json({ message: 'Product not found' });
+
+        if (!product) {
+            return res.status(404).json({ message: 'Product not found' });
         }
+
+        const reviews = await Review.find({ productId: req.params.id }).populate('userId', 'name').sort({ createdAt: -1 });
+        res.json({ ...product.toObject(), reviews });
+
     } catch (error) {
         res.status(500).json({ message: 'Server error' });
     }
@@ -41,25 +45,25 @@ const getProductById = async (req, res) => {
 
 const createProduct = async (req, res) => {
     try {
-    const { name, description, price, discount, category, stock } = req.body;
-    let imageUrl = [];
-    if (req.files && req.files.length > 0) {
-        for (const file of req.files) {
-            const result = await uploadToCloudinary(file.buffer);
-            imageUrl.push(result.secure_url);
+        const { name, description, price, discount, category, stock } = req.body;
+        let imageUrl = [];
+        if (req.files && req.files.length > 0) {
+            for (const file of req.files) {
+                const result = await uploadToCloudinary(file.buffer);
+                imageUrl.push(result.secure_url);
+            }
         }
-    }
-    const product = new Product({
-        name,
-        description,
-        price,
-        discount,
-        category,
-        stock,
-        imageUrl
-    });
-    const createdProduct = await product.save();
-    res.status(201).json(createdProduct);
+        const product = new Product({
+            name,
+            description,
+            price,
+            discount,
+            category,
+            stock,
+            imageUrl
+        });
+        const createdProduct = await product.save();
+        res.status(201).json(createdProduct);
     } catch (error) {
         res.status(500).json({ message: 'Server error', error: error.message });
     }
@@ -126,11 +130,47 @@ const getCartProducts = async (req, res) => {
     }
 };
 
+const addProductReview = async (req, res) => {
+    try {
+        const productId = req.params.id;
+        const { rating, comment } = req.body;
+        const userId = req.user._id;
+        const review = new Review({
+            productId,
+            userId,
+            rating,
+            comment
+        });
+        const savedReview = await review.save();
+
+        // Update product's average rating and number of reviews
+        const reviews = await Review.find({ productId });
+        const numReviews = reviews.length;
+
+        const totalRating = reviews.reduce(
+            (sum, review) => sum + review.rating,
+            0
+        );
+
+        const avgRating = totalRating / numReviews;
+
+        await Product.findByIdAndUpdate(productId, {
+            numReviews,
+            avgRating
+        });
+
+        res.status(201).json(savedReview);
+    } catch (error) {
+        res.status(500).json({ message: 'Server Error' });
+    }
+};
+
 module.exports = {
     getProducts,
     getProductById,
     createProduct,
     updateProduct,
     deleteProduct,
-    getCartProducts
+    getCartProducts,
+    addProductReview
 };

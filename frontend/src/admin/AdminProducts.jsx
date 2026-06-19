@@ -66,7 +66,7 @@ const AdminProducts = () => {
                             <th style={{ padding: '12px 25px', textAlign: 'left' }}>Discount</th>
                             <th style={{ padding: '12px 25px', textAlign: 'left' }}>Category</th>
                             <th style={{ padding: '12px 25px', textAlign: 'left' }}>Stock</th>
-                            <th style={{ padding: '12px 25px', textAlign: 'left' }}>Total Sold</th>
+                            <th style={{ padding: '12px 25px', textAlign: 'left', whiteSpace: 'nowrap' }}>Total Sold</th>
                             <th style={{ padding: '12px 25px', textAlign: 'left' }}>Actions</th>
                         </tr>
                     </thead>
@@ -75,14 +75,14 @@ const AdminProducts = () => {
                         .sort((a, b) => b.totalSold - a.totalSold) // Sort by totalSold in descending order
                         .map((p) => (
                             <tr key={p._id} style={{ borderBottom: '1px solid rgba(255,255,255,0.05)' }}>
-                                <td style={{ padding: '12px 25px' }}>{p._id}</td>
-                                <td style={{ padding: '12px 25px', minWidth: '200px' }}>{p.name}</td>
-                                <td style={{ padding: '12px 25px' }}>${p.price.toFixed(2)}</td>
-                                <td style={{ padding: '12px 25px' }}>{p.discount}%</td>
-                                <td style={{ padding: '12px 25px', minWidth: '180px' }}>{p.category}</td>
-                                <td style={{ padding: '12px 25px' }}>{p.stock}</td>
-                                <td style={{ padding: '12px 25px' }}>{p.totalSold}</td>
-                                <td style={{ padding: '12px 25px', minWidth: '180px' }}>
+                                <td style={{ padding: '12px 25px', verticalAlign: 'top' }}>{p._id}</td>
+                                <td style={{ padding: '12px 25px', minWidth: '200px', verticalAlign: 'top' }}>{p.name}</td>
+                                <td style={{ padding: '12px 25px', verticalAlign: 'top' }}>${p.price.toFixed(2)}</td>
+                                <td style={{ padding: '12px 25px', verticalAlign: 'top' }}>{p.discount}%</td>
+                                <td style={{ padding: '12px 25px', minWidth: '180px', verticalAlign: 'top' }}>{p.category}</td>
+                                <td style={{ padding: '12px 25px', verticalAlign: 'top' }}>{p.stock}</td>
+                                <td style={{ padding: '12px 25px', verticalAlign: 'top' }}>{p.totalSold}</td>
+                                <td style={{ padding: '12px 25px', minWidth: '180px', verticalAlign: 'top' }}>
                                     <button style={{
                                         padding: '6px 12px',
                                         borderRadius: '4px',

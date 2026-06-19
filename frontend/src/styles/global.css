@@ -53,6 +53,7 @@ ul {
     transition: all 0.3s ease;
     align-items: center;
     justify-content: center;
+    cursor: pointer;
 }
 .view-all-link:hover {
     color: #ea580c;
@@ -91,7 +92,6 @@ ul {
 /* Base Headings */
 h1, h2, h3, h4 {
     font-weight: 400;
-    letter-spacing: -0.5px;
     margin-bottom: 15px;
 }
 

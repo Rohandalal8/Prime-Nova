@@ -39,7 +39,7 @@ const productSchema = new mongoose.Schema({
         type: Date,
         default: Date.now
     },
-    rating: {
+    avgRating: {
         type: Number,
         default: 0
     },

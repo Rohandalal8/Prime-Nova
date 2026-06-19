@@ -32,7 +32,7 @@ const AdminOrders = () => {
         try {
             const res = await fetch(`/api/orders/${id}/status`, {
                 method: 'PUT',
-                headers: { 
+                headers: {
                     'Content-Type': 'application/json',
                     Authorization: `Bearer ${user.token}`
                 },
@@ -95,34 +95,38 @@ const AdminOrders = () => {
                     </thead>
                     <tbody>
                         {orders
-                         .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
-                         .map(order => (
-                            <tr key={order._id} style={rowStyle}>
-                                <td style={tdStyle}>{order._id.substring(0, 8)}...</td>
-                                <td style={tdStyle}>{order.user?.name || order.user?.email || 'Unknown'}</td>
-                                <td style={{ ...tdStyle, minWidth: '200px' }}>
-                                    <div style={listStyle}>
-                                        {(order.products || []).map((item) => (
-                                            <span key={item._id || item.productId?._id || item.productId}>
-                                                {getProductName(item)} x {item.quantity}
-                                            </span>
-                                        ))}
-                                    </div>
-                                </td>
-                                <td style={{ ...tdStyle, whiteSpace: 'nowrap' }}>{formatMobileNumber(order.address)}</td>
-                                <td style={{ ...tdStyle, minWidth: '260px', lineHeight: '1.5' }}>{formatAddress(order.address)}</td>
-                                <td style={tdStyle}>${order.totalPrice.toFixed(2)}</td>
-                                <td style={tdStyle}>{new Date(order.createdAt).toLocaleDateString('en-GB')}</td>
-                                <td style={tdStyle}>
-                                    <select value={order.status} onChange={(e) => updateStatus(order._id, e.target.value)} style={{ padding: '6px', borderRadius: '4px', backgroundColor: '#27272a', color: '#fff', border: '1px solid rgba(255,255,255,0.1)', outline: 'none' }}>
-                                        <option value="pending">Pending</option>
-                                        <option value="shipped">Shipped</option>
-                                        <option value="delivered">Delivered</option>
-                                        <option value="cancelled">Cancelled</option>
-                                    </select>
-                                </td>
-                            </tr>
-                        ))}
+                            .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+                            .map(order => (
+                                <tr key={order._id} style={rowStyle}>
+                                    <td style={tdStyle}>{order._id.substring(0, 8)}...</td>
+                                    <td style={tdStyle}>{order.user?.name || order.user?.email || 'Unknown'}</td>
+                                    <td style={{ ...tdStyle, minWidth: '200px' }}>
+                                        <div style={listStyle}>
+                                            {(order.products || []).map((item) => (
+                                                <span key={item._id || item.productId?._id || item.productId}>
+                                                    {getProductName(item)} x {item.quantity}
+                                                </span>
+                                            ))}
+                                        </div>
+                                    </td>
+                                    <td style={{ ...tdStyle, whiteSpace: 'nowrap' }}>{formatMobileNumber(order.address)}</td>
+                                    <td style={{ ...tdStyle, minWidth: '260px', lineHeight: '1.5' }}>{formatAddress(order.address)}</td>
+                                    <td style={tdStyle}>${order.totalPrice.toFixed(2)}</td>
+                                    <td style={{ ...tdStyle, whiteSpace: 'nowrap' }}>{new Date(order.createdAt).toLocaleDateString('en-US', {
+                                        month: 'short',
+                                        day: 'numeric',
+                                        year: 'numeric'
+                                    })}</td>
+                                    <td style={tdStyle}>
+                                        <select value={order.status} onChange={(e) => updateStatus(order._id, e.target.value)} style={{ padding: '6px', borderRadius: '4px', backgroundColor: '#27272a', color: '#fff', border: '1px solid rgba(255,255,255,0.1)', outline: 'none' }}>
+                                            <option value="pending">Pending</option>
+                                            <option value="shipped">Shipped</option>
+                                            <option value="delivered">Delivered</option>
+                                            <option value="cancelled">Cancelled</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                            ))}
                     </tbody>
                 </table>
             </div>

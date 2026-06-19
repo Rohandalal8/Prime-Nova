@@ -43,7 +43,7 @@
   color: #fff;
 }
 
-.auth-form input {
+.auth-form input, .auth-form textarea {
   padding: 15px;
   background: #09090b;
   border: 1px solid #27272a;
@@ -54,7 +54,7 @@
   transition: all 0.3s ease;
 }
 
-.auth-form input:focus {
+.auth-form input:focus, .auth-form textarea:focus {
   border-color: #f97316;
   box-shadow: 0 0 0 2px rgba(249, 115, 22, 0.2);
 }

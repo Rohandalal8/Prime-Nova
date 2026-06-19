@@ -29,7 +29,7 @@ const AdminUsers = () => {
     }, [user, navigate]);
 
     return (
-        <div style={{width: '100%', maxWidth: '1200px', margin: '20px auto', padding: '0 20px'}}>
+        <div style={{ width: '100%', maxWidth: '1200px', margin: '20px auto', padding: '0 20px' }}>
             <h2 style={{ marginBottom: '20px' }}>Users Directory</h2>
             <div className="scrollbar">
                 <table style={{ width: '100%', borderCollapse: 'collapse', background: '#18181b', borderRadius: '4px', border: '1px solid rgba(255,255,255,0.05)' }}>
@@ -57,7 +57,11 @@ const AdminUsers = () => {
                                         {u.role}
                                     </span>
                                 </td>
-                                <td style={{ padding: '12px 25px' }}>{new Date(u.createdAt).toLocaleDateString('en-GB')}</td>
+                                <td style={{ padding: '12px 25px', whiteSpace: 'nowrap' }}>{new Date(u.createdAt).toLocaleDateString('en-US', {
+                                    month: 'short',
+                                    day: 'numeric',
+                                    year: 'numeric'
+                                })}</td>
                             </tr>
                         ))}
                     </tbody>

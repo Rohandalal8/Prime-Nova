@@ -54,7 +54,7 @@ const AdminDashboard = () => {
     }
 
     return (
-        <div style={{ maxWidth: '1200px', margin: '20px auto', padding: '0 20px' }}>
+        <div style={{ maxWidth: '1200px', margin: '20px auto', padding: '0 15px' }}>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '15px', alignItems: 'center', marginBottom: '5px' }}>
                 <h2 style={{ margin: 0 }}>Admin Dashboard</h2>
                 <p style={{ marginBottom: '30px', color: '#a1a1aa' }}>Overview of key metrics and insights</p>

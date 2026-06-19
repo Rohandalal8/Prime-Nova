@@ -92,7 +92,7 @@
 }
 
 .product-price {
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   margin-bottom: 10px;
 }
 
@@ -163,17 +163,9 @@
   flex-direction: column;
 }
 
-.detail-price {
-  font-size: 2rem;
-  color: #f97316;
-  font-weight: 700;
-  margin-bottom: 25px;
-}
-
 .detail-info p {
   color: #a1a1aa;
-  line-height: 1.7;
-  font-size: 1.1rem;
+  font-size: 1rem;
   margin-bottom: 10px;
 }
 
@@ -211,9 +203,6 @@
   .product-detail {
     flex-direction: column;
   }
-  .detail-info h2 {
-  margin-bottom: 15px;
-  }
   .detail-images {
     width: 100%;
   }
@@ -238,10 +227,10 @@
     padding: 5px;
   }
   .product-info h3 {
-    font-size: 1rem;
+    font-size: 0.9rem;
   }
   .product-price {
-    font-size: 0.8rem;
+    font-size: 0.9rem;
   }
   .product-discounted-price {
     font-size: 0.7rem;
