@@ -7,7 +7,6 @@ const About = () => {
         maxWidth: '900px',
         margin: '20px auto',
         borderRadius: '4px',
-        border: '1px solid rgba(255, 255, 255, 0.05)',
         textAlign: 'center',
     };
 

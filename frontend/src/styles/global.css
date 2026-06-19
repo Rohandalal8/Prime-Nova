@@ -134,9 +134,7 @@ h2 {
     max-width: 1400px; 
     margin: 20px auto;
     padding: 15px; 
-    background: #18181b2f; 
     border-radius: 4px;
-    border: 1px solid rgba(255,255,255,0.05); 
     color: #fafafa;
     box-shadow: 0 4px 30px rgba(24, 24, 27, 0.1); 
 }
@@ -152,9 +150,7 @@ h2 {
 
 @media (max-width: 768px) {
     .containerStyle {
-        margin: 10px;
-        padding: 15px;
-        width: auto;
+        margin: 0px;
     }
     h2 {
         font-size: 1.2rem;

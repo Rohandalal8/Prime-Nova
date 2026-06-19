@@ -91,7 +91,7 @@ const Profile = () => {
           {orders
           .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
           .map(order => (
-            <div key={order._id} style={{ background: '#09090b', padding: '20px', borderRadius: '4px', border: '1px solid #27272a', display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', alignItems: 'center', gap: '20px' }}>
+            <div key={order._id} style={{ background: '#09090b', padding: '20px', borderRadius: '4px', border: '1px solid #27272a', display: 'flex',  justifyContent: 'space-between', alignItems: 'center', gap: '20px' }}>
               <div>
                 <div style={{ color: '#a1a1aa', fontSize: '0.9rem', marginBottom: '8px', display: 'flex', alignItems: 'flex-start', gap: '5px' }}>
                   <span>Products:</span>

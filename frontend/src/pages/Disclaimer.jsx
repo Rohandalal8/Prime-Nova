@@ -6,7 +6,6 @@ const textualStyle = {
     margin: '20px auto',
     padding: '20px',
     borderRadius: '4px',
-    border: '1px solid rgba(255, 255, 255, 0.05)',
     lineHeight: '1.8',
     color: '#a1a1aa'
 };
