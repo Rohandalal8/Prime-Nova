@@ -3,12 +3,9 @@ const cors = require('cors');
 const dotenv = require('dotenv');
 const connectDB = require('./config/db');
 const User = require('./models/userModel');
-const path = require('path');
+// const path = require('path');
 dotenv.config();
 connectDB();
-const fs = require('fs');
-
-
 
 setInterval(async () => {
     try {
@@ -45,23 +42,22 @@ app.use('/api/orders', require('./routes/orderRoutes'));
 app.use('/api/payment', require('./routes/paymentRoutes'));
 app.use('/api/analytics', require('./routes/analyticsRoutes'));
 
-console.log(
-  'INDEX EXISTS:',
-  fs.existsSync(path.resolve(__dirname, '../frontend/build/index.html'))
-);
+app.get('/', (req, res) => {
+    res.send('Prime Nova API Running');
+});
 
 //Serve frontend in production
-if (process.env.NODE_ENV === 'production') {
-    app.use(express.static(path.join(__dirname, '../frontend/build')));
+// if (process.env.NODE_ENV === 'production') {
+//     app.use(express.static(path.join(__dirname, '../frontend/build')));
 
-    app.use((req, res) => {
-        res.sendFile(path.resolve(__dirname, '../frontend/build/index.html'));
-    });
-} else {
-    app.get('/', (req, res) => {
-        res.send('Prime Nova API is running in development mode');
-    });
-}
+//     app.use((req, res) => {
+//         res.sendFile(path.resolve(__dirname, '../frontend/build/index.html'));
+//     });
+// } else {
+//     app.get('/', (req, res) => {
+//         res.send('Prime Nova API is running in development mode');
+//     });
+// }
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
