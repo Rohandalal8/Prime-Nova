@@ -14,7 +14,7 @@ const AdminProducts = () => {
         }
         const fetchProducts = async () => {
             try {
-                const res = await fetch('/api/products', {
+                const res = await fetch(`${API_URL}/api/products`, {
                     headers: { Authorization: `Bearer ${user.token}` }
                 });
                 const data = await res.json();
@@ -30,7 +30,7 @@ const AdminProducts = () => {
 
     const handleDelete = async (id) => {
         if (window.confirm('Are you sure you want to delete this product?')) {
-            const res = await fetch(`/api/products/${id}`, {
+            const res = await fetch(`${API_URL}/api/products/${id}`, {
                 method: 'DELETE',
                 headers: { Authorization: `Bearer ${user.token}` }
             });

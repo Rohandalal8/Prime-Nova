@@ -27,7 +27,7 @@ const EditProduct = () => {
         const fetchProduct = async () => {
             setLoading(true);
             try {
-                const res = await fetch(`/api/products/${id}`);
+                const res = await fetch(`${API_URL}/api/products/${id}`);
                 const data = await res.json();
                 if (res.ok) {
                     setFormData({
@@ -70,7 +70,7 @@ const EditProduct = () => {
         }
 
         try {
-            const res = await fetch(`/api/products/${id}`, {
+            const res = await fetch(`${API_URL}/api/products/${id}`, {
                 method: 'PUT',
                 headers: { Authorization: `Bearer ${user.token}` },
                 body: data,

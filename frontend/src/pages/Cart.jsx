@@ -28,7 +28,7 @@ const Cart = () => {
 
       const ids = cartItems.map(item => getItemId(item));
 
-      const res = await fetch('/api/products/cart-stock', {
+      const res = await fetch(`${API_URL}/api/products/cart-stock`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

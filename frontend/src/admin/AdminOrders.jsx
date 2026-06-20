@@ -14,7 +14,7 @@ const AdminOrders = () => {
         }
         const fetchOrders = async () => {
             try {
-                const res = await fetch('/api/orders', {
+                const res = await fetch(`${API_URL}/api/orders`, {
                     headers: { Authorization: `Bearer ${user.token}` }
                 });
                 const data = await res.json();
@@ -30,7 +30,7 @@ const AdminOrders = () => {
 
     const updateStatus = async (id, status) => {
         try {
-            const res = await fetch(`/api/orders/${id}/status`, {
+            const res = await fetch(`${API_URL}/api/orders/${id}/status`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',

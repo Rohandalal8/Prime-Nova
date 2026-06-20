@@ -48,7 +48,7 @@ const RegisterOtp = () => {
         e.preventDefault();
         setLoading(true);
         try {
-            const response = await fetch('/api/auth/register-otp', {   
+            const response = await fetch(`${API_URL}/api/auth/register-otp`, {   
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ otp }),

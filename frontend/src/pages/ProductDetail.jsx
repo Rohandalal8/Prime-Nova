@@ -22,7 +22,7 @@ const ProductDetail = () => {
 
     const fetchProduct = useCallback(async () => {
         try {
-            const response = await fetch(`/api/products/${id}`);
+            const response = await fetch(`${API_URL}/api/products/${id}`);
             const data = await response.json();
             setProduct(data);
             setSelectedImage(data.imageUrl?.[0]);
@@ -78,7 +78,7 @@ const ProductDetail = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await fetch(`/api/products/${product._id}/reviews`, {
+            const response = await fetch(`${API_URL}/api/products/${product._id}/reviews`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${user.token}` },
                 body: JSON.stringify({ rating, comment }),

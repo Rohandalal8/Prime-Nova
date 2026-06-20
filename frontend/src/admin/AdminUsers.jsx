@@ -14,7 +14,7 @@ const AdminUsers = () => {
         }
         const fetchUsers = async () => {
             try {
-                const res = await fetch('/api/auth/users', {
+                const res = await fetch(`${API_URL}/api/auth/users`, {
                     headers: { Authorization: `Bearer ${user.token}` }
                 });
                 const data = await res.json();

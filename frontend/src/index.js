@@ -4,6 +4,7 @@ import App from './App';
 import { AuthProvider } from './context/AuthContext';
 import { Provider } from 'react-redux';
 import store from './redux/store';
+import { Analytics } from '@vercel/analytics/react';
 import './styles/global.css';
 
 
@@ -12,6 +13,7 @@ root.render(
   <Provider store={store}>
     <AuthProvider>
       <App />
+      <Analytics />
     </AuthProvider>
   </Provider>
 );

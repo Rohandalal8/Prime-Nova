@@ -41,7 +41,7 @@ const AddProduct = () => {
         });
 
         try {
-            const res = await fetch('/api/products', {
+            const res = await fetch(`${API_URL}/api/products`, {
                 method: 'POST',
                 headers: { Authorization: `Bearer ${user.token}` },
                 body: data,
