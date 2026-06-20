@@ -6,6 +6,9 @@ const User = require('./models/userModel');
 const path = require('path');
 dotenv.config();
 connectDB();
+const fs = require('fs');
+
+
 
 setInterval(async () => {
     try {
@@ -45,6 +48,11 @@ app.use('/api/products', require('./routes/productRoutes'));
 app.use('/api/orders', require('./routes/orderRoutes'));
 app.use('/api/payment', require('./routes/paymentRoutes'));
 app.use('/api/analytics', require('./routes/analyticsRoutes'));
+
+console.log(
+  'INDEX EXISTS:',
+  fs.existsSync(path.resolve(__dirname, '../frontend/build/index.html'))
+);
 
 //Serve frontend in production
 if (process.env.NODE_ENV === 'production') {
