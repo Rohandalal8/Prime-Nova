@@ -3,6 +3,7 @@ const cors = require('cors');
 const dotenv = require('dotenv');
 const connectDB = require('./config/db');
 const User = require('./models/userModel');
+const path = require('path');
 dotenv.config();
 connectDB();
 
