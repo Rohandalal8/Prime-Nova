@@ -2,6 +2,7 @@ import React, { useEffect, useState, useContext } from 'react';
 import { AuthContext } from '../context/AuthContext';
 import { useNavigate, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import { API_URL } from '../config';
 
 const EditProduct = () => {
     const { user } = useContext(AuthContext);

@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addToCart } from '../redux/cartSlice';
 import { toast } from 'react-toastify';
 import { AuthContext } from '../context/AuthContext';
+import { API_URL } from '../config';
 import '../styles/product.css';
 
 const ProductDetail = () => {

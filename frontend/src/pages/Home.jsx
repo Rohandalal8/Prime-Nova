@@ -1,7 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import ProductCard from '../components/ProductCard';
 import { Link } from 'react-router-dom';
-const { AuthContext } = require('../context/AuthContext');
+import { AuthContext } from '../context/AuthContext';
+import { API_URL } from '../config';
 
 const Home = () => {
     const [latestProducts, setLatestProducts] = useState([]);

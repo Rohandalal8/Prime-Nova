@@ -2,6 +2,7 @@ import React, {useState, useContext, useEffect} from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
 import { toast } from 'react-toastify';
+import { API_URL } from '../config';
 import '../styles/auth.css';
 
 const RegisterOtp = () => {

@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import { API_URL } from '../config';
 import '../styles/auth.css';
 
 const ForgotPassword = () => {

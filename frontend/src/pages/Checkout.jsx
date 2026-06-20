@@ -6,6 +6,7 @@ import { clearCart } from '../redux/cartSlice';
 import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/style.css';
 import { toast } from 'react-toastify';
+import { API_URL } from '../config';
 import '../styles/phoneInput.css';
 
 const Checkout = () => {

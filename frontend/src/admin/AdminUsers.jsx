@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { AuthContext } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
+import { API_URL } from '../config';
 
 const AdminUsers = () => {
     const { user } = useContext(AuthContext);

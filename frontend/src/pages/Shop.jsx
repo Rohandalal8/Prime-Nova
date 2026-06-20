@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import ProductCard from '../components/ProductCard';
+import { API_URL } from '../config';
 import '../styles/product.css';
 
 const Shop = () => {

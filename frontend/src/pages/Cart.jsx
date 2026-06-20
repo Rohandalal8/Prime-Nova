@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { removeFromCart, addToCart, updateCartStock } from '../redux/cartSlice';
+import { API_URL } from '../config';
 import '../styles/product.css';
 import '../styles/cart.css';
 
