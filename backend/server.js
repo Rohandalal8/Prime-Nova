@@ -39,10 +39,6 @@ app.use(cors(
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.get('/', (req, res) => {
-    res.send('Prime Basket Backend is running properly!');
-});
-
 app.use('/api/auth', require('./routes/authRoutes'));
 app.use('/api/products', require('./routes/productRoutes'));
 app.use('/api/orders', require('./routes/orderRoutes'));
@@ -63,7 +59,7 @@ if (process.env.NODE_ENV === 'production') {
     });
 } else {
     app.get('/', (req, res) => {
-        res.send('Prime Basket API is running in development mode');
+        res.send('Prime Nova API is running in development mode');
     });
 }
 
