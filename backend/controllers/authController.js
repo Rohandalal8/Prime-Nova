@@ -37,7 +37,7 @@ If you did not create a Prime Nova account, you can safely ignore this email.
 
 Regards,
 Prime Nova Team`;
-            cosole.time('Sending email...');
+            console.time('Sending email...');
             await sendEmail(email, 'Welcome to Prime Nova - Your OTP', message); 
             console.timeEnd('Sending email...');
             res.status(201).json({ message: 'Please check your email for the OTP to complete registration.' });
