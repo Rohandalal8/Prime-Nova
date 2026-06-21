@@ -77,7 +77,6 @@ CLOUDINARY_API_SECRET = add your Cloudinary API secret
 RAZORPAY_KEY_ID = add your Razorpay key ID
 RAZORPAY_KEY_SECRET = add your Razorpay key secret
 FRONTEND_URL = add your frontend URL (e.g., http://localhost:3000)
-NODE_ENV = development
 ```
 
 ### Frontend (.env)
