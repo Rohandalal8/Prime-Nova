@@ -13,22 +13,16 @@ const registerUser = async (req, res) => {
     const { name, email, password } = req.body;
     try {
         // Check if user already exists
-        console.time('findUser');
         let existingUser = await User.findOne({ email });
-        console.timeEnd('findUser');
         if (existingUser) {
             return res.status(400).json({ message: 'User already exists' });
         }
         // Hash the password       
-        console.log('hashPassword'); 
         const salt = await bcrypt.genSalt(10);
         const hashedPassword = await bcrypt.hash(password, salt);
-        console.log('hashPassword');
         const otp = Math.floor(100000 + Math.random() * 900000).toString();
         // Create new user
-        console.log('createUser');
         const user = await User.create({ name, email, password: hashedPassword, verificationCode: otp, });
-        console.log('createUser');
         // Generate OTP
         if (user) {
             const message = `Welcome to Prime Nova, ${name}!
@@ -43,9 +37,9 @@ If you did not create a Prime Nova account, you can safely ignore this email.
 
 Regards,
 Prime Nova Team`;
-            console.time('sendEmail');
-            // await sendEmail(email, 'Welcome to Prime Nova - Your OTP', message); 
-            console.timeEnd('sendEmail');
+            cosole.time('Sending email...');
+            await sendEmail(email, 'Welcome to Prime Nova - Your OTP', message); 
+            console.timeEnd('Sending email...');
             res.status(201).json({ message: 'Please check your email for the OTP to complete registration.' });
         } else {
             res.status(400).json({ message: 'Invalid user data' });
