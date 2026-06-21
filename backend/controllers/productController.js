@@ -19,9 +19,9 @@ const uploadToCloudinary = (fileBuffer) => {
 // Get all products
 const getProducts = async (req, res) => {
     try {
-        console.log('Get Products');
+        console.time('Get Products');
         const products = await Product.find({});
-        console.log('Get Products');
+        console.timeEnd('Get Products');
         res.json(products);
     } catch (error) {
         res.status(500).json({ message: 'Server error' });
