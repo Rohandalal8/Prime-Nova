@@ -7,6 +7,16 @@ const sendEmail = async (to, subject, text) => {
             auth: {
                 user: process.env.EMAIL_USER,
                 pass: process.env.EMAIL_PASS
+            },
+            connectionTimeout: 10000, // 10 sec
+            greetingTimeout: 10000,
+            socketTimeout: 10000
+        });
+        transporter.verify((error, success) => {
+            if (error) {
+                console.error("SMTP VERIFY ERROR:", error);
+            } else {
+                console.log("SMTP READY");
             }
         });
         const mailOptions = {
