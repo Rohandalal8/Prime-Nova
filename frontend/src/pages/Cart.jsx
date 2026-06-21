@@ -150,10 +150,12 @@ const Cart = () => {
                 <span>${(item.price * item.qty).toFixed(2)}</span>
               </div>
             ))}
-            <div className="cart-summary-item">
-              <span>Discount:</span>
-              <span>-${(totalDiscount).toFixed(2)}</span>
-            </div>
+            {totalDiscount > 0 && (
+              <div className="cart-summary-item">
+                <span>Discount:</span>
+                <span>-${(totalDiscount).toFixed(2)}</span>
+              </div>
+            )}
             <div className="cart-summary-item">
               <span>Tax:</span>
               <span>${(tax).toFixed(2)}</span>

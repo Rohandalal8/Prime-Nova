@@ -85,6 +85,7 @@ FRONTEND_URL = add your frontend URL (e.g., http://localhost:3000)
 ### Frontend (.env)
 
 REACT_APP_RAZORPAY_KEY_ID = Add your Razorpay key ID
+REACT_APP_API_URL = Add backend url
 
 ## Run Project
 

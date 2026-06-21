@@ -192,10 +192,12 @@ const Checkout = () => {
                 <span>${(item.price * item.qty).toFixed(2)}</span>
               </div>
             ))}
-            <div className="cart-summary-item">
-              <span>Discount:</span>
-              <span>-${(totalDiscount).toFixed(2)}</span>
-            </div>
+            {totalDiscount > 0 && (
+              <div className="cart-summary-item">
+                <span>Discount:</span>
+                <span>-${(totalDiscount).toFixed(2)}</span>
+              </div>
+            )}
             <div className="cart-summary-item">
               <span>Tax:</span>
               <span>${(tax).toFixed(2)}</span>
@@ -209,8 +211,8 @@ const Checkout = () => {
               <span>${(totalPrice).toFixed(2)}</span>
             </div>
           </div>
-          <button type="submit" disabled={isPaying} className="btn btn-checkout">
-            {isPaying ? 'Processing...' : 'Pay Now'}
+          <button type="submit" disabled={!user} className="btn btn-checkout" style={{ opacity: !user ? 0.5 : 1, cursor: !user ? 'not-allowed' : 'pointer' }}>
+            {user ? 'Pay Now' : 'Login to Proceed'}
           </button>
         </form>
       </div>
