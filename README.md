@@ -69,6 +69,9 @@ npm run install-all
 PORT = add your port number
 MONGO_URI = add your MongoDB URI
 JWT_SECRET = add your JWT secret
+EMAIL = add your email
+EMAIL_HOST = add email host
+EMAIL_PORT = add email port
 EMAIL_USER = add your email user
 EMAIL_PASS = add your email password
 CLOUDINARY_CLOUD_NAME = add your Cloudinary cloud name

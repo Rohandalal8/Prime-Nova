@@ -15,8 +15,10 @@ const Home = () => {
         // Fetch products from the backend API
         const fetchProducts = async () => {
             try {
+                console.time('Fetch Products');
                 const response = await fetch(`${API_URL}/api/products`);
                 const data = await response.json();
+                console.timeEnd('Fetch Products');
 
                 const isMobile = window.innerWidth <= 768;
                 const limit = isMobile ? 4 : 5;
