@@ -6,6 +6,9 @@ const streamifier = require('streamifier');
 const uploadToCloudinary = (fileBuffer) => {
     return new Promise((resolve, reject) => {
         const stream = cloudinary.uploader.upload_stream(
+            {
+                folder: "prime_nova"
+            },
             (error, result) => {
                 if (error) return reject(error);
                 resolve(result);
