@@ -46,6 +46,7 @@ const getProductById = async (req, res) => {
     }
 };
 
+// Create a new product
 const createProduct = async (req, res) => {
     try {
         const { name, description, price, discount, category, stock } = req.body;
@@ -127,9 +128,7 @@ const getCartProducts = async (req, res) => {
 
         res.json(products);
     } catch (error) {
-        res.status(500).json({
-            message: 'Server Error'
-        });
+        res.status(500).json({ message: 'Server Error' });
     }
 };
 
