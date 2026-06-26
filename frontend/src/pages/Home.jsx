@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import ProductCard from '../components/ProductCard';
+import Loader from '../components/Loader';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
 import { API_URL } from '../config';
@@ -50,7 +51,7 @@ const Home = () => {
             </div>
             <h2>Trending Now</h2>
             {loading ? (
-                <p>Loading products...</p>
+                <Loader />
             ) : (
                 <div className="product-grid" >
                     {popularProducts.map(product => (
@@ -60,7 +61,7 @@ const Home = () => {
             )}
             <h2 style={{ marginTop: '20px', paddingTop: '10px', borderTop: '1px solid #27272a'}}>Fresh Picks</h2>
             {loading ? (
-                <p>Loading products...</p>
+                <Loader />
             ) : (
                 <div className="product-grid" >
                     {latestProducts.map(product => (
@@ -70,7 +71,7 @@ const Home = () => {
             )}
             <h2 style={{ marginTop: '20px', paddingTop: '10px', borderTop: '1px solid #27272a'}}>Hot Deals</h2>
             {loading ? (
-                <p>Loading products...</p>
+                <Loader />
             ) : (
                 <div className="product-grid" >
                     {dealProducts.map(product => (

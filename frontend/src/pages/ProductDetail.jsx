@@ -5,6 +5,7 @@ import { addToCart } from '../redux/cartSlice';
 import { toast } from 'react-toastify';
 import { AuthContext } from '../context/AuthContext';
 import { API_URL } from '../config';
+import Loader from '../components/Loader';
 import '../styles/product.css';
 
 const ProductDetail = () => {
@@ -99,7 +100,7 @@ const ProductDetail = () => {
         }
     };
 
-    if (loading) return <div style={{ textAlign: 'center', margin: '100px', color: '#f97316' }}>Loading product details...</div>;
+    if (loading) return <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}><Loader /></div>;
 
     if (!product) return <div style={{ textAlign: 'center', margin: '100px', color: '#ef4444' }}>Product not found.</div>;
 

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import ProductCard from '../components/ProductCard';
+import Loader from '../components/Loader';
 import { API_URL } from '../config';
 import '../styles/product.css';
 
@@ -92,7 +93,9 @@ const Shop = () => {
         />
       </div>
       {loading ? (
-        <div>Loading...</div>
+        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
+          <Loader />
+        </div>
       ) : (
         <div className="product-grid">
           {sortedProducts.map(product => (
