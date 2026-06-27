@@ -2,6 +2,7 @@ import React, { useEffect, useState, useContext } from 'react';
 import { AuthContext } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import { API_URL } from '../config';
+import Loader from '../components/Loader';
 
 const AdminDashboard = () => {
   const { user } = useContext(AuthContext);
@@ -81,7 +82,7 @@ const AdminDashboard = () => {
                     </div>
                 ) : (
                     <div style={{ textAlign: 'center', padding: '50px 0', color: '#f97316' }}>
-                        <p style={{ color: '#a1a1aa' }}>Loading analytics...</p>
+                        <Loader />
                     </div>
                 )}
 
