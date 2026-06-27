@@ -3,6 +3,7 @@ import { AuthContext } from '../context/AuthContext';
 import { useNavigate, Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { API_URL } from '../config';
+import Loader from '../components/Loader';
 
 const Profile = () => {
   const { user, logout } = useContext(AuthContext);
@@ -81,7 +82,7 @@ const Profile = () => {
 
       <h3 style={{ marginBottom: '15px', fontSize: '1.5rem' }}>Order History</h3>
       {loading ? (
-        <p style={{ color: '#a1a1aa' }}>Fetching your orders...</p>
+        <Loader />
       ) : orders.length === 0 ? (
         <div style={{ background: '#09090b', padding: '30px', borderRadius: '4px', textAlign: 'center', border: '1px solid #27272a' }}>
           <p style={{ color: '#a1a1aa', marginBottom: '15px' }}>You haven't placed any orders yet.</p>
