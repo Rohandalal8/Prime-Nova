@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import ProductCard from '../components/ProductCard';
 import Loader from '../components/Loader';
 import { Link } from 'react-router-dom';
@@ -49,37 +49,38 @@ const Home = () => {
                 <h1>Hi, {user?.name || 'Guest'}! Welcome to Prime Nova</h1>
                 <p>Prime Nova is a marketplace dedicated to handcrafted products created by skilled artisans. We bring together quality, creativity, and authenticity, offering unique handmade items that add a personal touch to everyday life while supporting talented makers and small businesses.</p>
             </div>
-            <h2>Trending Now</h2>
+
             {loading ? (
-                <Loader />
-            ) : (
-                <div className="product-grid" >
-                    {popularProducts.map(product => (
-                        <ProductCard key={product._id} product={product} />
-                    ))}
+                <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '90vh' }}>
+                    <Loader />
                 </div>
-            )}
-            <h2 style={{ marginTop: '20px', paddingTop: '10px', borderTop: '1px solid #27272a'}}>Fresh Picks</h2>
-            {loading ? (
-                <Loader />
             ) : (
-                <div className="product-grid" >
-                    {latestProducts.map(product => (
-                        <ProductCard key={product._id} product={product} />
-                    ))}
-                </div>
+                <>
+                    <h2>Trending Now</h2>
+                    <div className="product-grid" >
+                        {popularProducts.map(product => (
+                            <ProductCard key={product._id} product={product} />
+                        ))}
+                    </div>
+
+                    <h2 style={{ marginTop: '20px', paddingTop: '10px', borderTop: '1px solid #27272a' }}>Fresh Picks</h2>
+                    <div className="product-grid" >
+                        {latestProducts.map(product => (
+                            <ProductCard key={product._id} product={product} />
+                        ))}
+                    </div>
+
+                    <h2 style={{ marginTop: '20px', paddingTop: '10px', borderTop: '1px solid #27272a' }}>Hot Deals</h2>
+                    <div className="product-grid" >
+                        {dealProducts.map(product => (
+                            <ProductCard key={product._id} product={product} />
+                        ))}
+                    </div>
+
+                    <Link to="/shop" className="view-all-link">View All Products</Link>
+                </>
             )}
-            <h2 style={{ marginTop: '20px', paddingTop: '10px', borderTop: '1px solid #27272a'}}>Hot Deals</h2>
-            {loading ? (
-                <Loader />
-            ) : (
-                <div className="product-grid" >
-                    {dealProducts.map(product => (
-                        <ProductCard key={product._id} product={product} />
-                    ))}
-                </div>
-            )}
-            <Link to="/shop" className="view-all-link">View All Products</Link>
+
         </div>
     );
 }
