@@ -78,7 +78,7 @@ const AdminProducts = () => {
                             <tr key={p._id} style={{ borderBottom: '1px solid rgba(255,255,255,0.05)' }}>
                                 <td style={{ padding: '12px 25px', verticalAlign: 'top' }}>{p._id}</td>
                                 <td style={{ padding: '12px 25px', minWidth: '200px', verticalAlign: 'top' }}>{p.name}</td>
-                                <td style={{ padding: '12px 25px', verticalAlign: 'top' }}>${p.price.toFixed(2)}</td>
+                                <td style={{ padding: '12px 25px', verticalAlign: 'top' }}>₹{p.price.toFixed(2)}</td>
                                 <td style={{ padding: '12px 25px', verticalAlign: 'top' }}>{p.discount}%</td>
                                 <td style={{ padding: '12px 25px', minWidth: '180px', verticalAlign: 'top' }}>{p.category}</td>
                                 <td style={{ padding: '12px 25px', verticalAlign: 'top' }}>{p.stock}</td>

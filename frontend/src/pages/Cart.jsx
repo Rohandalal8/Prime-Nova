@@ -100,11 +100,11 @@ const Cart = () => {
                   {item.discount > 0 ? (
                         <div style={{ display: 'flex', alignItems: 'baseline', gap: '3px' }}>
                             <p className="product-price" style={{ marginBottom: '0' }}>
-                                ${(item.price - (item.price * item.discount) / 100).toFixed(2)}
+                                ₹{(item.price - (item.price * item.discount) / 100).toFixed(2)}
                             </p>
 
                             <p className="product-discounted-price">
-                                ${item.price.toFixed(2)}
+                                ₹{item.price.toFixed(2)}
                             </p>
                         
                             <span className="product-discount">
@@ -113,7 +113,7 @@ const Cart = () => {
                         </div>
                     ) : (
                         <p className="product-price" style={{ marginBottom: '0' }}>
-                            ${item.price.toFixed(2)}
+                            ₹{item.price.toFixed(2)}
                         </p>
                     )}
                   <div className="qty-controls">
@@ -147,26 +147,26 @@ const Cart = () => {
             {cartItems.map((item) => (
               <div key={getItemId(item)} className="cart-summary-item">
                 <span>{item.name} x {item.qty}</span>
-                <span>${(item.price * item.qty).toFixed(2)}</span>
+                <span>₹{(item.price * item.qty).toFixed(2)}</span>
               </div>
             ))}
             {totalDiscount > 0 && (
               <div className="cart-summary-item">
                 <span>Discount:</span>
-                <span>-${(totalDiscount).toFixed(2)}</span>
+                <span>-₹{(totalDiscount).toFixed(2)}</span>
               </div>
             )}
             <div className="cart-summary-item">
               <span>Tax:</span>
-              <span>${(tax).toFixed(2)}</span>
+              <span>₹{(tax).toFixed(2)}</span>
             </div>
             <div className="cart-summary-item">
               <span>Shipping:</span>
-              <span>${(shipping).toFixed(2)}</span>
+              <span>₹{(shipping).toFixed(2)}</span>
             </div>
             <div className="cart-summary-total">
               <span>Total:</span>
-              <span>${(finalTotal).toFixed(2)}</span>
+              <span>₹{(finalTotal).toFixed(2)}</span>
             </div>
             <button onClick={() => navigate('/checkout')} className="btn btn-checkout">Checkout</button>
           </div>

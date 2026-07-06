@@ -60,11 +60,11 @@ function ProductCard({ product }) {
                     {product.discount > 0 ? (
                         <div style={{ display: 'flex', alignItems: 'baseline', gap: '3px' }}>
                             <p className="product-price">
-                                ${discountedPrice.toFixed(2)}
+                                ₹{discountedPrice.toFixed(2)}
                             </p>
 
                             <p className="product-discounted-price">
-                                ${product.price.toFixed(2)}
+                                ₹{product.price.toFixed(2)}
                             </p>
                         
                             <span className="product-discount">
@@ -73,7 +73,7 @@ function ProductCard({ product }) {
                         </div>
                     ) : (
                         <p className="product-price">
-                            ${product.price.toFixed(2)}
+                            ₹{product.price.toFixed(2)}
                         </p>
                     )}
                     <div style={{ display: 'flex', alignItems: 'center', gap: '10px', flexDirection: 'column', width: '100%' }}>

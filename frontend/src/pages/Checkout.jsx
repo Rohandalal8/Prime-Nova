@@ -189,26 +189,26 @@ const Checkout = () => {
             {checkoutItems.map((item) => (
               <div key={item.productId || item._id} className="cart-summary-item">
                 <span>{item.name} x {item.qty}</span>
-                <span>${(item.price * item.qty).toFixed(2)}</span>
+                <span>₹{(item.price * item.qty).toFixed(2)}</span>
               </div>
             ))}
             {totalDiscount > 0 && (
               <div className="cart-summary-item">
                 <span>Discount:</span>
-                <span>-${(totalDiscount).toFixed(2)}</span>
+                <span>-₹{(totalDiscount).toFixed(2)}</span>
               </div>
             )}
             <div className="cart-summary-item">
               <span>Tax:</span>
-              <span>${(tax).toFixed(2)}</span>
+              <span>₹{(tax).toFixed(2)}</span>
             </div>
             <div className="cart-summary-item">
               <span>Shipping:</span>
-              <span>${(shipping).toFixed(2)}</span>
+              <span>₹{(shipping).toFixed(2)}</span>
             </div>
             <div className="cart-summary-total">
               <span>Total:</span>
-              <span>${(totalPrice).toFixed(2)}</span>
+              <span>₹{(totalPrice).toFixed(2)}</span>
             </div>
           </div>
           <button type="submit" disabled={!user} className="btn btn-checkout" style={{ opacity: !user ? 0.5 : 1, cursor: !user ? 'not-allowed' : 'pointer' }}>

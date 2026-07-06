@@ -112,7 +112,7 @@ const AdminOrders = () => {
                                     </td>
                                     <td style={{ ...tdStyle, whiteSpace: 'nowrap' }}>{formatMobileNumber(order.address)}</td>
                                     <td style={{ ...tdStyle, minWidth: '260px', lineHeight: '1.5' }}>{formatAddress(order.address)}</td>
-                                    <td style={tdStyle}>${order.totalPrice.toFixed(2)}</td>
+                                    <td style={tdStyle}>₹{order.totalPrice.toFixed(2)}</td>
                                     <td style={{ ...tdStyle, whiteSpace: 'nowrap' }}>{new Date(order.createdAt).toLocaleDateString('en-US', {
                                         month: 'short',
                                         day: 'numeric',
