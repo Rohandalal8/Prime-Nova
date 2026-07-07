@@ -100,11 +100,11 @@ const Cart = () => {
                   {item.discount > 0 ? (
                         <div style={{ display: 'flex', alignItems: 'baseline', gap: '3px' }}>
                             <p className="product-price" style={{ marginBottom: '0' }}>
-                                ₹{(item.price - (item.price * item.discount) / 100).toFixed(2)}
+                                ₹{(item.price - (item.price * item.discount) / 100)}
                             </p>
 
                             <p className="product-discounted-price">
-                                ₹{item.price.toFixed(2)}
+                                ₹{item.price}
                             </p>
                         
                             <span className="product-discount">
@@ -113,7 +113,7 @@ const Cart = () => {
                         </div>
                     ) : (
                         <p className="product-price" style={{ marginBottom: '0' }}>
-                            ₹{item.price.toFixed(2)}
+                            ₹{item.price}
                         </p>
                     )}
                   <div className="qty-controls">
