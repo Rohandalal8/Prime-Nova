@@ -138,11 +138,11 @@ const ProductDetail = () => {
                     {product.discount > 0 ? (
                         <div style={{ display: 'flex', alignItems: 'baseline', gap: '3px' }}>
                             <span className="product-price" style={{ fontSize: '1.5rem' }}>
-                                ₹{discountedPrice}
+                                ₹{discountedPrice.toFixed(0)}
                             </span>
 
                             <span className="product-discounted-price" style={{ fontSize: '1rem' }}>
-                                ₹{product.price}
+                                ₹{product.price.toFixed(0)}
                             </span>
 
                             <span className="product-discount" style={{ display: 'inline-block', fontSize: '1rem' }}>
@@ -151,7 +151,7 @@ const ProductDetail = () => {
                         </div>
                     ) : (
                         <span className="product-price" style={{ fontSize: '1.5rem' }}>
-                            ₹{product.price}
+                            ₹{product.price.toFixed(0)}
                         </span>
                     )}
 
