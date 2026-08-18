@@ -14,11 +14,11 @@ const About = () => {
         display: 'inline-block',
         padding: '10px 10px',
         borderRadius: '4px',
-        backgroundColor: '#27272a',
-        color: '#fff',
+        backgroundColor: '#d9c3a7',
+        color: '#2f2116',
         textDecoration: 'none',
         transition: 'all 0.3s ease',
-        border: '1px solid rgba(255, 255, 255, 0.1)',
+        border: '1px solid rgba(111, 68, 40, 0.18)',
         width: '45%'
     };
 
@@ -31,17 +31,17 @@ const About = () => {
                 borderRadius: '4px',
                 marginBottom: '15px', 
                 objectFit: 'cover', 
-                border: '1px solid #f97316',
+                border: '1px solid #8b5e3c',
                 boxShadow: '0 4px 12px rgba(249, 115, 22, 0.4)',
                 textAlign: 'left',
             }} /> 
             <h2 style={{ 
                 fontSize: '1.5rem'
-            }}><span style={{ background: '#f97316', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>Prime Nova </span> - About Us</h2>
+            }}><span style={{ background: '#8b5e3c', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>Prime Nova </span> - About Us</h2>
             </div>
             <p style={{ 
                 fontSize: '1rem', 
-                color: '#a1a1aa', 
+                color: '#7b6550', 
                 margin: '0 auto 30px auto',
                 lineHeight: '1.8',
                 textAlign: 'left' 
@@ -60,7 +60,7 @@ const About = () => {
                 gap: '15px',
                 flexWrap: 'wrap'
             }}>
-                <a href="https://rohan.com" target="_blank" rel="noreferrer" style={{ ...socialBtnStyle,background: 'rgba(249, 115, 22, 0.2)', borderColor: '#f97316', color: '#f97316' }}>🌐 Website</a>
+                <a href="https://rohan.com" target="_blank" rel="noreferrer" style={{ ...socialBtnStyle,background: 'rgba(249, 115, 22, 0.2)', borderColor: '#8b5e3c', color: '#8b5e3c' }}>🌐 Website</a>
                 <a href="https://youtube.com/@rohan" target="_blank" rel="noreferrer" style={{ ...socialBtnStyle, background: 'rgba(239, 68, 68, 0.2)', borderColor: '#ef4444', color: '#ef4444' }}>📺 YouTube</a>
                 <a href="https://instagram.com/rohndalal" target="_blank" rel="noreferrer" style={{ ...socialBtnStyle, background: 'rgba(236, 72, 153, 0.2)', borderColor: '#ec4899', color: '#ec4899' }}>📸 Instagram</a>
                 <a href="https://www.linkedin.com/in/rohan" target="_blank" rel="noreferrer" style={{ ...socialBtnStyle, background: 'rgba(59, 130, 246, 0.2)', borderColor: '#3b82f6', color: '#3b82f6' }}>💼 LinkedIn</a>

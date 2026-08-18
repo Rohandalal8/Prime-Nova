@@ -31,12 +31,12 @@ function App() {
   return (
     <Router>
       <Navbar />
-      <ToastContainer position="top-right" autoClose={1000} theme="dark" />
+      <ToastContainer position="top-right" autoClose={1000} />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
-        <Route path="/disclaimer" element={<Disclaimer />} />
-        <Route path="/return" element={<ReturnPolicy />} />
+        {/* <Route path="/disclaimer" element={<Disclaimer />} /> */}
+        {/* <Route path="/return" element={<ReturnPolicy />} /> */}
         <Route path="/login" element={<Login />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/forgot-password-otp" element={<ForgotPasswordOtp />} />
@@ -47,7 +47,7 @@ function App() {
         <Route path="/cart" element={<Cart />} />
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/ordersuccess" element={<OrderSuccess />} />
-        <Route path="/shop" element={<Shop />} />
+        {/* <Route path="/shop" element={<Shop />} /> */}
         <Route path="/profile" element={<Profile />} />
         <Route path="/admin" element={<AdminDashboard />} />
         <Route path="/admin/add-product" element={<AddProduct />} />

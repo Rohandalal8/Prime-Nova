@@ -49,18 +49,18 @@ const AdminProducts = () => {
                 marginBottom: '20px',
                 padding: '10px 20px',
                 borderRadius: '4px',
-                backgroundColor: '#27272a',
-                color: '#fff',
+                backgroundColor: '#d8b692',
+                color: '#2f2116',
                 textDecoration: 'none',
                 transition: 'all 0.3s ease',
-                border: '1px solid rgba(255, 255, 255, 0.1)',
+                border: '1px solid rgba(111, 68, 40, 0.24)',
             }}>
                 + Add New Product
             </Link>
             <div className="scrollbar">
-                <table style={{ width: '100%', borderCollapse: 'collapse', background: '#18181b', borderRadius: '4px', border: '1px solid rgba(255,255,255,0.05)' }}>
+                <table style={{ width: '100%', borderCollapse: 'collapse', background: '#fff8ef', borderRadius: '4px', border: '1px solid rgba(111,68,40,0.12)' }}>
                     <thead>
-                        <tr style={{ borderBottom: '1px solid rgba(255,255,255,0.1)' }}>
+                        <tr style={{ borderBottom: '1px solid rgba(111,68,40,0.18)' }}>
                             <th style={{ padding: '12px 25px', textAlign: 'left' }}>ID</th>
                             <th style={{ padding: '12px 25px', textAlign: 'left' }}>Name</th>
                             <th style={{ padding: '12px 25px', textAlign: 'left' }}>Price</th>
@@ -75,7 +75,7 @@ const AdminProducts = () => {
                         {[...products]
                         .sort((a, b) => b.totalSold - a.totalSold) // Sort by totalSold in descending order
                         .map((p) => (
-                            <tr key={p._id} style={{ borderBottom: '1px solid rgba(255,255,255,0.05)' }}>
+                            <tr key={p._id} style={{ borderBottom: '1px solid rgba(111,68,40,0.12)' }}>
                                 <td style={{ padding: '12px 25px', verticalAlign: 'top' }}>{p._id}</td>
                                 <td style={{ padding: '12px 25px', minWidth: '200px', verticalAlign: 'top' }}>{p.name}</td>
                                 <td style={{ padding: '12px 25px', verticalAlign: 'top' }}>₹{p.price.toFixed(2)}</td>
@@ -88,7 +88,7 @@ const AdminProducts = () => {
                                         padding: '6px 12px',
                                         borderRadius: '4px',
                                         backgroundColor: '#3b82f6',
-                                        color: '#fff',
+                                        color: '#2f2116',
                                         border: 'none',
                                         cursor: 'pointer',
                                         transition: 'all 0.3s ease'
@@ -100,7 +100,7 @@ const AdminProducts = () => {
                                         padding: '6px 12px',
                                         borderRadius: '4px',
                                         backgroundColor: '#ef4444',
-                                        color: '#fff',
+                                        color: '#2f2116',
                                         border: 'none',
                                         cursor: 'pointer',
                                         transition: 'all 0.3s ease'

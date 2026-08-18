@@ -88,7 +88,7 @@ const Cart = () => {
     <div className="cart-container">
       <h2>Shopping Cart</h2>
       {cartItems.length === 0 ? (
-        <p>Your cart is empty. <Link to="/shop" style={{ color: '#007bff' }}>Go Shopping</Link></p>
+        <p>Your cart is empty. <Link to="/" style={{ color: '#007bff' }}>Go Shopping</Link></p>
       ) : (
         <div className="cart-layout">
           <div className="cart-items">
@@ -135,7 +135,7 @@ const Cart = () => {
                     <button onClick={() => handleRemove(getItemId(item))} className="btn-remove">Remove</button>
                   </div>
                   {Number.isFinite(item.stock) && (
-                    <p style={{ marginTop: '-15px', padding: '10px 0', color: item.stock > 0 ? '#f97316' : '#ef4444', fontSize: '0.6rem'}}>
+                    <p style={{ marginTop: '-15px', padding: '10px 0', color: item.stock > 0 ? '#8b5e3c' : '#ef4444', fontSize: '0.6rem'}}>
                         {item.stock > 0 && item.stock <= 5 ? `Only ${item.stock} available` : item.stock > 5 ? `` : 'Temporarily Out of Stock'}
                     </p>
                   )}

@@ -63,21 +63,21 @@ const Home = () => {
                         ))}
                     </div>
 
-                    <h2 style={{ marginTop: '20px', paddingTop: '10px', borderTop: '1px solid #27272a' }}>Fresh Picks</h2>
+                    <h2 style={{ marginTop: '20px', paddingTop: '10px', borderTop: '1px solid #d9c3a7' }}>Fresh Picks</h2>
                     <div className="product-grid" >
                         {latestProducts.map(product => (
                             <ProductCard key={product._id} product={product} />
                         ))}
                     </div>
 
-                    <h2 style={{ marginTop: '20px', paddingTop: '10px', borderTop: '1px solid #27272a' }}>Hot Deals</h2>
+                    <h2 style={{ marginTop: '20px', paddingTop: '10px', borderTop: '1px solid #d9c3a7' }}>Hot Deals</h2>
                     <div className="product-grid" >
                         {dealProducts.map(product => (
                             <ProductCard key={product._id} product={product} />
                         ))}
                     </div>
 
-                    <Link to="/shop" className="view-all-link">View All Products</Link>
+                    {/* <Link to="/shop" className="view-all-link">View All Products</Link> */}
                 </>
             )}
 

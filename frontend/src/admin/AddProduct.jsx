@@ -64,7 +64,7 @@ const AddProduct = () => {
     };
 
     return (
-        <div style={{ maxWidth: '600px', margin: '20px auto', padding: '20px', borderRadius: '4px', backgroundColor: '#18181b', border: '1px solid rgba(255,255,255,0.05)' }}>
+        <div style={{ maxWidth: '600px', margin: '20px auto', padding: '20px', borderRadius: '4px', backgroundColor: '#fff8ef', border: '1px solid rgba(111,68,40,0.12)' }}>
             <h2 style={{ marginBottom: '20px' }}>Add New Product</h2>
             <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
                 <input
@@ -109,12 +109,12 @@ const AddProduct = () => {
                     onChange={(e) => setImages(Array.from(e.target.files))}
                     style={{ ...inputStyle, padding: '5px' }}
                 />
-                <span style={{ fontSize: '0.8rem', color: '#a1a1aa' }}>You can upload multiple images for the product. (Max 12)</span>
+                <span style={{ fontSize: '0.8rem', color: '#7b6550' }}>You can upload multiple images for the product. (Max 12)</span>
                 <button type="submit" disabled={loading} style={{
                     padding: '10px 20px',
                     borderRadius: '4px',
-                    backgroundColor: '#f97316',
-                    color: '#fff',
+                    backgroundColor: '#d8b692',
+                    color: '#2f2116',
                     border: 'none',
                     cursor: 'pointer',
                     transition: 'all 0.3s ease',
@@ -129,9 +129,9 @@ const AddProduct = () => {
 const inputStyle = {
     padding: '10px',
     borderRadius: '4px',
-    border: '1px solid rgba(255,255,255,0.1)',
-    backgroundColor: '#27272a',
-    color: '#fff',
+    border: '1px solid rgba(111,68,40,0.18)',
+    backgroundColor: '#d9c3a7',
+    color: '#2f2116',
 };
 
 export default AddProduct;

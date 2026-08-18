@@ -156,18 +156,18 @@ const ProductDetail = () => {
                     )}
 
                     <div style={{ marginBottom: '10px' }}>
-                        <h4 style={{ color: '#fff', marginBottom: '5px' }}>Product Description</h4>
+                        <h4 style={{ color: '#2f2116', marginBottom: '5px' }}>Product Description</h4>
                         <p>
                             {product.description}
                         </p>
                     </div>
 
-                    <p style={{ color: product.stock > 0 ? '#f97316' : '#ef4444' }}>
+                    <p style={{ color: product.stock > 0 ? '#8b5e3c' : '#ef4444' }}>
                         {product.stock > 0 && product.stock <= 5 ? `Only ${product.stock} available` : ''}
                     </p>
 
                     <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                        <button onClick={handleAddToCart} disabled={product.stock <= 0} className="btn" style={{ width: '100%', background: 'none', color: '#f97316', border: '1px solid #f97316', opacity: product.stock <= 0 ? 0.5 : 1, cursor: product.stock <= 0 ? 'not-allowed' : 'pointer' }}>
+                        <button onClick={handleAddToCart} disabled={product.stock <= 0} className="btn" style={{ width: '100%', background: 'none', color: '#8b5e3c', border: '1px solid #8b5e3c', opacity: product.stock <= 0 ? 0.5 : 1, cursor: product.stock <= 0 ? 'not-allowed' : 'pointer' }}>
                             {product.stock <= 0 ? 'Out of Stock' : 'Add to Cart'}
                         </button>
 
@@ -177,7 +177,7 @@ const ProductDetail = () => {
                     </div>
 
                     <div style={{ marginTop: '20px' }}>
-                        <h4 style={{ color: '#fff', marginBottom: '5px' }}>Customer Reviews : {product.avgRating.toFixed(1)} ★</h4>
+                        <h4 style={{ color: '#2f2116', marginBottom: '5px' }}>Customer Reviews : {product.avgRating.toFixed(1)} ★</h4>
                         <p>
                             Based on {product.numReviews} customer ratings
                         </p>
@@ -198,7 +198,7 @@ const ProductDetail = () => {
                                     key={review._id}
                                     style={{
                                         padding: '10px',
-                                        borderBottom: '1px solid #27272a'
+                                        borderBottom: '1px solid #d9c3a7'
                                     }}
                                 >
                                     <div style={{ display: 'flex', alignItems: 'baseline', gap: '10px' }}>

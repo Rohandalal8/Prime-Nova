@@ -12,8 +12,8 @@ html {
 }
 
 body {
-    background: radial-gradient(circle at top right, rgba(249, 115, 22, 0.2),transparent 60%), linear-gradient(135deg, #18181b 0%, #09090b 100%);
-    color: #fafafa;
+    background: radial-gradient(circle at top right, rgba(139, 94, 60, 0.16), transparent 60%), linear-gradient(135deg, #fff8ef 0%, #f8ede1 100%);
+    color: #2f2116;
     min-height: 100vh;
     overflow-x: hidden;
     display: flex;
@@ -49,14 +49,14 @@ ul {
     display: flex;
     margin-top: 20px;
     font-size: 16px;
-    color: #f97316;
+    color: #8b5e3c;
     transition: all 0.3s ease;
     align-items: center;
     justify-content: center;
     cursor: pointer;
 }
 .view-all-link:hover {
-    color: #ea580c;
+    color: #6f4428;
 }
 
 .scrollbar {
@@ -70,8 +70,8 @@ ul {
 
 /* Premium buttons */
 .btn {
-    background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
-    color: #fff;
+    background: linear-gradient(135deg, #d8b692 0%, #c9a37c 100%);
+    color: #2f2116;
     border: none;
     padding: 10px 20px;
     border-radius: 4px;
@@ -79,13 +79,13 @@ ul {
     font-size: 15px;
     cursor: pointer;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: 0 4px 14px rgba(234, 88, 12, 0.3);
+    box-shadow: 0 4px 14px rgba(111, 68, 40, 0.2);
     display: inline-block;
     text-align: center;
 }
 
 .btn:hover {
-    box-shadow: 0 6px 20px rgba(234, 88, 12, 0.5);
+    box-shadow: 0 6px 20px rgba(111, 68, 40, 0.28);
     filter: brightness(1.1);
 }
 
@@ -97,7 +97,7 @@ h1, h2, h3, h4 {
 
 h2 {
     font-size: 1.5rem;
-    background: linear-gradient(to right, #ffffff, #87878e);
+    background: linear-gradient(to right, #5a3722, #8b5e3c);
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -118,14 +118,14 @@ h2 {
     width: 8px;
 }
 ::-webkit-scrollbar-track {
-    background: #09090b;
+    background: #f8ede1;
 }
 ::-webkit-scrollbar-thumb {
-    background: #27272a;
+    background: #d9c3a7;
     border-radius: 10px;
 }
 ::-webkit-scrollbar-thumb:hover {
-    background: #3f3f46;
+    background: #c5ab89;
 }
 
 /* profile page */
@@ -135,13 +135,13 @@ h2 {
     margin: 20px auto;
     padding: 15px; 
     border-radius: 4px;
-    color: #fafafa;
-    box-shadow: 0 4px 30px rgba(24, 24, 27, 0.1); 
+    color: #2f2116;
+    box-shadow: 0 4px 30px rgba(111, 68, 40, 0.12); 
 }
 
 .badgeStyle { 
-    background: rgba(249,115,22,0.1); 
-    color: #f97316; 
+    background: rgba(139, 94, 60, 0.12); 
+    color: #8b5e3c; 
     padding: 6px 12px; 
     border-radius: 4px; 
     font-size: 0.9rem; 
@@ -172,7 +172,7 @@ h2 {
     width: 7px;
     height: 7px;
     border-radius: 50%;
-    background: #f97316;
+    background: #8b5e3c;
     animation: bounce 0.6s infinite alternate;
 }
 

@@ -12,8 +12,8 @@ const createdOrder = async (req, res) => {
             !address.mobileNumber?.trim() ||
             !address.street?.trim() ||
             !address.city?.trim() ||
-            !address.postalCode?.trim() ||
-            !address.country?.trim()
+            !address.postalCode?.trim() 
+            // !address.country?.trim()
         ) {
             return res.status(400).json({
                 message: 'Complete address is required'

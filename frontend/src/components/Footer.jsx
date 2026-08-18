@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom';
 function Footer() {
     return (
         <footer style={{ 
-            backgroundColor: '#09090b6a',
-            borderTop: '1px solid rgba(255, 255, 255, 0.05)', 
+            backgroundColor: '#f8ede16a',
+            borderTop: '1px solid rgba(111, 68, 40, 0.12)', 
             padding: '20px', 
             marginTop: 'auto',
         }}>
@@ -19,17 +19,17 @@ function Footer() {
                 gap: '20 px' 
             }}>
                 <div style={{ display: 'flex',alignItems: 'center', gap: '5px', marginBottom: '5px' }}>
-                    <h3 style={{marginBottom: '0', color: '#f97316' }}>Prime Nova</h3>
-                    <p style={{ color: '#a1a1aa', fontSize: '0.7rem', position: 'relative', bottom: '-3px' }}>Private Limited.</p>
+                    <h3 style={{marginBottom: '0', color: '#8b5e3c' }}>Prime Nova</h3>
+                    <p style={{ color: '#7b6550', fontSize: '0.7rem', position: 'relative', bottom: '-3px' }}>Private Limited.</p>
                 </div>
 
                 <div style={{ display: 'flex', gap: '20px', marginBottom: '5px' }}>
-                    <Link to="/about" style={{ color: '#a1a1aa', fontSize: '0.9rem' }}>About</Link>
-                    <Link to="/return" style={{ color: '#a1a1aa', fontSize: '0.9rem' }}>Return Policy</Link>
-                    <Link to="/disclaimer" style={{ color: '#a1a1aa', fontSize: '0.9rem' }}>Disclaimer</Link>
+                    <Link to="/about" style={{ color: '#7b6550', fontSize: '0.9rem' }}>About</Link>
+                    {/* <Link to="/return" style={{ color: '#7b6550', fontSize: '0.9rem' }}>Return Policy</Link> */}
+                    {/* <Link to="/disclaimer" style={{ color: '#7b6550', fontSize: '0.9rem' }}>Disclaimer</Link> */}
                 </div>
                 
-                <div style={{  color: '#a1a1aa', fontSize: '0.9rem', marginBottom: '5px' }}>
+                <div style={{  color: '#7b6550', fontSize: '0.9rem', marginBottom: '5px' }}>
                     &copy; {new Date().getFullYear()} Prime Nova. All rights reserved.
                 </div>
             </div>

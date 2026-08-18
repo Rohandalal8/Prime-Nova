@@ -7,13 +7,13 @@ const textualStyle = {
     padding: '20px',
     borderRadius: '4px',
     lineHeight: '1.8',
-    color: '#a1a1aa'
+    color: '#7b6550'
 };
 
 const Disclaimer = () => {
   return (
     <div style={textualStyle}>
-      <h2 style={{ color: '#fff', marginBottom: '20px', borderBottom: '1px solid rgba(255,255,255,0.1)', paddingBottom: '15px' }}>
+      <h2 style={{ color: '#2f2116', marginBottom: '20px', borderBottom: '1px solid rgba(111,68,40,0.18)', paddingBottom: '15px' }}>
         Legal & Site Disclaimer
       </h2>
       
@@ -21,17 +21,17 @@ const Disclaimer = () => {
         The data, interfaces, and graphical components represented across the Prime Nova domain strictly act uniquely as an educational development platform. This codebase models rigorous application structures and architectures for purely demonstrative, portfolio-oriented engineering usage.
       </p>
 
-      <h4 style={{ color: '#f97316', marginTop: '25px', marginBottom: '10px' }}>1. Accuracy of Materials</h4>
+      <h4 style={{ color: '#8b5e3c', marginTop: '25px', marginBottom: '10px' }}>1. Accuracy of Materials</h4>
       <p style={{ marginBottom: '15px' }}>
         The materials spanning the Prime Nova interface may heavily include dynamic technical, typographical, or dummy photographic elements. Product matrices mapped in the DB pipeline do absolutely not correlate to strictly real physical outputs and are safely populated via generic Unsplash imagery protocols.
       </p>
 
-      <h4 style={{ color: '#f97316', marginTop: '25px', marginBottom: '10px' }}>2. Payment Processing Restrictions</h4>
+      <h4 style={{ color: '#8b5e3c', marginTop: '25px', marginBottom: '10px' }}>2. Payment Processing Restrictions</h4>
       <p style={{ marginBottom: '15px' }}>
         No authentic financial variables are handled natively within this environment. All payment endpoints forcefully bind exclusively to external testing-based networks (Sandbox Razorpay environments). No exact deductibles exist.
       </p>
 
-      <h4 style={{ color: '#f97316', marginTop: '25px', marginBottom: '10px' }}>3. External Binding Links</h4>
+      <h4 style={{ color: '#8b5e3c', marginTop: '25px', marginBottom: '10px' }}>3. External Binding Links</h4>
       <p style={{ marginBottom: '15px' }}>
         Prime Nova operates completely independent domains and takes strictly zero absolute parameter responsibility over the specific contents or behaviors populated via external routing anchors generated implicitly by third-party configurations. 
       </p>

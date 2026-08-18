@@ -20,8 +20,8 @@ const Checkout = () => {
     mobileNumber: '',
     street: '',
     city: '',
-    postalCode: '',
-    country: ''
+    postalCode: ''
+    // country: ''
   });
   const [isPaying, setIsPaying] = useState(false);
 
@@ -53,102 +53,102 @@ const Checkout = () => {
     price: item.price,
   }));
 
-  if (isPaying) {
-    return (
-      <div style={{ textAlign: 'center', padding: '50px' }}>
-        <h2>Processing Payment...</h2>
-        <p>Please do not close or refresh the page</p>
-      </div>
-    );
-  }
+  // if (isPaying) {
+  //   return (
+  //     <div style={{ textAlign: 'center', padding: '50px' }}>
+  //       <h2>Processing Payment...</h2>
+  //       <p>Please do not close or refresh the page</p>
+  //     </div>
+  //   );
+  // }
 
-  const handlePayment = async () => {
-    try {
-      const orderRes = await fetch(`${API_URL}/api/payment/order`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ products: buildOrderProducts(), address })
-      });
+  // const handlePayment = async () => {
+  //   try {
+  //     const orderRes = await fetch(`${API_URL}/api/payment/order`, {
+  //       method: 'POST',
+  //       headers: { 'Content-Type': 'application/json' },
+  //       body: JSON.stringify({ products: buildOrderProducts(), address })
+  //     });
 
-      const orderData = await orderRes.json();
+  //     const orderData = await orderRes.json();
 
-      if (!orderRes.ok) {
-        toast.error(orderData.message || 'Unable to create payment order');
-        setIsPaying(false);
-        return;
-      }
+  //     if (!orderRes.ok) {
+  //       toast.error(orderData.message || 'Unable to create payment order');
+  //       setIsPaying(false);
+  //       return;
+  //     }
 
-      const options = {
-        key: process.env.REACT_APP_RAZORPAY_KEY_ID,
-        amount: orderData.amount,
-        currency: orderData.currency,
-        name: 'Prime Nova',
-        description: 'Purchase',
-        order_id: orderData.id,
+  //     const options = {
+  //       key: process.env.REACT_APP_RAZORPAY_KEY_ID,
+  //       amount: orderData.amount,
+  //       currency: orderData.currency,
+  //       name: 'Prime Nova',
+  //       description: 'Purchase',
+  //       order_id: orderData.id,
 
-        handler: async function (response) {
-          const verifyRes = await fetch(`${API_URL}/api/payment/verify`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(response)
-          });
+  //       handler: async function (response) {
+  //         const verifyRes = await fetch(`${API_URL}/api/payment/verify`, {
+  //           method: 'POST',
+  //           headers: { 'Content-Type': 'application/json' },
+  //           body: JSON.stringify(response)
+  //         });
 
-          if (verifyRes.ok) {
-            const saveOrderRes = await fetch(`${API_URL}/api/orders`, {
-              method: 'POST',
-              headers: { 
-                'Content-Type': 'application/json',
-                Authorization: `Bearer ${user.token}`
-              },
-              body: JSON.stringify({
-                products: buildOrderProducts(),
-                totalPrice,
-                address,
-                paymentId: response.razorpay_payment_id
-              })
-            });
+  //         if (verifyRes.ok) {
+  //           const saveOrderRes = await fetch(`${API_URL}/api/orders`, {
+  //             method: 'POST',
+  //             headers: { 
+  //               'Content-Type': 'application/json',
+  //               Authorization: `Bearer ${user.token}`
+  //             },
+  //             body: JSON.stringify({
+  //               products: buildOrderProducts(),
+  //               totalPrice,
+  //               address,
+  //               paymentId: response.razorpay_payment_id
+  //             })
+  //           });
 
-            if (saveOrderRes.ok) {
-              if (!buyNowItems) {
-                dispatch(clearCart());
-              }
-              navigate('/ordersuccess');
-            } else {
-              toast.error('Order saving failed');
-              setIsPaying(false);
-            }
-          } else {
-            toast.error('Payment verification failed');
-            setIsPaying(false);
-          }
-        },
+  //           if (saveOrderRes.ok) {
+  //             if (!buyNowItems) {
+  //               dispatch(clearCart());
+  //             }
+  //             navigate('/ordersuccess');
+  //           } else {
+  //             toast.error('Order saving failed');
+  //             setIsPaying(false);
+  //           }
+  //         } else {
+  //           toast.error('Payment verification failed');
+  //           setIsPaying(false);
+  //         }
+  //       },
 
-        modal: {
-          ondismiss: function() {
-            toast.info('Payment cancelled');
-            setIsPaying(false);
-          }
-        },
+  //       modal: {
+  //         ondismiss: function() {
+  //           toast.info('Payment cancelled');
+  //           setIsPaying(false);
+  //         }
+  //       },
 
-        prefill: {
-          name: address.fullName,
-          email: user?.email,
-          contact: `${address.mobileNumber}`
-        },
-        theme: {
-          color: '#f97316'
-        }
-      };
+  //       prefill: {
+  //         name: address.fullName,
+  //         email: user?.email,
+  //         contact: `${address.mobileNumber}`
+  //       },
+  //       theme: {
+  //         color: '#8b5e3c'
+  //       }
+  //     };
       
-      const rzp1 = new window.Razorpay(options);
-      rzp1.open();
-    } catch (error) {
-      toast.error('Payment initialization error: ' + error.message);
-      console.error('Payment initialization error:', error);
-    }
-  };
+  //     const rzp1 = new window.Razorpay(options);
+  //     rzp1.open();
+  //   } catch (error) {
+  //     toast.error('Payment initialization error: ' + error.message);
+  //     console.error('Payment initialization error:', error);
+  //   }
+  // };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (isPaying) return;
@@ -158,8 +158,47 @@ const Checkout = () => {
       navigate('/login');
       return;
     }
-    setIsPaying(true);
-    handlePayment();
+
+    // Payment gateway flow intentionally kept disabled for COD-only checkout.
+    // setIsPaying(true);
+    // handlePayment();
+
+    try {
+      setIsPaying(true);
+
+      const saveOrderRes = await fetch(`${API_URL}/api/orders`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${user.token}`,
+        },
+        body: JSON.stringify({
+          products: buildOrderProducts(),
+          totalPrice,
+          address,
+          paymentId: 'COD',
+        }),
+      });
+
+      const saveOrderData = await saveOrderRes.json();
+
+      if (!saveOrderRes.ok) {
+        toast.error(saveOrderData.message || 'Order saving failed');
+        setIsPaying(false);
+        return;
+      }
+
+      if (!buyNowItems) {
+        dispatch(clearCart());
+      }
+
+      toast.success('Order placed successfully (Cash on Delivery)');
+      navigate('/ordersuccess');
+    } catch (error) {
+      toast.error('Order placement failed: ' + error.message);
+      console.error('COD order placement error:', error);
+      setIsPaying(false);
+    }
   };
 
 
@@ -184,7 +223,7 @@ const Checkout = () => {
           <input type="text" placeholder="Street" required value={address.street} onChange={(e) => setAddress({...address, street: e.target.value})} />
           <input type="text" placeholder="City" required value={address.city} onChange={(e) => setAddress({...address, city: e.target.value})} />
           <input type="text" placeholder="Postal Code" required value={address.postalCode} onChange={(e) => setAddress({...address, postalCode: e.target.value})} />
-          <input type="text" placeholder="Country" required value={address.country} onChange={(e) => setAddress({ ...address, country: e.target.value })} />
+          {/* <input type="text" placeholder="Country" required value={address.country} onChange={(e) => setAddress({ ...address, country: e.target.value })} /> */}
           <div className="cart-summary">
             {checkoutItems.map((item) => (
               <div key={item.productId || item._id} className="cart-summary-item">
@@ -211,8 +250,8 @@ const Checkout = () => {
               <span>₹{(totalPrice).toFixed(2)}</span>
             </div>
           </div>
-          <button type="submit" disabled={!user} className="btn btn-checkout" style={{ opacity: !user ? 0.5 : 1, cursor: !user ? 'not-allowed' : 'pointer' }}>
-            {user ? 'Pay Now' : 'Login to Proceed'}
+          <button type="submit" disabled={!user || isPaying} className="btn btn-checkout" style={{ opacity: (!user || isPaying) ? 0.5 : 1, cursor: (!user || isPaying) ? 'not-allowed' : 'pointer' }}>
+            {user ? (isPaying ? 'Placing Order...' : 'Place Order (COD)') : 'Login to Proceed'}
           </button>
         </form>
       </div>

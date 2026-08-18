@@ -64,8 +64,8 @@ const AdminOrders = () => {
             address.fullName,
             address.street,
             address.city,
-            address.postalCode,
-            address.country,
+            address.postalCode
+            // address.country,
         ].filter(Boolean).join(', ');
     };
 
@@ -119,7 +119,7 @@ const AdminOrders = () => {
                                         year: 'numeric'
                                     })}</td>
                                     <td style={tdStyle}>
-                                        <select value={order.status} onChange={(e) => updateStatus(order._id, e.target.value)} style={{ padding: '6px', borderRadius: '4px', backgroundColor: '#27272a', color: '#fff', border: '1px solid rgba(255,255,255,0.1)', outline: 'none' }}>
+                                        <select value={order.status} onChange={(e) => updateStatus(order._id, e.target.value)} style={{ padding: '6px', borderRadius: '4px', backgroundColor: '#d9c3a7', color: '#2f2116', border: '1px solid rgba(111,68,40,0.18)', outline: 'none' }}>
                                             <option value="pending">Pending</option>
                                             <option value="shipped">Shipped</option>
                                             <option value="delivered">Delivered</option>
@@ -145,20 +145,20 @@ const containerStyle = {
 const tableStyle = {
     width: '100%',
     borderCollapse: 'collapse',
-    background: '#18181b',
+    background: '#fff8ef',
     borderRadius: '4px',
-    border: '1px solid rgba(255,255,255,0.05)',
-    color: '#fafafa'
+    border: '1px solid rgba(111,68,40,0.12)',
+    color: '#2f2116'
 };
 
 const rowStyle = {
-    borderBottom: '1px solid rgba(255,255,255,0.1)'
+    borderBottom: '1px solid rgba(111,68,40,0.18)'
 };
 
 const thStyle = {
     padding: '15px',
     textAlign: 'left',
-    color: '#a1a1aa',
+    color: '#7b6550',
     fontSize: '0.9rem',
 };
 

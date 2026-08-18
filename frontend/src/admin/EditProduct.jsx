@@ -93,11 +93,11 @@ const EditProduct = () => {
     };
 
     if (loading) {
-        return <p style={{ textAlign: 'center', marginTop: '40px', color: '#a1a1aa' }}>Loading product...</p>;
+        return <p style={{ textAlign: 'center', marginTop: '40px', color: '#7b6550' }}>Loading product...</p>;
     }
 
     return (
-        <div style={{ maxWidth: '600px', margin: '20px auto', padding: '20px', borderRadius: '4px', backgroundColor: '#18181b', border: '1px solid rgba(255,255,255,0.05)' }}>
+        <div style={{ maxWidth: '600px', margin: '20px auto', padding: '20px', borderRadius: '4px', backgroundColor: '#fff8ef', border: '1px solid rgba(111,68,40,0.12)' }}>
             <h2 style={{ marginBottom: '20px' }}>Edit Product</h2>
             <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
                 <input name="name" type="text" placeholder="Product Name" value={formData.name} onChange={(e) => setFormData({ ...formData, name: e.target.value })} style={inputStyle} required />
@@ -107,7 +107,7 @@ const EditProduct = () => {
                 <input name="category" type="text" placeholder="Category" value={formData.category} onChange={(e) => setFormData({ ...formData, category: e.target.value })} style={inputStyle} required />
                 <input name="stock" type="number" placeholder="Stock Quantity" value={formData.stock} onChange={(e) => setFormData({ ...formData, stock: e.target.value })} style={inputStyle} required />
                 <input type="file" accept="image/*" multiple onChange={(e) => setImages(Array.from(e.target.files))} style={{ ...inputStyle, padding: '5px' }} />
-                <span style={{ fontSize: '0.8rem', color: '#a1a1aa' }}>You can upload multiple images for the product. (Max 12)</span>
+                <span style={{ fontSize: '0.8rem', color: '#7b6550' }}>You can upload multiple images for the product. (Max 12)</span>
                 <button type="submit"  style={buttonStyle}>
                     {loading ? 'Updating...' : 'Update Product'}
                 </button>
@@ -119,16 +119,16 @@ const EditProduct = () => {
 const inputStyle = {
     padding: '10px',
     borderRadius: '4px',
-    border: '1px solid rgba(255,255,255,0.1)',
-    backgroundColor: '#27272a',
-    color: '#fff',
+    border: '1px solid rgba(111,68,40,0.18)',
+    backgroundColor: '#d9c3a7',
+    color: '#2f2116',
 };
 
 const buttonStyle = {
     padding: '10px 20px',
     borderRadius: '4px',
-    backgroundColor: '#f97316',
-    color: '#fff',
+    backgroundColor: '#d8b692',
+    color: '#2f2116',
     border: 'none',
     cursor: 'pointer',
 };

@@ -7,16 +7,16 @@
 }
 
 .auth-form {
-  background: #18181b;
+  background: #fff8ef;
   padding: 20px;
   border-radius: 4px;
-  box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+  box-shadow: 0 10px 40px rgba(91,57,34,0.16);
   width: 100%;
   max-width: 380px;
   display: flex;
   flex-direction: column;
   gap: 20px;
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(111, 68, 40, 0.12);
   position: relative;
   overflow: hidden;
 }
@@ -28,7 +28,7 @@
   left: -50%;
   width: 200%;
   height: 4px;
-  background: linear-gradient(90deg, transparent, #f97316, transparent);
+  background: linear-gradient(90deg, transparent, #8b5e3c, transparent);
   animation: shimmer 3s infinite linear;
 }
 
@@ -40,32 +40,32 @@
 .auth-form h2 {
   text-align: center;
   font-size: 1.5rem;
-  color: #fff;
+  color: #2f2116;
 }
 
 .auth-form input, .auth-form textarea {
   padding: 15px;
-  background: #09090b;
-  border: 1px solid #27272a;
+  background: #f8ede1;
+  border: 1px solid #d9c3a7;
   border-radius: 4px;
   font-size: 15px;
-  color: #fff;
+  color: #2f2116;
   outline: none;
   transition: all 0.3s ease;
 }
 
 .auth-form input:focus, .auth-form textarea:focus {
-  border-color: #f97316;
-  box-shadow: 0 0 0 2px rgba(249, 115, 22, 0.2);
+  border-color: #8b5e3c;
+  box-shadow: 0 0 0 2px rgba(139, 94, 60, 0.2);
 }
 
 .auth-form p {
   text-align: center;
-  color: #a1a1aa;
+  color: #7b6550;
 }
 
 .auth-form a {
-  color: #f97316;
+  color: #8b5e3c;
   font-weight: 400;
 }
 
@@ -76,8 +76,8 @@
 /* Auth Form Button Styling */
 .auth-form button {
   padding: 14px 24px;
-  background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
-  color: #fff;
+  background: linear-gradient(135deg, #d8b692 0%, #c9a37c 100%);
+  color: #2f2116;
   border: none;
   border-radius: 4px;
   font-size: 15px;
@@ -85,7 +85,7 @@
   font-family: inherit;
   cursor: pointer;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 4px 14px rgba(234, 88, 12, 0.3);
+  box-shadow: 0 4px 14px rgba(111, 68, 40, 0.2);
   position: relative;
   overflow: hidden;
   text-transform: uppercase;
@@ -105,7 +105,7 @@
 
 .auth-form button:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(234, 88, 12, 0.5);
+  box-shadow: 0 8px 24px rgba(111, 68, 40, 0.28);
   filter: brightness(1.15);
 }
 
@@ -115,7 +115,7 @@
 
 .auth-form button:active {
   transform: translateY(0px);
-  box-shadow: 0 2px 8px rgba(234, 88, 12, 0.4);
+  box-shadow: 0 2px 8px rgba(111, 68, 40, 0.24);
 }
 
 @media (max-width: 768px) {

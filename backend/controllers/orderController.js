@@ -70,7 +70,7 @@ Dear ${req.user.name},
 Thank you for your order! Your order has been received and is being processed. Here are the details of your order:
 Order ID: ${createdOrder._id}
 Total Price: $${createdOrder.totalPrice}
-Shipping Address: ${address.fullName}, ${address.street}, ${address.city}, ${address.postalCode}, ${address.country}
+Shipping Address: ${address.fullName}, ${address.street}, ${address.city}, ${address.postalCode}
 Mobile Number: ${address.mobileNumber}
 You can track your order status in your profile. If you have any questions, feel free to contact our support team.
 Thank you for shopping with Prime Nova!`;
