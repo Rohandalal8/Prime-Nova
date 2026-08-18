@@ -106,10 +106,10 @@
         font-size: 18px;
         font-weight: 400;
     }
-    .navbar-logo {
+    /* .navbar-logo {
         width: 18px;
         height: 18px;
-    }
+    } */
     .logout-btn {
         display: none;
     }
