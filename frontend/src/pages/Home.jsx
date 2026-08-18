@@ -19,8 +19,8 @@ const Home = () => {
                 const response = await fetch(`${API_URL}/api/products`);
                 const data = await response.json();
 
-                const isMobile = window.innerWidth <= 768;
-                const limit = isMobile ? 4 : 5;
+                // const isMobile = window.innerWidth <= 768;
+                // const limit = isMobile ? 4 : 5;
 
                 // latest products
                 // setLatestProducts(data.slice(-limit).reverse()); // Show only the last 4 products on mobile, 5 on desktop
@@ -28,7 +28,7 @@ const Home = () => {
                 // popular products
                 const sortedProducts = [...data].sort((a, b) => (b.totalSold || 0) - (a.totalSold || 0));
 
-                setPopularProducts(sortedProducts.slice(0, limit)); // Show only the top 4 products on mobile, 5 on desktop
+                setPopularProducts(sortedProducts); // Show only the top 4 products on mobile, 5 on desktop
 
                 // deal products
                 // const dealProducts = data.filter(p => p.discount > 0).sort((a, b) => b.discount - a.discount);
