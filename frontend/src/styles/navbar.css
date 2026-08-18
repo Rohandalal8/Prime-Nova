@@ -20,7 +20,7 @@
     letter-spacing: -1px;
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 5px;
     text-shadow: 0 2px 10px rgba(111, 68, 40, 0.22);
 }
 
