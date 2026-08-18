@@ -131,9 +131,9 @@ const ProductDetail = () => {
                 <div className="detail-info">
                     <h2 style={{ marginBottom: '10px', fontSize: '1.5rem' }}>{product.name}</h2>
 
-                    <p>
+                    {/* <p>
                         {product.avgRating.toFixed(1)} ★ {product.numReviews}
-                    </p>
+                    </p> */}
 
                     {product.discount > 0 ? (
                         <div style={{ display: 'flex', alignItems: 'baseline', gap: '3px' }}>
@@ -156,7 +156,7 @@ const ProductDetail = () => {
                     )}
 
                     <div style={{ marginBottom: '10px' }}>
-                        <h4 style={{ color: '#2f2116', marginBottom: '5px' }}>Product Description</h4>
+                        {/* <h4 style={{ color: '#2f2116', marginBottom: '5px' }}>Product Description</h4> */}
                         <p>
                             {product.description}
                         </p>

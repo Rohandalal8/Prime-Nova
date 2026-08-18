@@ -80,9 +80,9 @@ const Cart = () => {
   const totalPrice = cartItems.reduce((acc, item) => acc + (item.price * item.qty), 0);
   const totalDiscount = cartItems.reduce((acc, item) => acc + ((item.price * item.qty * item.discount) / 100), 0);
   const totalDiscountedPrice = totalPrice - totalDiscount;
-  const tax = totalDiscountedPrice * 0.08;
-  const shipping = 5;
-  const finalTotal = totalDiscountedPrice + tax + shipping;
+  // const tax = totalDiscountedPrice * 0.08;
+  const shipping = 65;
+  const finalTotal = totalDiscountedPrice + shipping;
 
   return (
     <div className="cart-container">
@@ -156,10 +156,10 @@ const Cart = () => {
                 <span>-₹{(totalDiscount).toFixed(2)}</span>
               </div>
             )}
-            <div className="cart-summary-item">
+            {/* <div className="cart-summary-item">
               <span>Tax:</span>
               <span>₹{(tax).toFixed(2)}</span>
-            </div>
+            </div> */}
             <div className="cart-summary-item">
               <span>Shipping:</span>
               <span>₹{(shipping).toFixed(2)}</span>

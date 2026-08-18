@@ -42,10 +42,10 @@ const Checkout = () => {
     return acc + discountAmount * item.qty;
   }, 0);
 
-  const tax = subtotal * 0.08;
-  const shipping = 5;
+  // const tax = subtotal * 0.08;
+  const shipping = 65;
 
-  const totalPrice = subtotal + tax + shipping;
+  const totalPrice = subtotal + shipping;
 
   const buildOrderProducts = () => checkoutItems.map((item) => ({
     productId: item.productId || item._id,
@@ -237,10 +237,10 @@ const Checkout = () => {
                 <span>-₹{(totalDiscount).toFixed(2)}</span>
               </div>
             )}
-            <div className="cart-summary-item">
+            {/* <div className="cart-summary-item">
               <span>Tax:</span>
               <span>₹{(tax).toFixed(2)}</span>
-            </div>
+            </div> */}
             <div className="cart-summary-item">
               <span>Shipping:</span>
               <span>₹{(shipping).toFixed(2)}</span>

@@ -38,9 +38,9 @@ const createdOrder = async (req, res) => {
             totalAmount += discountedPrice * item.quantity;
         }
 
-        const tax = totalAmount * 0.08;
-        const shipping = 5;
-        totalAmount += tax + shipping;
+        // const tax = totalAmount * 0.08;
+        const shipping = 65;
+        totalAmount += shipping;
 
         const options = {
             amount: Math.round(totalAmount * 100), // Amount in paise

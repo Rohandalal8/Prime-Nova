@@ -123,4 +123,13 @@
     .navbar-links span {
         font-size: 0.8rem;
     }
+    .navbar-links a:hover {
+        color: #7b6550;
+    }
+    .navbar-links a::after {
+        display: none;
+    }
+    .navbar-links a:hover::after {
+        transform: scaleX(0);
+    }
 }

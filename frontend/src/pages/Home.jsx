@@ -6,9 +6,9 @@ import { AuthContext } from '../context/AuthContext';
 import { API_URL } from '../config';
 
 const Home = () => {
-    const [latestProducts, setLatestProducts] = useState([]);
+    // const [latestProducts, setLatestProducts] = useState([]);
     const [popularProducts, setPopularProducts] = useState([]);
-    const [dealProducts, setDealProducts] = useState([]);
+    // const [dealProducts, setDealProducts] = useState([]);
     const [loading, setLoading] = useState(true);
     const { user } = React.useContext(AuthContext);
 
@@ -23,7 +23,7 @@ const Home = () => {
                 const limit = isMobile ? 4 : 5;
 
                 // latest products
-                setLatestProducts(data.slice(-limit).reverse()); // Show only the last 4 products on mobile, 5 on desktop
+                // setLatestProducts(data.slice(-limit).reverse()); // Show only the last 4 products on mobile, 5 on desktop
 
                 // popular products
                 const sortedProducts = [...data].sort((a, b) => (b.totalSold || 0) - (a.totalSold || 0));
@@ -31,8 +31,8 @@ const Home = () => {
                 setPopularProducts(sortedProducts.slice(0, limit)); // Show only the top 4 products on mobile, 5 on desktop
 
                 // deal products
-                const dealProducts = data.filter(p => p.discount > 0).sort((a, b) => b.discount - a.discount);
-                setDealProducts(dealProducts.slice(0, limit)); // Show only the top 4 deal products on mobile, 5 on desktop
+                // const dealProducts = data.filter(p => p.discount > 0).sort((a, b) => b.discount - a.discount);
+                // setDealProducts(dealProducts.slice(0, limit)); // Show only the top 4 deal products on mobile, 5 on desktop
 
             } catch (error) {
                 console.error('Error fetching products:', error);
@@ -63,19 +63,19 @@ const Home = () => {
                         ))}
                     </div>
 
-                    <h2 style={{ marginTop: '20px', paddingTop: '10px', borderTop: '1px solid #d9c3a7' }}>Fresh Picks</h2>
+                    {/* <h2 style={{ marginTop: '20px', paddingTop: '10px', borderTop: '1px solid #d9c3a7' }}>Fresh Picks</h2>
                     <div className="product-grid" >
                         {latestProducts.map(product => (
                             <ProductCard key={product._id} product={product} />
                         ))}
-                    </div>
+                    </div> */}
 
-                    <h2 style={{ marginTop: '20px', paddingTop: '10px', borderTop: '1px solid #d9c3a7' }}>Hot Deals</h2>
+                    {/* <h2 style={{ marginTop: '20px', paddingTop: '10px', borderTop: '1px solid #d9c3a7' }}>Hot Deals</h2>
                     <div className="product-grid" >
                         {dealProducts.map(product => (
                             <ProductCard key={product._id} product={product} />
                         ))}
-                    </div>
+                    </div> */}
 
                     {/* <Link to="/shop" className="view-all-link">View All Products</Link> */}
                 </>
