@@ -56,7 +56,7 @@ const Home = () => {
                 </div>
             ) : (
                 <>
-                    <h2>Trending Now</h2>
+                    <h2>Our Products</h2>
                     <div className="product-grid" >
                         {popularProducts.map(product => (
                             <ProductCard key={product._id} product={product} />

@@ -20,7 +20,7 @@ function Navbar() {
     <nav className="navbar">
       <div className="navbar-brand">
         <Link to="/">
-            <img src="/PrimeLogo.png" alt="Prime Nova Logo" className="navbar-logo" />
+            <img src="/prime-nova.jpeg" alt="Prime Nova Logo" className="navbar-logo" />
             Prime Nova
         </Link>
       </div>
