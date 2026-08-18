@@ -106,7 +106,7 @@ const Profile = () => {
                   </div>
                 </div>
                 <p style={{ color: '#7b6550', fontSize: '0.9rem', marginBottom: '5px' }}>Placed On: <span style={{ color: '#2f2116' }}>{new Date(order.createdAt).toLocaleDateString('en-GB')}</span></p>
-                <p style={{ color: '#7b6550', fontSize: '0.9rem' }}>Total: <span style={{ color: '#2f2116' }}>${formatOrderTotal(order)}</span></p>
+                <p style={{ color: '#7b6550', fontSize: '0.9rem' }}>Total: <span style={{ color: '#2f2116' }}>₹{formatOrderTotal(order)}</span></p>
               </div>
               <div>
                 <span style={{ 
