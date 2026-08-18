@@ -47,7 +47,7 @@ const Cart = () => {
         if (!cartItem) return;
 
         // Out of stock => remove
-        if (product.stock <= 0) {
+        if (product.stock <= 0 || !product) {
         dispatch(removeFromCart(getItemId(cartItem)));
         return;
         }
