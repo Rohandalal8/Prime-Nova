@@ -27,52 +27,67 @@ const Cart = () => {
     const syncCartStock = async () => {
       if (cartItems.length === 0) return;
 
-      const ids = cartItems.map(item => getItemId(item));
+      try {
+        const ids = cartItems.map((item) => String(getItemId(item)));
 
-      const res = await fetch(`${API_URL}/api/products/cart-stock`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ ids })
-      });
+        const res = await fetch(`${API_URL}/api/products/cart-stock`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ ids })
+        });
 
-      const products = await res.json();
+        if (!res.ok) return;
 
-      products.forEach(product => {
-        const cartItem = cartItems.find(
-          item => getItemId(item) === product._id
-        );
+        const products = await res.json();
+        const returnedIds = new Set(products.map((product) => String(product._id)));
 
-        if (!cartItem) return;
+        // Remove products that were deleted from DB and no longer appear in response.
+        cartItems.forEach((item) => {
+          const itemId = String(getItemId(item));
+          if (!returnedIds.has(itemId)) {
+            dispatch(removeFromCart(getItemId(item)));
+          }
+        });
 
-        // Out of stock => remove
-        if (product.stock <= 0 || !product) {
-        dispatch(removeFromCart(getItemId(cartItem)));
-        return;
-        }
+        products.forEach((product) => {
+          const cartItem = cartItems.find(
+            (item) => String(getItemId(item)) === String(product._id)
+          );
 
-        // Update cart
-        if (cartItem.qty > product.stock) {
+          if (!cartItem) return;
+
+          // Out of stock => remove
+          if (product.stock <= 0) {
+            dispatch(removeFromCart(getItemId(cartItem)));
+            return;
+          }
+
+          // Update cart
+          if (cartItem.qty > product.stock) {
+            dispatch(
+              addToCart({
+                ...cartItem,
+                qty: product.stock,
+                stock: product.stock,
+                discount: product.discount
+              })
+            );
+            return;
+          }
+
           dispatch(
-            addToCart({
-              ...cartItem,
-              qty: product.stock,
+            updateCartStock({
+              productId: String(product._id),
               stock: product.stock,
               discount: product.discount
             })
           );
-          return;
-        }
-
-        dispatch(
-          updateCartStock({
-            productId: String(product._id),
-            stock: product.stock,
-            discount: product.discount
-          })
-        );
-      });
+        });
+      } catch (error) {
+        console.error('Cart stock sync failed:', error);
+      }
     };
     syncCartStock();
   }, [cartItems, dispatch]);
