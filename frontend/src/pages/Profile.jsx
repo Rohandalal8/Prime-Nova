@@ -70,7 +70,7 @@ const Profile = () => {
           <p style={{ color: '#7b6550', fontSize: '1rem', marginBottom: '5px' }}>Name: {user.name}</p>
           <p style={{ color: '#7b6550', fontSize: '1rem', marginBottom: '15px', whiteSpace: 'nowrap' }}>Email: {user.email}</p>
           {/* <span className="badgeStyle">Account Type: {user.role.toUpperCase()}</span> */}
-          <br />
+          {/* <br /> */}
           { user.role === "admin" && (
           <Link to="/admin">
             <button className="btn" style={{ background: '#d8b692', boxShadow: 'none', marginTop: '10px' }}>Admin Dashboard</button>
