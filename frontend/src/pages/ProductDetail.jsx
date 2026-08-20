@@ -39,6 +39,10 @@ const ProductDetail = () => {
         fetchProduct();
     }, [fetchProduct]);
 
+    useEffect(() => {
+        window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+    }, [id]);
+
     const handleAddToCart = () => {
 
         const alreadyInCart = cartItems.find(item => (item.productId || item._id) === product._id);
