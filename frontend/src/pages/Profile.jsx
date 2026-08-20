@@ -69,7 +69,7 @@ const Profile = () => {
           <h2 style={{ marginBottom: '10px' }}>My Profile</h2>
           <p style={{ color: '#7b6550', fontSize: '1rem', marginBottom: '5px' }}>Name: {user.name}</p>
           <p style={{ color: '#7b6550', fontSize: '1rem', marginBottom: '15px', whiteSpace: 'nowrap' }}>Email: {user.email}</p>
-          <span className="badgeStyle">Account Type: {user.role.toUpperCase()}</span>
+          {/* <span className="badgeStyle">Account Type: {user.role.toUpperCase()}</span> */}
           <br />
           { user.role === "admin" && (
           <Link to="/admin">
