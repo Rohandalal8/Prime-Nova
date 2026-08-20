@@ -47,7 +47,7 @@ const Home = () => {
         <div className="main-context">
             <div className="hero-banner">
                 <h1>Hi, {user?.name || 'Guest'}! Welcome to Prime Nova</h1>
-                <p>Prime Nova is a marketplace dedicated to handcrafted products created by skilled artisans. We bring together quality, creativity, and authenticity, offering unique handmade items that add a personal touch to everyday life while supporting talented makers and small businesses.</p>
+                <p>Where every Bar is handcrafted to turn ordinary moments into unforgettable memories. Choose your favourite flavour and share the sweetness with someone special.</p>
             </div>
 
             {loading ? (
